@@ -1,0 +1,174 @@
+*-----------------------------------------------------------------*
+|
+|	Web service para la lotería española
+|
+|	Author : Omar Pera Mira
+|   	Email  : campbell.sx@gmail.com
+|	Version: 0.1
+|	
+|   Última modificación: 23 Febrero 2009
+*-----------------------------------------------------------------*
+
+-----------------------------
+* DESCRIPCION 				*
+-----------------------------
+El web service proporciona los últimos resultados de los sorteos españoles, además 
+de actualizar dichos datos con una tarea que se ejecutará en background.
+
+Todas las peticiones pasan por el archivo 'index.php', en el cual debemos especificar 
+el módulo ( &module=XX ), el controlador ( &controller=XX ), la acción ( &action=XX) y
+los posibles parámetros de la acción.
+
+El resultado de los datos viene en formato JSON y cada sorteo dispone de un controlador.
+
+De momento se disponen de dichos sorteos ( a su derecha se encuentra el controlador, la acción
+por defecto es 'view' ):
+
+	- LOTERIA PRIMITIVA {&controller=primitiva}
+	- BONOLOTO {&controller=bonoloto}
+	- QUINIELA {&controller=quiniela}
+	- EL GORDO DE L.P. {&controller=gordoprimitiva}
+	- LOTERÍA NACIONAL.  {&controller=loterianacional}
+	- EL QUINIGOL {&controller=quinigol}
+	- EUROMILLONES {&controller=euromillon}
+	- LOTOTURF {&controller=lototurf}
+	- QUINTUPLE PLUS {&controller=quintupleplus}
+
+Los argumentos posibles son 'start': índice de los resultados ordenado por fecha y 'limit': número
+de resultados. Por defecto son start=0&limit=1 ( último sorteo hasta la fecha actual ).
+
+Además se dispone de un controlador '&controller=sorteos' para extraer el último resultado insertado
+en la base de datos de todos los sorteos. 
+
+Para insertar periodicamente en la base de datos todos los últimos resultados se debe usar CRON marcando
+la URL : 'index.php?controller=retrieval&action=dojob'
+
+-----------------------------
+* REQUERIMIENTOS				*
+-----------------------------
+
+	- Servidor web Apache ( u otros )
+	- MySql version 5
+	- PHP 5
+
+------------------------------
+* ESTRUCTURA                *
+------------------------------
+
+El directorio principal de la aplicación contiene:
+	- 'lib/': contiene el mini-framework creado para hacer uso del patrón MVC. Contiene las clases base 
+				para los controladores y los modelos ( conexión a base de datos).
+
+	- 'modules/': el módulo 'data' dispone de una serie de controladores para extraer la información
+			de las distintas loterias, además de un controlador específico para el insertado
+			de la nueva información. ( se debe ejecutar como una tarea en cron )
+	
+-----------------------------
+* COMO INSTALAR  			*
+-----------------------------
+
+Para instalar el web service se deben seguir los siguientes pasos:
+
+1.  Crear una base de datos MySQL ( usando utf8_unicode_ci como cotejamiento ):
+	* Usando un administrador de base de datos como phpMyAdmin no hay problema.
+	* Desde la línea de comandos:
+		$ mysql -h [host] -u [user] -p
+		mysql> CREATE DATABASE [database_name];
+		
+2.  Importar el dump de la base de datos contenido en el directorio principal de la aplicación.
+	* Usando una GUI, sólo importa el dump.sql en la base de datos anteriormente creada.
+	* Desde la línea de comandos ( se supone que estás logueado con el anterior comando ) :
+		mysql> USE [database_name];
+		mysql> SOURCE [absolute_path_to_dump_file];
+		mysql> SHOW tables;   // There will be 4 tables 
+	
+3.  Actualiza el archivo 'modules/config.php', con el [host], [user], [pass] de tu SGBD y 
+el [database_name] que acabas de crear.
+
+
+------------------------------
+* CRON                *
+------------------------------
+
+In order to update the lottery database you must execute a script in background.
+
+Using Cron we can automate this background tasks, in the directory 'cron/' is located
+the script and two types of crontab. The first one uses 'curl' to call the PHP script, and in case you
+don't have 'curl' installed in your OS there is a version with 'wget' that is installed on the
+majority of the Unix-based systems. In order to add this task you must input in the shell 
+'# crontab cron_file'
+
+On the other hand, if Windows is your OS, exists an program in 'Start > Programs > Accessories > 
+System Tools > Scheduled Tasks' for automate tasks.
+
+-----------------------------
+* EJEMPLOS		*
+-----------------------------
+
+Algunos ejemplos:
+
+____ http://localhost/lottery/?controller=bonoloto&start=0&limit=2 _____
+
+{
+   "info":"bonoloto",
+   "data":[
+      {
+         "id":"1",
+         "num1":"4",
+         "num2":"7",
+         "num3":"13",
+         "num4":"30",
+         "num5":"33",
+         "num6":"37",
+         "complementario":"42",
+         "reintegro":"7",
+         "fecha":"2009-02-18",
+         "numSorteo":"8"
+      },
+      {
+         "id":"2",
+         "num1":"2",
+         "num2":"3",
+         "num3":"4",
+         "num4":"5",
+         "num5":"6",
+         "num6":"7",
+         "complementario":"2",
+         "reintegro":"1",
+         "fecha":"2009-02-02",
+         "numSorteo":"312"
+      }
+   ]
+}
+
+____ http://localhost/lottery/?controller=quintupleplus____
+
+{
+   "info":"quintupleplus",
+   "data":[
+      {
+         "id":"1",
+         "carrera1":"1",
+         "carrera2":"1",
+         "carrera3":"7",
+         "carrera4":"7",
+         "carrera5_1":"6",
+         "carrera5_2":"5",
+         "fecha":"2009-02-15",
+         "numSorteo":"7"
+      }
+   ]
+} 
+
+------------------------------
+* NOTAS, TO-DO               *
+------------------------------
+
+
+
+
+
+
+
+
+
