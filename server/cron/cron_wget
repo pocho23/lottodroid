@@ -1,0 +1,1 @@
+0 0 * * 6 wget -q http://localhost/lottery/index.php?module=data&controller=retrieval&action=dojob > /dev/null

@@ -1,0 +1,1 @@
+0 0 * * 6 /usr/bin/curl -u  http://localhost/lottery/index.php?module=data&controller=retrieval&action=dojob
