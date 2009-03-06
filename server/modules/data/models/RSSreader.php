@@ -230,7 +230,7 @@ class RSSreader
 	
 	private function parseLoteriaNacional($description)
 	{
-		return $this->pregMatch('/^Primer.*:\s*(\d+);\s*Premio.*:\s*(\d+),\s*Serie:\s*(\d+)\s*;\s*Segundo.*:\s*(\d+)\s*;\s*Reintegros:\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*/',  
+		return $this->pregMatch('/^\s*Primer.*:\s*(\d+)\s*;\s*Premio.*:\s*(\d+)\s*,\s*Serie:\s*(\d+)\s*;\s*Segundo.*:\s*(\d+)\s*;\s*Reintegros:\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*/',  
 		 				$description);
 	}
 	

@@ -10,7 +10,10 @@
 
     // Retrieval module
     $config->set('magpierssDir', $rootPath . '/lib/external/magpierss/');
-    $config->set('rssURL', 'http://localhost/lottery/rss');
+    $config->set('zendDir', $rootPath . '/lib/external/Zend/');
+    //$config->set('rssURL', 'http://localhost/lottery/rss');
+    $config->set('rssURL', 'http://www.meh.es/_layouts/RssLae.aspx?hiloId=2');
+    
     
     $config->set('rootDir', $rootPath );
     

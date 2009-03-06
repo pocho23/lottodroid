@@ -115,12 +115,23 @@ class View
 	
 	public function renderJSON($metainfo, $array)
 	{
-		if (is_string($array))
-			echo $this->json_format( json_encode( array('info' => 'error', 'data' => $array) ) );
-		else
-		{
-			echo $this->json_format( json_encode( array('info' => $metainfo, 'data' => $array) ) );
+		$config = Config::getInstance();
+		include_once $config->get( 'zendDir') . 'Json.php';
+		
+		Zend_Json::$useBuiltinEncoderDecoder = true;
+		
+		$info = (is_string($array)) ? 'error' : $metainfo;
+		
+		try {
+			$json = Zend_Json::encode( array('info' => $info, 'data' => $array) );
+			echo $json;
+			
 		}
+		catch(Exception $e)
+		{
+			 echo Zend_Json::encode( array ('info' => 'error', 'data' => 
+			 							'Caught exception: ' . $e->getMessage() . "\n"));
+		} 
 	}
 	
 

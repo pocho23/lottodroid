@@ -41,7 +41,10 @@ Además se dispone de un controlador '&controller=sorteos' para extraer el últi
 en la base de datos de todos los sorteos. 
 
 Para insertar periodicamente en la base de datos todos los últimos resultados se debe usar CRON marcando
-la URL : 'index.php?controller=retrieval&action=dojob'
+la URL : 'index.php?controller=retrieval&action=dojob'.
+
+De momento la información de los sorteos proviene del RSS oficial de la LAE : 
+- http://www.meh.es/_layouts/RssLae.aspx?hiloId=2
 
 -----------------------------
 * REQUERIMIENTOS				*
