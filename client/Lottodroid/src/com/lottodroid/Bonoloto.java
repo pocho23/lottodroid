@@ -4,34 +4,35 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Bonoloto implements IDraw {
+class Bonoloto implements IDraw {
   private static final int iconResource = R.drawable.bonoloto;
   private static final int layoutResource = R.layout.row_bonoloto;
 
   private static final String title = "Bonoloto";
 
-  public String date = null;
+  private final String date;
 
   public Bonoloto(String date) {
     this.date = date;
   }
 
+  @Override
   public int getLayoutResource() {
-    // MAL: De momento para poder coger esto desde la interfaz --> PABLO
     return Bonoloto.layoutResource;
   }
 
+  @Override
   public void bindData(View v) {
+    // TODO(omar): borrar este comentario en cuanto lo leas
+    // Quito la comprobacion de nulls abajo, porque si alguno es null es mejor
+    // ver la excepcion, ya que seria un error que de verdad queremos ver y corregir
     TextView titleCtrl = (TextView) v.findViewById(R.id.title);
-    if (titleCtrl != null)
-      titleCtrl.setText(Bonoloto.title);
+    titleCtrl.setText(Bonoloto.title);
 
     TextView dateCtrl = (TextView) v.findViewById(R.id.date);
-    if (dateCtrl != null)
-      dateCtrl.setText(date);
+    dateCtrl.setText(date);
 
     ImageView iconCtrl = (ImageView) v.findViewById(R.id.icon);
-    if (iconCtrl != null)
-      iconCtrl.setImageResource(Bonoloto.iconResource);
+    iconCtrl.setImageResource(Bonoloto.iconResource);
   }
 }
