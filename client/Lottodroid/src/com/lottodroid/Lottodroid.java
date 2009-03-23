@@ -3,7 +3,11 @@ package com.lottodroid;
 import java.util.ArrayList;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 
 /**
  * Activity for the main screen. 
@@ -24,4 +28,13 @@ public class Lottodroid extends ListActivity {
 
     setListAdapter(new DrawAdapter(this, drawList));
   }
+
+  @Override
+  protected void onListItemClick(ListView l, View v, int position, long id) {
+    super.onListItemClick(l, v, position, id);
+    
+    Intent i = new Intent(this, DetailsActivity.class);
+    startActivity(i);
+  }
+  
 }
