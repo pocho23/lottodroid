@@ -36,6 +36,13 @@ public class DetailsActivity extends ExpandableListActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.details);
 
+    /* Set the window title */
+    Bundle extras = getIntent().getExtras();
+    if (extras != null) {
+      String draw = extras.getString("draw");
+      setTitle("Lottodroid: " + draw);
+    }
+    
     SimpleExpandableListAdapter listAdapter = new SimpleExpandableListAdapter(this,
         createGroupList(), R.layout.group_row, new String[] { GROUP_KEY },
         new int[] { R.id.groupname }, createChildList(), R.layout.child_row,
