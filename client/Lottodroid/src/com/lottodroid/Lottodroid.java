@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -21,10 +20,10 @@ public class Lottodroid extends ListActivity {
     setContentView(R.layout.main);
 
     /* Sample data */
-    ArrayList<IDraw> drawList = new ArrayList<IDraw>();
-    drawList.add(new Bonoloto("Domingo, 01/02/2008"));
+    ArrayList<Draw> drawList = new ArrayList<Draw>();
+    drawList.add(new Bonoloto("Domingo, 01/03/2009"));
     drawList.add(new Lototurf("Domingo, 23/02/2008"));
-    drawList.add(new Bonoloto("Domingo, 32/02/2008"));
+    drawList.add(new Bonoloto("Domingo, 31/02/2008"));
 
     setListAdapter(new DrawAdapter(this, drawList));
   }

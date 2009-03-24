@@ -1,35 +1,26 @@
 package com.lottodroid;
 
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-class Lototurf implements IDraw {
-  private static final int iconResource = R.drawable.lototurf;
-  private static final int layoutResource = R.layout.row_lototurf;
-
-  private static final String title = "Lototurf";
-
-  private final String date;
+class Lototurf extends Draw {
+  private final static String numbers = "1 7 3 5 5";
+  private final static String reinteger = "55";
+  private final static String complementary = "1";
 
   public Lototurf(String date) {
-    this.date = date;
+    super(R.layout.lototurf_content_row, R.drawable.lototurf, "Lototurf", date);
   }
 
   @Override
-  public int getLayoutResource() {
-    return Lototurf.layoutResource;
-  }
+  public void bindContent(View v) {
+    TextView numCtrl = (TextView) v.findViewById(R.id.txtNumbers);
+    numCtrl.setText(numbers);
 
-  @Override
-  public void bindData(View v) {
-    TextView titleCtrl = (TextView) v.findViewById(R.id.title);
-    titleCtrl.setText(Lototurf.title);
+    TextView complementaryCtrl = (TextView) v.findViewById(R.id.txtComplementary);
+    complementaryCtrl.setText(complementary);
 
-    TextView dateCtrl = (TextView) v.findViewById(R.id.date);
-    dateCtrl.setText(date);
-
-    ImageView iconCtrl = (ImageView) v.findViewById(R.id.icon);
-    iconCtrl.setImageResource(Lototurf.iconResource);
+    TextView reintegerCtrl = (TextView) v.findViewById(R.id.txtReinteger);
+    reintegerCtrl.setText(reinteger);
   }
 }
