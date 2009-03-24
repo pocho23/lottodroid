@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="fill_parent"
+  android:layout_width="fill_parent"
+  android:padding="10dip">
+
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal0"
+      android:text="Barcelona" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant0"
+      android:text="Villareal" />
+
+    <TextView
+      android:id="@+id/txtResult0"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="X" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal1"
+      android:text="Madrid" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant1"
+      android:text="Villareal" />
+
+    <TextView
+      android:id="@+id/txtResult1"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="X" />
+  </TableRow>
+</TableLayout>

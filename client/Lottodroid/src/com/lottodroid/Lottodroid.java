@@ -12,6 +12,8 @@ import android.widget.ListView;
  * Activity for the main screen. 
  */
 public class Lottodroid extends ListActivity {
+  
+  private ArrayList<Draw> drawList;
 
   /** Called when the activity is first created. */
   @Override
@@ -20,10 +22,10 @@ public class Lottodroid extends ListActivity {
     setContentView(R.layout.main);
 
     /* Sample data */
-    ArrayList<Draw> drawList = new ArrayList<Draw>();
+    drawList = new ArrayList<Draw>();
     drawList.add(new Bonoloto("Domingo, 01/03/2009"));
-    drawList.add(new Lototurf("Domingo, 23/02/2008"));
-    drawList.add(new Bonoloto("Domingo, 31/02/2008"));
+    drawList.add(new Lototurf("Lunes, 23/02/2008"));
+    drawList.add(new Quiniela("Domingo, 31/02/2008"));
 
     setListAdapter(new DrawAdapter(this, drawList));
   }
@@ -33,6 +35,8 @@ public class Lottodroid extends ListActivity {
     super.onListItemClick(l, v, position, id);
     
     Intent i = new Intent(this, DetailsActivity.class);
+    i.putExtra("draw", drawList.get(position).getTitle());
+    
     startActivity(i);
   }
   

@@ -37,6 +37,10 @@ abstract class Draw {
   public int getContentResource() {
     return contentResource;
   }
+  
+  public String getTitle() {
+    return title;
+  }
 
   abstract void bindContent(View v);
 }
