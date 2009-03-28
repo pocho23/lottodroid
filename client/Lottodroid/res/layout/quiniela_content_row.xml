@@ -8,7 +8,7 @@
   <TableRow>
     <TextView
       android:id="@+id/txtLocal0"
-      android:text="Barcelona" />
+      android:text="OOPS" />
 
     <TextView
       android:text="-"
@@ -17,18 +17,18 @@
 
     <TextView
       android:id="@+id/txtVisitant0"
-      android:text="Villareal" />
+      android:text="OOPS" />
 
     <TextView
       android:id="@+id/txtResult0"
       android:paddingLeft="15dip"
       android:textColor="#fee"
-      android:text="X" />
+      android:text="OOPS" />
   </TableRow>
   <TableRow>
     <TextView
       android:id="@+id/txtLocal1"
-      android:text="Madrid" />
+      android:text="OOPS" />
 
     <TextView
       android:text="-"
@@ -37,12 +37,12 @@
 
     <TextView
       android:id="@+id/txtVisitant1"
-      android:text="Villareal" />
+      android:text="OOPS" />
 
     <TextView
       android:id="@+id/txtResult1"
       android:paddingLeft="15dip"
       android:textColor="#fee"
-      android:text="X" />
+      android:text="OOPS" />
   </TableRow>
 </TableLayout>

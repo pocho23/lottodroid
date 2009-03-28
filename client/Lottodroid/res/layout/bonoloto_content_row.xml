@@ -11,7 +11,7 @@
     <TextView
       android:id="@+id/txtNumbers"
       android:paddingRight="15dip"
-      android:text="1 2 3 4 5 6 " />
+      android:text="OOPS" />
 
     <TextView
       android:text="C:"
@@ -20,7 +20,7 @@
     <TextView
       android:id="@+id/txtComplementary"
       android:paddingRight="15dip"
-      android:text="2" />
+      android:text="OOPS" />
 
     <TextView
       android:text="R:"
@@ -28,6 +28,6 @@
       android:textColor="#fee" />
     <TextView
       android:id="@+id/txtReinteger"
-      android:text="3" />
+      android:text="OOPS" />
   </TableRow>
 </TableLayout>
