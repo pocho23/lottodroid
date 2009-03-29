@@ -1,0 +1,107 @@
+-----------------------------
+* WEB SERVICE   		*
+-----------------------------
+
+El resultado de los datos viene en formato JSON y cada sorteo dispone de un controlador.
+
+De momento se disponen de dichos sorteos ( a su derecha se encuentra el controlador, la acción
+por defecto es 'view' ):
+
+	- LOTERIA PRIMITIVA {&controller=primitiva}
+	- BONOLOTO {&controller=bonoloto}
+	- QUINIELA {&controller=quiniela}
+	- EL GORDO DE L.P. {&controller=gordoprimitiva}
+	- LOTERÍA NACIONAL.  {&controller=loterianacional}
+	- EL QUINIGOL {&controller=quinigol}
+	- EUROMILLONES {&controller=euromillon}
+	- LOTOTURF {&controller=lototurf}
+	- QUINTUPLE PLUS {&controller=quintupleplus}
+
+Los argumentos posibles son 'start': índice de los resultados ordenado por fecha y 'limit': número
+de resultados. Por defecto son start=0&limit=1 ( último sorteo hasta la fecha actual ).
+
+Además se dispone de un controlador '&controller=sorteos' para extraer el último resultado insertado
+en la base de datos de todos los sorteos. 
+
+-----------------------------
+* EJEMPLOS		*
+-----------------------------
+
+Algunos ejemplos:
+
+____ http://localhost/lottery/?controller=bonoloto&start=0&limit=2 _____
+
+{
+   "info":"bonoloto",
+   "data":[
+      {
+         "id":"1",
+         "num1":"4",
+         "num2":"7",
+         "num3":"13",
+         "num4":"30",
+         "num5":"33",
+         "num6":"37",
+         "complementario":"42",
+         "reintegro":"7",
+         "fecha":"2009-02-18",
+         "numSorteo":"8"
+      },
+      {
+         "id":"2",
+         "num1":"2",
+         "num2":"3",
+         "num3":"4",
+         "num4":"5",
+         "num5":"6",
+         "num6":"7",
+         "complementario":"2",
+         "reintegro":"1",
+         "fecha":"2009-02-02",
+         "numSorteo":"312"
+      }
+   ]
+}
+
+____ http://localhost/lottery/?controller=quintupleplus ____
+
+{
+   "info":"quintupleplus",
+   "data":[
+      {
+         "id":"1",
+         "carrera1":"1",
+         "carrera2":"1",
+         "carrera3":"7",
+         "carrera4":"7",
+         "carrera5_1":"6",
+         "carrera5_2":"5",
+         "fecha":"2009-02-15",
+         "numSorteo":"7"
+      }
+   ]
+} 
+
+____ http://localhost/lottery/?controller=quintupleplus&start=5&limit=5 ____
+____ Cuando no hay más datos que recoger ____
+
+{
+   "info":"quintupleplus",
+   "data": null
+} 
+
+____ http://localhost/lottery/?controller=bonfdsa ____
+____ Cuando el controller no existe ____
+
+{
+   "info":"error",
+   "data":"Source not found"
+}
+
+____ http://localhost/lottery/?controller=bonoloto ____
+____ Cuando ha ocurrido un error interno: BBDD o encoding JSON ____
+
+{
+   "info":"error",
+   "data":"Caught exception: message error"
+}

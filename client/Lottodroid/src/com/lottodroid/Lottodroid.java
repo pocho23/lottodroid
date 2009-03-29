@@ -1,6 +1,5 @@
 package com.lottodroid;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import android.app.ListActivity;
@@ -27,10 +26,10 @@ public class Lottodroid extends ListActivity {
 
   /** Fetches the data that the main view will display: the last results for every lottery type */
   private List<Lottery> fetchDataForMainView() {
-    List<Lottery> lotteryList = new LinkedList<Lottery>();
-    lotteryList.add(ServerController.retrieveLastBonoloto());
-    lotteryList.add(ServerController.retrieveLastQuiniela());
-    return lotteryList;
+    return ServerController.retrieveLastAllLotteries();
+    
+    // El details activity hará este tipo de llamadas
+    //return ServerController.retrieveLastBonolotos(0, 5);
   }
   
 }

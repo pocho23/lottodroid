@@ -2,7 +2,7 @@ package com.lottodroid;
 
 import java.util.List;
 
-import com.lottodroid.controller.ViewConfigurer;
+import com.lottodroid.ViewConfigurer;
 import com.lottodroid.model.Lottery;
 
 import android.content.Context;

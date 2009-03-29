@@ -1,4 +1,4 @@
-package com.lottodroid.controller;
+package com.lottodroid;
 
 import java.util.HashMap;
 import java.util.Map;
