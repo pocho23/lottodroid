@@ -9,9 +9,9 @@ import com.lottodroid.model.Lottery;
 import com.lottodroid.model.Quiniela;
 
 /**
- * Implementation for {@link DataFetcher} that uses in-memory, hard-coded data. 
+ * Implementation for {@link LotteryFetcher} that uses in-memory, hard-coded data. 
  */
-public class MockDataFetcher implements DataFetcher {
+public class MockLotteryFetcher implements LotteryFetcher {
 
   @Override
   public List<Lottery> retrieveLastAllLotteries() {

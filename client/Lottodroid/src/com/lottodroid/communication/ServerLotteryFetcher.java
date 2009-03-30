@@ -9,14 +9,11 @@ import com.lottodroid.model.Lottery;
 import com.lottodroid.model.Quiniela;
 
 /**
- * TODO(pablo): javadoc
+ * Talks to the LottoDroid server to get the different lottery results.
  * 
- * Handles the communication with the server, providing a clean interface for the client application
- * to retrieve data (bonolotos, quinielas, ...)
- * 
- * TODO: buildURI decente, error handling
+ * TODO(omar): buildURI decente, error handling
  */
-public class ServerController implements DataFetcher {
+public class ServerLotteryFetcher implements LotteryFetcher {
 
   static final String URL = "http://10.0.2.2/lottery/?module=data";
   static final String LOTTERY_VAR = "&controller=";

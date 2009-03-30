@@ -9,7 +9,7 @@ import com.lottodroid.model.Quiniela;
 /**
  * Fetches data about the lottery results.
  */
-public interface DataFetcher {
+public interface LotteryFetcher {
 
   /**
    * Gets the last result for all the lottery types.
