@@ -85,8 +85,21 @@ Para instalar el web service se deben seguir los siguientes pasos:
 		mysql> SOURCE [absolute_path_to_dump_file];
 		mysql> SHOW tables;   // There will be 4 tables 
 	
-3.  Actualiza el archivo 'modules/config.php', con el [host], [user], [pass] de tu SGBD y 
-el [database_name] que acabas de crear.
+3.  Instala los binarios de PHP 5 para tu SO, de http://php.net/. Añade la ruta al directorio
+    donde lo has instalado a la PATH.
+
+4.  Configura Apache: edita el archivo [APACHE]/conf/httpd.conf, y modifica el DocumentRoot 
+    para que apunte al directorio donde se encuentra el index.php. Introduce a misma cadena 
+    en "<Directory />".
+    
+    Busca "DirectoryIndex index.html" y añade "index.php" a la línea.
+    
+    Haz un restart del servidor Apache.
+
+5.  Actualiza el archivo 'modules/config.php', con el [host], [user], [pass] de tu SGBD y 
+    el [database_name] que acabas de crear.
+
+6.  ???
 
 
 ------------------------------
