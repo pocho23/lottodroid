@@ -14,7 +14,7 @@ import android.widget.BaseAdapter;
  * Adapter for the main view: maintains the association between rows in the list and actual lottery
  * results.
  */
-public class MainViewAdapter extends BaseAdapter {
+class MainViewAdapter extends BaseAdapter {
 
   private final List<Lottery> lotteryList;
   private final Context context;

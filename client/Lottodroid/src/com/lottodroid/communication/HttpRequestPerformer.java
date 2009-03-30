@@ -10,7 +10,7 @@ import java.net.URL;
  * Performs an HTTP request using URLConnection API
  * 
  */
-public class HttpRequestPerformer {
+class HttpRequestPerformer {
 
   /**
    * Forms an HTTP request

@@ -20,7 +20,7 @@ import com.lottodroid.model.Lottery;
  * 
  * Convert the information into {@link Lottery} value objects
  */
-public class LotteryParser {
+class LotteryParser {
   private static final DateFormat dfm = new SimpleDateFormat("yyyy-MM-dd");
 
   private LotteryParser() {

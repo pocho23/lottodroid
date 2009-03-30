@@ -19,7 +19,7 @@ import android.widget.TextView;
  * <p/>
  * It is aware of the different lottery types and the corresponding resources for them.
  */
-public class ViewConfigurer {
+class ViewConfigurer {
 
   /** Maintains the association between lottery types and their corresponding layout files */
   private final static Map<Class<? extends Lottery>, Integer> lotteryToLayout = new HashMap<Class<? extends Lottery>, Integer>();
