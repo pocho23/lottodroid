@@ -18,19 +18,28 @@ public final class R {
         public static final int quiniela=0x7f020004;
     }
     public static final class id {
-        public static final int date=0x7f050005;
-        public static final int icon=0x7f050004;
-        public static final int layoutContent=0x7f050000;
-        public static final int title=0x7f050006;
-        public static final int txtComplementary=0x7f050002;
-        public static final int txtNumbers=0x7f050001;
-        public static final int txtReinteger=0x7f050003;
+        public static final int childname=0x7f050003;
+        public static final int date=0x7f050006;
+        public static final int icon=0x7f050005;
+        public static final int layoutContent=0x7f050004;
+        public static final int title=0x7f050007;
+        public static final int txtComplementary=0x7f050001;
+        public static final int txtLocal0=0x7f050008;
+        public static final int txtLocal1=0x7f05000b;
+        public static final int txtNumbers=0x7f050000;
+        public static final int txtReinteger=0x7f050002;
+        public static final int txtResult0=0x7f05000a;
+        public static final int txtResult1=0x7f05000d;
+        public static final int txtVisitant0=0x7f050009;
+        public static final int txtVisitant1=0x7f05000c;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
-        public static final int row_bonoloto=0x7f030001;
-        public static final int row_lototurf=0x7f030002;
-        public static final int row_title=0x7f030003;
+        public static final int bonoloto_content_row=0x7f030000;
+        public static final int child_row=0x7f030001;
+        public static final int lototurf_content_row=0x7f030002;
+        public static final int main=0x7f030003;
+        public static final int main_layout_row=0x7f030004;
+        public static final int quiniela_content_row=0x7f030005;
     }
     public static final class string {
         public static final int app_name=0x7f040000;

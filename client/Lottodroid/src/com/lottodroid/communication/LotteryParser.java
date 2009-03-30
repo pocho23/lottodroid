@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import com.lottodroid.model.Bonoloto;
 import com.lottodroid.model.Lottery;
+import com.lottodroid.model.Quiniela;
 
 /**
  * Parser for the all the lottery draws ( bonoloto, quiniela, etc. ) retrieved
@@ -36,7 +37,7 @@ class LotteryParser {
    * @throws JSONException
    * @throws ParseException
    */
-  public static List<Lottery> parseBonoloto(String response) throws LotteryParseException {
+  public static List<Bonoloto> parseBonoloto(String response) throws LotteryParseException {
     try {
       return parseBonolotoData(parseContentTypeAndGetData(response, "bonoloto"));
 
@@ -50,7 +51,7 @@ class LotteryParser {
   /**
    * Analogous to {@link #parseBonoloto}
    */
-  public static List<Lottery> parseQuiniela(String response) throws LotteryParseException {
+  public static List<Quiniela> parseQuiniela(String response) throws LotteryParseException {
     try {
       return parseQuinielaData(parseContentTypeAndGetData(response, "quiniela"));
 
@@ -78,7 +79,7 @@ class LotteryParser {
 
       List<Lottery> listLottery = new LinkedList<Lottery>();
 
-      List<Lottery> listBonoloto = parseBonolotoData(jsonObject.getString("bonoloto"));
+      List<Bonoloto> listBonoloto = parseBonolotoData(jsonObject.getString("bonoloto"));
       // List<Quiniela> listQuiniela = parseQuinielaData(jsonObject.getString("quiniela"));
 
       listLottery.add(listBonoloto.get(0));
@@ -120,8 +121,8 @@ class LotteryParser {
     }
   }
 
-  private static List<Lottery> parseBonolotoData(String strContent) throws JSONException, ParseException {
-    List<Lottery> lotteryList = new LinkedList<Lottery>();
+  private static List<Bonoloto> parseBonolotoData(String strContent) throws JSONException, ParseException {
+    List<Bonoloto> lotteryList = new LinkedList<Bonoloto>();
 
     JSONArray jsonContent = new JSONArray(strContent);
     int numItems = jsonContent.length();
@@ -144,8 +145,8 @@ class LotteryParser {
     return lotteryList;
   }
 
-  private static List<Lottery> parseQuinielaData(String strContent) throws JSONException, ParseException {
-    List<Lottery> lotteryList = new LinkedList<Lottery>();
+  private static List<Quiniela> parseQuinielaData(String strContent) throws JSONException, ParseException {
+    List<Quiniela> lotteryList = new LinkedList<Quiniela>();
 
     JSONArray jsonContent = new JSONArray(strContent);
     int numItems = jsonContent.length();
