@@ -1,16 +1,27 @@
 package com.lottodroid.communication;
 
-@SuppressWarnings("serial")
+/**
+ * Exception that indicates that there is an error parsing the lottery information that was
+ * requested (for instance, the last 5 bonoloto results)
+ */
 class LotteryParseException extends Exception {
 
-  LotteryParseException(String msg) 
-  {
-      super(msg);
+  private static final long serialVersionUID = 4512631193216919873L;
+
+  public LotteryParseException() {
+    super();
   }
-  
-  LotteryParseException(String msg, Exception e) 
-  {
-      super(msg, e);
+
+  public LotteryParseException(String detailMessage, Throwable throwable) {
+    super(detailMessage, throwable);
+  }
+
+  public LotteryParseException(String detailMessage) {
+    super(detailMessage);
+  }
+
+  public LotteryParseException(Throwable throwable) {
+    super(throwable);
   }
 
 }
