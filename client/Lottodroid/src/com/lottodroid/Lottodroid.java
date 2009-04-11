@@ -92,7 +92,6 @@ public class Lottodroid extends ListActivity {
     @Override
     public void end(MainViewAdapter adapter) {
       // Adapter set to null if there is an error or an exception thrown
-      adapter = null;
       if (adapter == null) {
         OnClickListener retryListener = new OnClickListener() {
           @Override
