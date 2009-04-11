@@ -1,6 +1,7 @@
 package com.lottodroid;
 
 import java.util.Date;
+import java.util.List;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,27 +10,27 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import com.lottodroid.model.Bonoloto;
+import com.lottodroid.model.Lottery;
+import com.lottodroid.model.Quiniela;
+
 /**
- * A simple adapter.
- * TODO: documentar, pero casi todo es temporal
+ * Adapter for the details view: maintains the association between the list of results
+ * of a specific lottery type and their view.
+ * 
+ * @extends  BaseExpandableListAdapter
  */
 public class DetailsViewAdapter extends BaseExpandableListAdapter {
-  // Sample data set. children[i] contains the children (String[]) for groups[i].
-  
-  // Solo temporal para probar la interfaz, sólo cuenta el tamaño
-  private String[] groups = { "a", "b", "c", "d", "e", "f", "g", "h" };
-  private String[][] children = { 
-      { "a" }, { "a" }, { "a" }, { "a" } , 
-      { "a" } , { "a" }, { "a" }, { "a" }};
-
+  private List<? extends Lottery> listLottery;
   private Context context;
 
-  public DetailsViewAdapter(Context context) {
+  public DetailsViewAdapter(Context context, List<? extends Lottery> listLottery) {
     this.context = context;
+    this.listLottery = listLottery;
   }
 
   public Object getChild(int groupPosition, int childPosition) {
-    return children[groupPosition][childPosition];
+    return listLottery.get(groupPosition);
   }
 
   public long getChildId(int groupPosition, int childPosition) {
@@ -37,39 +38,75 @@ public class DetailsViewAdapter extends BaseExpandableListAdapter {
   }
 
   public int getChildrenCount(int groupPosition) {
-    return children[groupPosition].length;
+    // There will be only one child per group
+    return 1;
   }
 
   public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
       View convertView, ViewGroup parent) {
 
-    // textView.setText(getChild(groupPosition, childPosition).toString());
-
-    // Reuse the inflated view if possible
-    if (convertView == null)
+    Lottery lottery = (Lottery) getChild(groupPosition, childPosition);
+    
+    if (lottery instanceof Bonoloto) {
       convertView = View.inflate(context, R.layout.bonoloto_content_row, null);
+      
+      convertView.setPadding(20, 5, 0, 5);
+      convertView.setBackgroundColor(Color.parseColor("#323232"));
+      
+      Bonoloto bonoloto = (Bonoloto) lottery;
 
-    convertView.setPadding(20, 5, 0, 5);
-    convertView.setBackgroundColor(Color.parseColor("#323232"));
+      TextView numCtrl = (TextView) convertView.findViewById(R.id.txtNumbers);
+      numCtrl.setText(bonoloto.getNumbers());
 
-    TextView numCtrl = (TextView) convertView.findViewById(R.id.txtNumbers);
-    numCtrl.setText("1 2 3 4 5 6");
+      TextView complementaryCtrl = (TextView) convertView.findViewById(R.id.txtComplementary);
+      complementaryCtrl.setText(bonoloto.getComplementario());
 
-    TextView complementaryCtrl = (TextView) convertView.findViewById(R.id.txtComplementary);
-    complementaryCtrl.setText("2");
+      TextView reintegerCtrl = (TextView) convertView.findViewById(R.id.txtReinteger);
+      reintegerCtrl.setText(bonoloto.getReintegro());
 
-    TextView reintegerCtrl = (TextView) convertView.findViewById(R.id.txtReinteger);
-    reintegerCtrl.setText("4");
+    } else if (lottery instanceof Quiniela) {
+      convertView = View.inflate(context, R.layout.quiniela_content_row, null);
+      
+      Quiniela quiniela = (Quiniela) lottery;
+      
+      convertView.setPadding(20, 5, 0, 5);
+      convertView.setBackgroundColor(Color.parseColor("#323232"));
+
+      int matchNumber;
+
+      // match 0
+      matchNumber = 0;
+      TextView numCtrl0 = (TextView) convertView.findViewById(R.id.txtLocal0);
+      numCtrl0.setText(quiniela.getHomeTeam(matchNumber));
+
+      TextView complementaryCtrl0 = (TextView) convertView.findViewById(R.id.txtVisitant0);
+      complementaryCtrl0.setText(quiniela.getAwayTeam(matchNumber));
+
+      TextView reintegerCtrl0 = (TextView) convertView.findViewById(R.id.txtResult0);
+      reintegerCtrl0.setText(quiniela.getResult(matchNumber).toString());
+
+      // match 1
+      matchNumber = 1;
+      TextView numCtrl1 = (TextView) convertView.findViewById(R.id.txtLocal1);
+      numCtrl1.setText(quiniela.getHomeTeam(matchNumber));
+
+      TextView complementaryCtrl1 = (TextView) convertView.findViewById(R.id.txtVisitant1);
+      complementaryCtrl1.setText(quiniela.getAwayTeam(matchNumber));
+
+      TextView reintegerCtrl1 = (TextView) convertView.findViewById(R.id.txtResult1);
+      reintegerCtrl1.setText(quiniela.getResult(matchNumber).toString());
+
+    } 
 
     return convertView;
   }
 
   public Object getGroup(int groupPosition) {
-    return groups[groupPosition];
+    return listLottery.get(groupPosition);
   }
 
   public int getGroupCount() {
-    return groups.length;
+    return listLottery.size();
   }
 
   public long getGroupId(int groupPosition) {
@@ -82,13 +119,14 @@ public class DetailsViewAdapter extends BaseExpandableListAdapter {
     if (convertView == null)
       convertView = View.inflate(context, R.layout.details_group_row, null);
 
-    ((TextView) convertView.findViewById(R.id.date)).setText((new Date()).toString());
+    Date date = ((Lottery) getGroup(groupPosition)).getDate();
+    ((TextView) convertView.findViewById(R.id.date)).setText(date.toString());
 
     return convertView;
   }
 
   public boolean isChildSelectable(int groupPosition, int childPosition) {
-    return true;
+    return false;
   }
 
   public boolean hasStableIds() {
