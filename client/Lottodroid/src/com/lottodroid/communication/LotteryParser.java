@@ -136,7 +136,7 @@ class LotteryParser {
 
       Date date = dfm.parse(item.getString("fecha"));
       String reintegro = item.getString("reintegro");
-      String complementario = item.getString("reintegro");
+      String complementario = item.getString("complementario");
 
       // Create a new Bonoloto object
       lotteryList.add(new Bonoloto(date, numbers, reintegro, complementario));
