@@ -1,5 +1,7 @@
 package com.lottodroid;
 
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -120,7 +122,18 @@ public class DetailsViewAdapter extends BaseExpandableListAdapter {
       convertView = View.inflate(context, R.layout.details_group_row, null);
 
     Date date = ((Lottery) getGroup(groupPosition)).getDate();
-    ((TextView) convertView.findViewById(R.id.date)).setText(date.toString());
+    
+    DateFormatSymbols symbols = new DateFormatSymbols();
+
+    String[] daysES = {
+          "", "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"};
+    symbols.setWeekdays(daysES);
+    
+    SimpleDateFormat formatter = new SimpleDateFormat("EEEE, d/MM/yyyy", symbols);
+    String result = formatter.format(date);
+ 
+    
+    ((TextView) convertView.findViewById(R.id.date)).setText(result);
 
     return convertView;
   }
