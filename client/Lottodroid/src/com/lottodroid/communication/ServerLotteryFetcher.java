@@ -15,7 +15,7 @@ import com.lottodroid.model.Quiniela;
  */
 public class ServerLotteryFetcher implements LotteryFetcher {
 
-  static final String URL = "http://10.0.2.2/lottery/?module=data";
+  static final String URL = "http://10.0.2.2/?module=data";
   static final String LOTTERY_VAR = "&controller=";
   static final String LIMIT_VAR = "&limit=";
   static final String START_VAR = "&start=";

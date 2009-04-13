@@ -80,10 +80,10 @@ class LotteryParser {
       List<Lottery> listLottery = new LinkedList<Lottery>();
 
       List<Bonoloto> listBonoloto = parseBonolotoData(jsonObject.getString("bonoloto"));
-      // List<Quiniela> listQuiniela = parseQuinielaData(jsonObject.getString("quiniela"));
+      List<Quiniela> listQuiniela = parseQuinielaData(jsonObject.getString("quiniela"));
 
       listLottery.add(listBonoloto.get(0));
-      //listLottery.add(new Quiniela());
+      listLottery.add(new Quiniela(new Date()));
 
       return listLottery;
 

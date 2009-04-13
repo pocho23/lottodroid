@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.lottodroid.R;
 import com.lottodroid.model.Bonoloto;
+import com.lottodroid.util.DateFormatter;
 
 class BonolotoViewController implements LotteryViewController<Bonoloto> {
 
@@ -28,7 +29,8 @@ class BonolotoViewController implements LotteryViewController<Bonoloto> {
 
     ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.bonoloto);
     ((TextView) layoutView.findViewById(R.id.title)).setText(bonoloto.getName());
-    ((TextView) layoutView.findViewById(R.id.date)).setText(bonoloto.getDate().toString());
+    ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(bonoloto
+        .getDate()));
 
     fillUpView(layoutView, bonoloto);
 

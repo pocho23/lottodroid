@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.lottodroid.R;
 import com.lottodroid.model.Quiniela;
+import com.lottodroid.util.DateFormatter;
 
 class QuinielaViewController implements LotteryViewController<Quiniela> {
 
@@ -28,7 +29,8 @@ class QuinielaViewController implements LotteryViewController<Quiniela> {
 
     ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.quiniela);
     ((TextView) layoutView.findViewById(R.id.title)).setText(quiniela.getName());
-    ((TextView) layoutView.findViewById(R.id.date)).setText(quiniela.getDate().toString());
+    ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(quiniela
+        .getDate()));
 
     fillUpView(layoutView, quiniela);
 
