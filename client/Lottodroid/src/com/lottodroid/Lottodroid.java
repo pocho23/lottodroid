@@ -14,10 +14,10 @@ import com.lottodroid.communication.LotteryFetcher;
 import com.lottodroid.communication.LotteryInfoUnavailableException;
 import com.lottodroid.communication.MockLotteryFetcher;
 import com.lottodroid.communication.ServerLotteryFetcher;
-import com.lottodroid.model.Bonoloto;
 import com.lottodroid.model.Lottery;
-import com.lottodroid.model.Quiniela;
 import com.lottodroid.util.UserTask;
+import com.lottodroid.view.LotteryViewController;
+import com.lottodroid.view.ViewControllerFactory;
 
 /**
  * Activity for the main screen.
@@ -66,11 +66,10 @@ public class Lottodroid extends ListActivity {
     Intent i = new Intent(this, DetailsActivity.class);
     
     Lottery lottery = (Lottery) getListView().getItemAtPosition(position);
-    if (lottery instanceof Bonoloto) {
-      i.putExtra("lottery", 0); // these id's must come from an xml config file or similar
-    } else if (lottery instanceof Quiniela){
-      i.putExtra("lottery", 1);
-    }
+    
+    @SuppressWarnings("unchecked") // TODO(pablo): Can I remove this warning?
+    LotteryViewController viewController = ViewControllerFactory.createViewController(lottery);
+    i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
     
     startActivity(i);
   }

@@ -14,6 +14,8 @@ import com.lottodroid.communication.LotteryInfoUnavailableException;
 import com.lottodroid.communication.MockLotteryFetcher;
 import com.lottodroid.communication.ServerLotteryFetcher;
 import com.lottodroid.model.Lottery;
+import com.lottodroid.view.LotteryViewController;
+import com.lottodroid.view.LotteryViewController.LotteryId;
 
 /**
  * Activity for the details screen.
@@ -45,34 +47,21 @@ public class DetailsActivity extends ExpandableListActivity {
         throw new DataFormatException();
       }
       
-      // Get the lottery type selected from the main activity
-      int idLottery = extras.getInt("lottery");
-      
-      // Habría que hacer algun tipo de mapping como en viewconfigurer para no hacer
-      // switch, o bien guardarlo en un xml ( pero no podríamos hacer los key/value.. )
-      // TODO:  pensar buena estructura para manejar icono, titulo, 
-      //        controlador/url del servidor, views, content_xml, etc. para cada sorteo
+      // Get the view controller, set from the main activity
+      // TODO(pablo): Don't use getSerializable here, there has to be something better!
+      @SuppressWarnings("unchecked")
+      LotteryViewController<Lottery> viewController = (LotteryViewController) extras
+          .getSerializable(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER);
       
       // set the icon and title
       ImageView iconCtrl = (ImageView) findViewById(R.id.icon);
       TextView titleCtrl = (TextView) findViewById(R.id.title);
       
-      switch (idLottery) {
-      case 0:
-        titleCtrl.setText("Bonoloto");
-        iconCtrl.setImageResource(R.drawable.bonoloto);
-        break;
-      case 1:
-        titleCtrl.setText("Quiniela");
-        iconCtrl.setImageResource(R.drawable.quiniela);    
-        break;
-
-      default:
-        throw new DataFormatException();
-      }
+      titleCtrl.setText(viewController.getTitle());
+      iconCtrl.setImageResource(viewController.getIconResource());
       
       // this line will be placed on the callback of another thread
-      setListAdapter(new DetailsViewAdapter(this, fetchDataForDetailsView(idLottery)));
+      setListAdapter(new DetailsViewAdapter(this, fetchDataForDetailsView(viewController.getId()), viewController));
 
       // Expand the last lottery result
       if (getExpandableListAdapter().getGroupCount() > 0)
@@ -89,22 +78,20 @@ public class DetailsActivity extends ExpandableListActivity {
    * Fetches the data that the details view will display: the last results for a specify lottery
    * type
    */
-  private List<? extends Lottery> fetchDataForDetailsView(int idLottery)
+  private List<? extends Lottery> fetchDataForDetailsView(LotteryId lotteryId)
       throws LotteryInfoUnavailableException, DataFormatException {
     LotteryFetcher dataFetcher = OFFLINE_MODE ? 
                                   new MockLotteryFetcher()
                                 : new ServerLotteryFetcher();
     List<? extends Lottery> listLottery;
     
-    switch (idLottery) {
-    case 0:
+    // TODO(pablo): can we get rid of this big "if" clause?
+    if (lotteryId == LotteryViewController.LotteryId.BONOLOTO) {
       listLottery = dataFetcher.retrieveLastBonolotos(0, NUM_RESULTS_SHOW);
-      break;
-    case 1:
+    } else if (lotteryId == LotteryViewController.LotteryId.QUINIELA) {
       listLottery = dataFetcher.retrieveLastQuinielas(0, NUM_RESULTS_SHOW);
-      break;
-
-    default:
+    } else {
+      // TODO(pablo): check this exception handling
       throw new DataFormatException();
     }
 
