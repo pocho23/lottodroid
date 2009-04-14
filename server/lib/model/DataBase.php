@@ -48,17 +48,18 @@ class DataBase {
 		$this->log .= "Executing query [query()]<br/>";
 				
 		if (!$sql) 
-			return $this->log ."You need to pass a SQL query!<br/>";
+			return "Fatal error in database";
 
 		if(!$this->cnn) 
-			return $this->log . "Connection not established<br />";
+			return "Connection not established";
 
 		$this->sql = $sql;
 		$this->log .= "SQL: ". $sql ."<br />";
 
 		/* Run the query */		
 		if (! $result = @mysql_query($sql) )
-			return $this->log . mysql_error();
+			//return $this->log . mysql_error();
+			return "Fatal error in database";
 
 		/* Retrieve the results */
 		$this->numRows = @mysql_num_rows($result);

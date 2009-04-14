@@ -28,9 +28,6 @@ class RSSreader
 			$dateToInsert = $this->parseDate($pubDate);
 			$numLottery   = $this->parseNumLottery($title);
 			
-			echo "<h3>$title</h3>";
-			echo "<p>Date: $dateToInsert  NumLottery:  $numLottery</p>";
-			
 			if (strpos($title, 'LOTERIA PRIMITIVA') != false)
 			{
 				$result = $this->parsePrimitiva($description);
@@ -39,11 +36,11 @@ class RSSreader
 					$msg = $this->insertPrimitiva($result, $dateToInsert, $numLottery);
 					if (  is_string($msg) || empty($msg))
 					{
-						echo '<p>Error inserting</p>';// Send email
+						echo '<p>Error inserting primitiva</p>';// Send email
 					}
 				}
 				else
-					echo '<p>Error parsing</p>';//send email
+					echo '<p>Error parsing primitiva</p>';//send email
 			}
 			
 			if (strpos($title, 'BONOLOTO') != false)
@@ -54,11 +51,11 @@ class RSSreader
 					$msg = $this->insertBonoloto($result, $dateToInsert, $numLottery);
 					if ( is_string($msg) || empty($msg))
 					{
-						echo '<p>Error inserting</p>';// Send email
+						echo '<p>Error inserting BONOLOTO</p>';// Send email
 					}
 				}
 				else
-					echo '<p>Error parsing</p>';//send email				
+					echo '<p>Error parsing BONOLOTO</p>';//send email				
 			}
 			
 			if (strpos($title, 'EL GORDO') != false)
@@ -69,11 +66,11 @@ class RSSreader
 					$msg = $this->insertGordoPrimitiva($result, $dateToInsert, $numLottery);
 					if (  is_string($msg) || empty($msg))
 					{
-						echo '<p>Error inserting</p>';// Send email
+						echo '<p>Error inserting GORDO</p>';// Send email
 					}
 				}
 				else
-					echo '<p>Error parsing</p>';//send email	
+					echo '<p>Error parsing GORDO</p>';//send email	
 			}
 			
 			if (strpos($title, 'NACIONAL') != false)
@@ -84,11 +81,11 @@ class RSSreader
 					$msg = $this->insertLoteriaNacional($result, $dateToInsert, $numLottery);
 					if (  is_string($msg) || empty($msg))
 					{
-						echo '<p>Error inserting</p>';// Send email
+						echo '<p>Error inserting NACIONAL</p>';// Send email
 					}
 				}
 				else
-					echo '<p>Error parsing</p>';//send email	
+					echo '<p>Error parsing NACIONAL</p>';//send email	
 			}
 			
 			if (strpos($title, 'EUROMILLONES') != false)
@@ -99,11 +96,11 @@ class RSSreader
 					$msg = $this->insertEuromillon($result, $dateToInsert, $numLottery);
 					if (  is_string($msg) || empty($msg))
 					{
-						echo '<p>Error inserting</p>';// Send email
+						echo '<p>Error inserting EUROMILLONES</p>';// Send email
 					}
 				}
 				else
-					echo '<p>Error parsing</p>';//send email	
+					echo '<p>Error parsing EUROMILLONES</p>';//send email	
 			}
 			
 			if (strpos($title, 'LOTOTURF') != false)
@@ -114,11 +111,11 @@ class RSSreader
 					$msg = $this->insertLototurf($result, $dateToInsert, $numLottery);
 					if (  is_string($msg) || empty($msg))
 					{
-						echo '<p>Error inserting</p>';// Send email
+						echo '<p>Error inserting LOTOTURF</p>';// Send email
 					}
 				}
 				else
-					echo '<p>Error parsing</p>';//send email	
+					echo '<p>Error parsing LOTOTURF</p>';//send email	
 			}
 			
 			if (strpos($title, 'QUINTUPLE PLUS') != false)
@@ -129,11 +126,11 @@ class RSSreader
 					$msg = $this->insertQuintuplePlus($result, $dateToInsert, $numLottery);
 					if (  is_string($msg) || empty($msg))
 					{
-						echo '<p>Error inserting</p>';// Send email
+						echo '<p>Error inserting QUINTUPLE PLUS</p>';// Send email
 					}
 				}
 				else
-					echo '<p>Error parsing</p>';//send email	
+					echo '<p>Error parsing QUINTUPLE PLUS</p>';//send email	
 			}
 			
 			if (strpos($title, 'APUESTA DEPORTIVA') != false)
@@ -144,11 +141,11 @@ class RSSreader
 					$msg = $this->insertQuiniela($result, $dateToInsert, $numLottery);
 					if (  is_string($msg) || empty($msg))
 					{
-						echo '<p>Error inserting</p>';// Send email
+						echo '<p>Error inserting quiniela</p>';// Send email
 					}
 				}
 				else
-					echo '<p>Error parsing</p>';//send email	
+					echo '<p>Error parsing quiniela</p>';//send email	
 			}
 			
 			if (strpos($title, 'EL QUINIGOL') != false)
@@ -159,11 +156,11 @@ class RSSreader
 					$msg = $this->insertQuinigol($result, $dateToInsert, $numLottery);
 					if (  is_string($msg) || empty($msg))
 					{
-						echo '<p>Error inserting</p>';// Send email
+						echo '<p>Error inserting quiniela</p>';// Send email
 					}
 				}
 				else
-					echo '<p>Error parsing</p>';//send email	
+					echo '<p>Error parsing quiniela</p>';//send email	
 			}
 		}
 	}

@@ -3,10 +3,10 @@
 |	Web service para la lotería española
 |
 |	Author : Omar Pera Mira
-|   	Email  : campbell.sx@gmail.com
+|  	Email  : campbell.sx@gmail.com
 |	Version: 0.1
 |	
-|   Última modificación: 23 Febrero 2009
+|   Última modificación: 14 Abril 2009
 *-----------------------------------------------------------------*
 
 -----------------------------
@@ -19,10 +19,18 @@ Todas las peticiones pasan por el archivo 'index.php', en el cual debemos especi
 el módulo ( &module=XX ), el controlador ( &controller=XX ), la acción ( &action=XX) y
 los posibles parámetros de la acción.
 
-El resultado de los datos viene en formato JSON y cada sorteo dispone de un controlador.
 
-De momento se disponen de dichos sorteos ( a su derecha se encuentra el controlador, la acción
-por defecto es 'view' ):
+-----------------------------
+* API		 				*
+-----------------------------
+
+El resultado de los datos viene en formato JSON, para ver en texto plano la respuesta del 
+servidor en un navegador añada el argumento '&pretty=1'. Si no está especificado éste
+argumento el contenido de la respuesta es 'application/json'.
+
+Cada sorteo dispone de un controlador, en el cual podemos recoger la información de los últimos
+resultados de dicho sorteo. De momento se disponen de dichos sorteos ( a su derecha se encuentra el controlador, 
+la acción por defecto es 'view' ):
 
 	- LOTERIA PRIMITIVA {&controller=primitiva}
 	- BONOLOTO {&controller=bonoloto}
@@ -41,7 +49,7 @@ Además se dispone de un controlador '&controller=sorteos' para extraer el últi
 en la base de datos de todos los sorteos. 
 
 Para insertar periodicamente en la base de datos todos los últimos resultados se debe usar CRON marcando
-la URL : 'index.php?controller=retrieval&action=dojob'.
+la URL : 'index.php?controller=retrieval&action=dojob'. Si no hay errores la respuesta no tendrá contenido.
 
 De momento la información de los sorteos proviene del RSS oficial de la LAE : 
 - http://www.meh.es/_layouts/RssLae.aspx?hiloId=2
@@ -89,17 +97,11 @@ Para instalar el web service se deben seguir los siguientes pasos:
     donde lo has instalado a la PATH.
 
 4.  Configura Apache: edita el archivo [APACHE]/conf/httpd.conf, y modifica el DocumentRoot 
-    para que apunte al directorio donde se encuentra el index.php. Introduce a misma cadena 
+    para que apunte al directorio donde quieras tu servidor web. Introduce a misma cadena 
     en "<Directory />".
-    
-    Busca "DirectoryIndex index.html" y añade "index.php" a la línea.
-    
-    Haz un restart del servidor Apache.
 
 5.  Actualiza el archivo 'modules/config.php', con el [host], [user], [pass] de tu SGBD y 
     el [database_name] que acabas de crear.
-
-6.  ???
 
 
 ------------------------------
@@ -123,7 +125,7 @@ System Tools > Scheduled Tasks' for automate tasks.
 
 Algunos ejemplos:
 
-____ http://localhost/lottery/?controller=bonoloto&start=0&limit=2 _____
+____ http://host/dir_web_service/?controller=bonoloto&start=0&limit=2 _____
 
 {
    "info":"bonoloto",
@@ -157,7 +159,7 @@ ____ http://localhost/lottery/?controller=bonoloto&start=0&limit=2 _____
    ]
 }
 
-____ http://localhost/lottery/?controller=quintupleplus____
+____ http://host/dir_web_service/?controller=quintupleplus____
 
 {
    "info":"quintupleplus",
@@ -176,15 +178,96 @@ ____ http://localhost/lottery/?controller=quintupleplus____
    ]
 } 
 
-------------------------------
-* NOTAS, TO-DO               *
-------------------------------
+
+____ http://host/dir_web_service/?controller=sorteos ____
 
 
-
-
-
-
-
-
+{
+  "info": "sorteos",
+  "data": {
+    "lototurf": [
+      {
+        "id": "5",
+        "num1": "4",
+        "num2": "12",
+        "num3": "17",
+        "num4": "23",
+        "num5": "25",
+        "num6": "27",
+        "caballoGanador": "1",
+        "reintegro": "6",
+        "fecha": "2009-04-12",
+        "numSorteo": "16"
+      }
+    ],
+    "bonoloto": [
+      {
+        "id": "6",
+        "num1": "12",
+        "num2": "15",
+        "num3": "16",
+        "num4": "19",
+        "num5": "36",
+        "num6": "49",
+        "complementario": "20",
+        "reintegro": "6",
+        "fecha": "2009-04-13",
+        "numSorteo": "16"
+      }
+    ],
+    "euromillon": [
+      {
+        "id": "4",
+        "num1": "9",
+        "num2": "14",
+        "num3": "16",
+        "num4": "37",
+        "num5": "46",
+        "estrella1": "2",
+        "estrella2": "4",
+        "fecha": "2009-04-10",
+        "numSorteo": "15"
+      }
+    ],
+    "primitiva": [
+      {
+        "id": "5",
+        "num1": "2",
+        "num2": "6",
+        "num3": "18",
+        "num4": "28",
+        "num5": "31",
+        "num6": "38",
+        "complementario": "3",
+        "reintegro": "1",
+        "fecha": "2009-04-11",
+        "numSorteo": "15"
+      }
+    ],
+    "loterianacional": [
+      {
+        "id": "4",
+        "premio1": "87486",
+        "fraccion": "10",
+        "serie": "3",
+        "premio2": "44983",
+        "reintegro1": "2",
+        "reintegro2": "1",
+        "reintegro3": "6",
+        "fecha": "2009-04-11",
+        "numSorteo": "30"
+      }
+    ],
+    "quinigol": [
+      {
+       	datos quinigol.....
+      }
+    ],
+    "quiniela": [
+      {
+        datos quiniela.....
+      }
+    ]
+  }
+}      
 
