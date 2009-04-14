@@ -59,6 +59,8 @@ class LotteryParser {
       throw new LotteryParseException("Error parsing quiniela content", e);
     } catch (ParseException ex) {
       throw new LotteryParseException("Error parsing quiniela date", ex);
+    } catch (Exception ex) {
+      throw new LotteryParseException("Error creating quiniela object", ex);
     }
   }
 
@@ -82,8 +84,12 @@ class LotteryParser {
       List<Bonoloto> listBonoloto = parseBonolotoData(jsonObject.getString("bonoloto"));
       List<Quiniela> listQuiniela = parseQuinielaData(jsonObject.getString("quiniela"));
 
-      listLottery.add(listBonoloto.get(0));
-      listLottery.add(new Quiniela(new Date()));
+      if (listBonoloto.size() > 0) {
+        listLottery.add(listBonoloto.get(0));
+      }
+      if (listQuiniela.size() > 0) {
+        listLottery.add(listQuiniela.get(0));
+      }
 
       return listLottery;
 
@@ -153,19 +159,19 @@ class LotteryParser {
 
     for (int i = 0; i < numItems; i++) {
       JSONObject item = jsonContent.getJSONObject(i);
-      //Date date = dfm.parse(item.getString("fecha"));
-
+      Quiniela quiniela = new Quiniela(dfm.parse(item.getString("fecha")));
+      
       JSONArray results = item.getJSONArray("results");
       int numResults = results.length();
 
       for (int j = 0; j < numResults; j++) {
-        ;
-        //JSONObject match = results.getJSONObject(i);
+        JSONObject match = results.getJSONObject(j);
 
-       // String local = match.getString("local");
-       // String visitant = match.getString("visitante");
-       // String result = match.getString("resultado");
+        quiniela.setMatch(j,  match.getString("local"), 
+                              match.getString("visitante"), 
+                              match.getString("resultado"));  
       }
+      lotteryList.add(quiniela);
     }
 
     return lotteryList;

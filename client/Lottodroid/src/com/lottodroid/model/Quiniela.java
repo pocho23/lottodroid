@@ -8,12 +8,18 @@ import java.util.Date;
  */
 public class Quiniela implements Lottery {
 
-  /**
-   * Inner class that represents a Quiniela Match
-   * 
-   * TODO: Pablo-> adapt result to the strange enum if required
-   * TODO: Error handling with index ranges
-   */
+  public static final int NUM_MATCHES = 15;
+  
+  /** Contains an array of matches for a Quiniela */
+  Match[] listMatches = new Match[NUM_MATCHES];
+  
+  private final Date date;
+  
+  public Quiniela(Date date) {
+    this.date = date;
+  }
+  
+  /** Inner class that represents a Quiniela Match  */
   private class Match {
     private String homeTeam;
     private String awayTeam;
@@ -38,43 +44,23 @@ public class Quiniela implements Lottery {
     }
   }
 
-  public enum MatchResult {
-    ONE("1"), X("X"), TWO("2");
-
-    private final String strValue;
-
-    MatchResult(String strValue) {
-      this.strValue = strValue;
-    }
-
-    @Override
-    public String toString() {
-      return strValue;
-    }
-  }
-
-  public static final int NUM_MATCHES = 15;
-  
-  /** Contains an array of matches for a Quiniela */
-  //ArrayList<Match> listMathes = new ArrayList<Match>();
-  Match[] listMatches = new Match[NUM_MATCHES];
-  private final Date date;
-
-  public Quiniela(Date date) {
-    this.date = date;
-  }
-
   /**
-   * Set one of the mathes of the day, with all the information required: the local and away team,
-   * and the result 1, X or 2
+   * Set one of the matches of the day, with all the information required: the local and away team,
+   * and the result 1, X or 2. 
+   * 
+   * The match number could be from 0 to 14
    * 
    * @param matchNumber the match number
    * @param homeTeam the local team
    * @param awayTeam the away team
    * @param result the result of the match
    */
-  public void setMatch(int matchNumber, String homeTeam, String awayTeam, String result) {
-    listMatches[matchNumber] = new Match(homeTeam, awayTeam, result);
+  public void setMatch(int matchNumber, String homeTeam, String awayTeam, String result)
+      throws ArrayIndexOutOfBoundsException {
+    if (matchNumber >= 0 && matchNumber < NUM_MATCHES)
+      listMatches[matchNumber] = new Match(homeTeam, awayTeam, result);
+    else
+      throw new ArrayIndexOutOfBoundsException();
   }
 
   /**
@@ -84,8 +70,11 @@ public class Quiniela implements Lottery {
    * @param matchNumber the match number
    * @return the local team
    */
-  public String getHomeTeam(int matchNumber) {
-    return listMatches[matchNumber].homeTeam;
+  public String getHomeTeam(int matchNumber) throws ArrayIndexOutOfBoundsException, NullPointerException {
+    if (matchNumber >= 0 && matchNumber < NUM_MATCHES )
+      return listMatches[matchNumber].homeTeam;
+    else
+      throw new ArrayIndexOutOfBoundsException();
   }
 
   /**
@@ -95,8 +84,11 @@ public class Quiniela implements Lottery {
    * @param matchNumber the match number
    * @return the away team
    */
-  public String getAwayTeam(int matchNumber) {
-    return listMatches[matchNumber].awayTeam;
+  public String getAwayTeam(int matchNumber) throws ArrayIndexOutOfBoundsException, NullPointerException {
+    if (matchNumber >= 0 && matchNumber < NUM_MATCHES )
+      return listMatches[matchNumber].awayTeam;
+    else
+      throw new ArrayIndexOutOfBoundsException();
   }
 
   /**
@@ -105,8 +97,11 @@ public class Quiniela implements Lottery {
    * @param matchNumber the match number
    * @return the result
    */
-  public String getResult(int matchNumber) {
-    return listMatches[matchNumber].result;
+  public String getResult(int matchNumber) throws ArrayIndexOutOfBoundsException, NullPointerException {
+    if (matchNumber >= 0 && matchNumber < NUM_MATCHES )
+      return listMatches[matchNumber].result;
+    else
+      throw new ArrayIndexOutOfBoundsException();
   }
 
   @Override
