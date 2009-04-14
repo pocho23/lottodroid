@@ -45,4 +45,265 @@
       android:textColor="#fee"
       android:text="OOPS" />
   </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal2"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant2"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult2"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal3"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant3"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult3"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal4"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant4"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult4"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal5"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant5"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult5"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal6"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant6"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult6"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal7"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant7"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult7"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal8"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant8"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult8"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal9"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant9"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult9"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal10"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant10"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult10"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal11"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant11"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult11"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal12"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant12"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult12"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal13"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant13"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult13"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal14"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant14"
+      android:text="OOPS" />
+
+    <TextView
+      android:id="@+id/txtResult14"
+      android:paddingLeft="15dip"
+      android:textColor="#fee"
+      android:text="OOPS" />
+  </TableRow>
+
 </TableLayout>
