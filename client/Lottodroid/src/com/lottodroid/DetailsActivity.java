@@ -14,14 +14,17 @@ import com.lottodroid.communication.LotteryInfoUnavailableException;
 import com.lottodroid.communication.MockLotteryFetcher;
 import com.lottodroid.communication.ServerLotteryFetcher;
 import com.lottodroid.model.Lottery;
+import com.lottodroid.util.UserTask;
+import com.lottodroid.view.ErrorDialog;
 import com.lottodroid.view.LotteryViewController;
-import com.lottodroid.view.LotteryViewController.LotteryId;
 
 /**
  * Activity for the details screen.
  */
 public class DetailsActivity extends ExpandableListActivity {
 
+  public static final String TAG = DetailsActivity.class.toString();
+  
   /**
    * If the offline mode is true, no communication with the server will be performed: mock data will
    * be generated instead. See the implementations for {@link LotteryFetcher}. 
@@ -31,8 +34,8 @@ public class DetailsActivity extends ExpandableListActivity {
   private static boolean OFFLINE_MODE = true;
 
   /** Number of last results displayed by default */
-  private static int NUM_RESULTS_SHOW = 4;
-
+  private static int NUM_RESULTS_SHOW = 3;
+  
   /**
    * Called when the activity is first created.
    */
@@ -60,42 +63,85 @@ public class DetailsActivity extends ExpandableListActivity {
       titleCtrl.setText(viewController.getTitle());
       iconCtrl.setImageResource(viewController.getIconResource());
       
-      // this line will be placed on the callback of another thread
-      setListAdapter(new DetailsViewAdapter(this, fetchDataForDetailsView(viewController.getId()), viewController));
+      fetchDataForDetailsView(viewController);
 
-      // Expand the last lottery result
-      if (getExpandableListAdapter().getGroupCount() > 0)
-        getExpandableListView().expandGroup(0);
-
-    } catch (LotteryInfoUnavailableException e) {
-      Log.e("Lottodroid", "Ouch, no data!", e);
     } catch (DataFormatException e) {
-      Log.e("Lottodroid", "Errors passing data from main activity", e);
+      Log.e(TAG, "Errors passing data from main activity", e);
+    } catch (IllegalStateException e) {
+      Log.e(TAG, "Fatal error: " + e.getMessage());
     }
   }
-
-  /**
-   * Fetches the data that the details view will display: the last results for a specify lottery
-   * type
+  
+  /** 
+   * Fetches and set the data that the details view will display 
    */
-  private List<? extends Lottery> fetchDataForDetailsView(LotteryId lotteryId)
-      throws LotteryInfoUnavailableException, DataFormatException {
-    LotteryFetcher dataFetcher = OFFLINE_MODE ? 
-                                  new MockLotteryFetcher()
-                                : new ServerLotteryFetcher();
-    List<? extends Lottery> listLottery;
-    
-    // TODO(pablo): can we get rid of this big "if" clause?
-    if (lotteryId == LotteryViewController.LotteryId.BONOLOTO) {
-      listLottery = dataFetcher.retrieveLastBonolotos(0, NUM_RESULTS_SHOW);
-    } else if (lotteryId == LotteryViewController.LotteryId.QUINIELA) {
-      listLottery = dataFetcher.retrieveLastQuinielas(0, NUM_RESULTS_SHOW);
-    } else {
-      // TODO(pablo): check this exception handling
-      throw new DataFormatException();
+  // TODO: really strange this warning...
+  @SuppressWarnings("unchecked")
+  private void fetchDataForDetailsView(LotteryViewController viewController) 
+    throws IllegalStateException {
+      new FetchSpecificLotteryResultsTask().execute(viewController);
+  }
+  
+  /**
+   * Task that fetches the data that the details view will display: the last results 
+   * for the lottery type selected on the main activity.
+   */
+  private class FetchSpecificLotteryResultsTask extends UserTask<LotteryViewController<Lottery>, Void, DetailsViewAdapter> {
+
+    public DetailsViewAdapter doInBackground(LotteryViewController<Lottery>... params)  {
+      LotteryViewController<Lottery> viewController =  params[0];
+      LotteryViewController.LotteryId lotteryId = viewController.getId();
+      
+      LotteryFetcher dataFetcher = OFFLINE_MODE ? 
+          new MockLotteryFetcher()
+        : new ServerLotteryFetcher();
+      
+      List<? extends Lottery> listLottery;
+       
+      try {
+        // Just to see the behavior
+        Thread.sleep(2000);
+        
+        // TODO(pablo): can we get rid of this big "if" clause?
+        if (lotteryId == LotteryViewController.LotteryId.BONOLOTO) {
+          listLottery = dataFetcher.retrieveLastBonolotos(0, NUM_RESULTS_SHOW);
+        } else if (lotteryId == LotteryViewController.LotteryId.QUINIELA) {
+          listLottery = dataFetcher.retrieveLastQuinielas(0, NUM_RESULTS_SHOW);
+        } else {
+          // TODO(pablo): check this exception handling
+          throw new DataFormatException();
+        }
+        
+        // The adapter is created on a non-UI thread
+        return new DetailsViewAdapter(DetailsActivity.this, listLottery, viewController);
+        
+      } catch (LotteryInfoUnavailableException e) {
+        Log.e(TAG, "Lottery info unavailable", e);
+      } catch (InterruptedException e) {
+        ;
+      } catch (DataFormatException e) {
+        Log.e(TAG, "Inconsistent data fetched from the main activity", e);
+      } 
+      
+      return null;
     }
 
-    return listLottery;
+    @Override
+    public void end(DetailsViewAdapter adapter) {      
+       // Adapter set to null if there is an error or an exception thrown
+      if (adapter == null) {     
+        new ErrorDialog(DetailsActivity.this, 
+                        "No se han podido encontrar las " +
+                   		  "fechas anteriores a este sorteo").show();
+      } else {
+        setListAdapter(adapter);
+        
+        // Expand the last lottery result
+        if (getExpandableListAdapter().getGroupCount() > 0)
+          getExpandableListView().expandGroup(0);
+      }
+    }
+
   }
 
 }
