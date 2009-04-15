@@ -2,4 +2,11 @@
 <resources>
   <string name="app_name">Lottodroid</string>
   <string name="main_no_items">No items</string>
+  
+  <!-- about dialog -->
+  <string name="about_dialog_title"><i>Lottodroid</i> v%1$s</string>
+  <string name="about_dialog_text">
+          Recoge la información de los últimos sorteos de la lotería española.
+  </string>
+  
 </resources>

@@ -1,10 +1,7 @@
 package com.lottodroid;
 
-import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +13,7 @@ import com.lottodroid.communication.MockLotteryFetcher;
 import com.lottodroid.communication.ServerLotteryFetcher;
 import com.lottodroid.model.Lottery;
 import com.lottodroid.util.UserTask;
+import com.lottodroid.view.ErrorDialog;
 import com.lottodroid.view.LotteryViewController;
 import com.lottodroid.view.ViewControllerFactory;
 
@@ -52,6 +50,9 @@ public class Lottodroid extends ListActivity {
       new FetchAllLotteryResultsTask().execute();
     } catch (IllegalStateException e) {
       Log.e(TAG, "Fatal error: " + e.getMessage());
+
+      new ErrorDialog(Lottodroid.this,  "No se han podido encontrar los " +
+                                        "resultados de los últimos sorteos").show();
     }
   }
 
@@ -80,7 +81,7 @@ public class Lottodroid extends ListActivity {
    */
   private class FetchAllLotteryResultsTask extends UserTask<Void, Void, MainViewAdapter> {
 
-    public MainViewAdapter doInBackground(Void... params) {
+    public MainViewAdapter doInBackground(Void... params)  {
       LotteryFetcher dataFetcher = OFFLINE_MODE ? 
                                               new MockLotteryFetcher()
                                             : new ServerLotteryFetcher();
@@ -103,29 +104,8 @@ public class Lottodroid extends ListActivity {
     public void end(MainViewAdapter adapter) {
       // Adapter set to null if there is an error or an exception thrown
       if (adapter == null) {
-        OnClickListener retryListener = new OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            dialog.cancel();
-            fetchDataForMainView();
-          }
-        };
-
-        OnClickListener exitListener = new OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            Lottodroid.this.finish();
-          }
-        };
-
-        new AlertDialog.Builder(Lottodroid.this)
-          .setTitle("Error")
-          .setMessage("No se han podido encontrar los resultados de los últimos sorteos")
-          .setCancelable(false)
-          .setPositiveButton("Reintentar", retryListener)
-          .setNegativeButton("Salir", exitListener)
-          .show();
-        
+        new ErrorDialog(Lottodroid.this,  "No se han podido encontrar los " +
+        		                              "resultados de los últimos sorteos").show();
       } else {
         setListAdapter(adapter);
       }
