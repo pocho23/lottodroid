@@ -25,14 +25,6 @@ public class Lottodroid extends ListActivity {
   public static final String TAG = Lottodroid.class.toString();
 
   /**
-   * If the offline mode is true, no communication with the server will be performed: mock data will
-   * be generated instead. See the implementations for {@link LotteryFetcher}.
-   * 
-   * TODO: Move this flag to the command-line flag list
-   */
-  private static boolean OFFLINE_MODE = true;
-
-  /**
    * Called when the activity is first created.
    */
   @Override
@@ -82,7 +74,7 @@ public class Lottodroid extends ListActivity {
   private class FetchAllLotteryResultsTask extends UserTask<Void, Void, MainViewAdapter> {
 
     public MainViewAdapter doInBackground(Void... params)  {
-      LotteryFetcher dataFetcher = OFFLINE_MODE ? 
+      LotteryFetcher dataFetcher = Configuration.OFFLINE_MODE ? 
                                               new MockLotteryFetcher()
                                             : new ServerLotteryFetcher();
       try {

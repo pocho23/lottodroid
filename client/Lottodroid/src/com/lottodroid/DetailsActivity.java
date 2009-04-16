@@ -25,14 +25,6 @@ public class DetailsActivity extends ExpandableListActivity {
 
   public static final String TAG = DetailsActivity.class.toString();
   
-  /**
-   * If the offline mode is true, no communication with the server will be performed: mock data will
-   * be generated instead. See the implementations for {@link LotteryFetcher}. 
-   * 
-   * TODO: Move this flag to the command-line flag list
-   */
-  private static boolean OFFLINE_MODE = true;
-
   /** Number of last results displayed by default */
   private static int NUM_RESULTS_SHOW = 3;
   
@@ -92,7 +84,7 @@ public class DetailsActivity extends ExpandableListActivity {
       LotteryViewController<Lottery> viewController =  params[0];
       LotteryViewController.LotteryId lotteryId = viewController.getId();
       
-      LotteryFetcher dataFetcher = OFFLINE_MODE ? 
+      LotteryFetcher dataFetcher = Configuration.OFFLINE_MODE ? 
           new MockLotteryFetcher()
         : new ServerLotteryFetcher();
       
