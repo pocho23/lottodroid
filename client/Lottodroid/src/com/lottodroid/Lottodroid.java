@@ -4,8 +4,13 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ListView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import com.lottodroid.communication.LotteryFetcher;
 import com.lottodroid.communication.LotteryInfoUnavailableException;
@@ -23,6 +28,7 @@ import com.lottodroid.view.ViewControllerFactory;
 public class Lottodroid extends ListActivity {
 
   public static final String TAG = Lottodroid.class.toString();
+  private static final int VIEW_DETAILS_MENU_ID = Menu.FIRST;
 
   /**
    * Called when the activity is first created.
@@ -31,6 +37,7 @@ public class Lottodroid extends ListActivity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
+    registerForContextMenu(getListView());
     fetchDataForMainView();
   }
 
@@ -55,18 +62,39 @@ public class Lottodroid extends ListActivity {
   @Override
   protected void onListItemClick(ListView l, View v, int position, long id) {
     super.onListItemClick(l, v, position, id);
-
-    Intent i = new Intent(this, DetailsActivity.class);
-    
-    Lottery lottery = (Lottery) getListView().getItemAtPosition(position);
-    
-    @SuppressWarnings("unchecked") // TODO(pablo): Can I remove this warning?
-    LotteryViewController viewController = ViewControllerFactory.createViewController(lottery);
-    i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
-    
-    startActivity(i);
+    startDetailsActivity(position);
   }
 
+  @Override
+  public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+    super.onCreateContextMenu(menu, v, menuInfo);
+    menu.add(0, VIEW_DETAILS_MENU_ID , 0, R.string.context_menu_view_details);
+  }
+  
+  @Override
+  public boolean onContextItemSelected(MenuItem item) {
+    switch(item.getItemId()) {
+      case VIEW_DETAILS_MENU_ID:
+        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+        startDetailsActivity(info.position);
+        return true;
+    }
+    return super.onContextItemSelected(item);
+  }
+  
+  private void startDetailsActivity(int position) {
+    Intent i = new Intent(this, DetailsActivity.class);
+
+    Lottery lottery = (Lottery) getListView().getItemAtPosition(position);
+
+    @SuppressWarnings("unchecked")
+    // TODO(pablo): Can I remove this warning?
+    LotteryViewController viewController = ViewControllerFactory.createViewController(lottery);
+    i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
+
+    startActivity(i);
+  }
+  
   /**
    * Task that fetches the data that the main view will display: the last results for every lottery
    * type.

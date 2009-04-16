@@ -2,6 +2,7 @@
 <resources>
   <string name="app_name">Lottodroid</string>
   <string name="main_no_items">No items</string>
+  <string name="context_menu_view_details">Ver historial</string>
   
   <!-- about dialog -->
   <string name="about_dialog_title"><i>Lottodroid</i> v%1$s</string>
