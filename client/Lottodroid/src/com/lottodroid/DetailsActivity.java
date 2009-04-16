@@ -91,9 +91,6 @@ public class DetailsActivity extends ExpandableListActivity {
       List<? extends Lottery> listLottery;
        
       try {
-        // Just to see the behavior
-        Thread.sleep(2000);
-        
         // TODO(pablo): can we get rid of this big "if" clause?
         if (lotteryId == LotteryViewController.LotteryId.BONOLOTO) {
           listLottery = dataFetcher.retrieveLastBonolotos(0, NUM_RESULTS_SHOW);
@@ -109,8 +106,6 @@ public class DetailsActivity extends ExpandableListActivity {
         
       } catch (LotteryInfoUnavailableException e) {
         Log.e(TAG, "Lottery info unavailable", e);
-      } catch (InterruptedException e) {
-        ;
       } catch (DataFormatException e) {
         Log.e(TAG, "Inconsistent data fetched from the main activity", e);
       } 

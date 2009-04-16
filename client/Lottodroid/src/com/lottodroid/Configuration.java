@@ -11,5 +11,6 @@ class Configuration {
    * If the offline mode is true, no communication with the server will be performed: mock data will
    * be generated instead. See the implementations for {@link LotteryFetcher}.
    */
-  public static boolean OFFLINE_MODE = true;
+  static boolean OFFLINE_MODE = true;
+
 }

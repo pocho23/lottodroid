@@ -78,15 +78,10 @@ public class Lottodroid extends ListActivity {
                                               new MockLotteryFetcher()
                                             : new ServerLotteryFetcher();
       try {
-        // Just to see the behavior
-        Thread.sleep(2000);
-
         return new MainViewAdapter(Lottodroid.this, dataFetcher.retrieveLastAllLotteries());
         
       } catch (LotteryInfoUnavailableException e) {
         Log.e(TAG, "Lottery info unavailable", e);
-      } catch (InterruptedException e) {
-        ;
       } 
       
       return null;

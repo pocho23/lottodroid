@@ -13,13 +13,19 @@ import com.lottodroid.model.Quiniela;
  */
 public class MockLotteryFetcher implements LotteryFetcher {
 
+  /**
+   * It sets the amount of time <i>in seconds</i> that we will wait before returning the data, in
+   * order to simulate some latency due to the network.
+   */
+  public static int MOCK_DELAY = 2;
+
   @Override
   public List<Lottery> retrieveLastAllLotteries() {
     List<Lottery> listLottery = new LinkedList<Lottery>();
     listLottery.add(new Bonoloto(new Date(), "5 6 7 1 0 9", "4", "9"));
     listLottery.add(new Bonoloto(new Date(), "5 55 7 1 0 9", "3", "4"));
     listLottery.add(new Bonoloto(new Date(), "5 6 7 1 66 9", "6", "9"));
-    
+
     Quiniela quiniela = new Quiniela(new Date());
     quiniela.setMatch(0, "Barcelona", "Villareal", "X");
     quiniela.setMatch(1, "R. Madrid", "Villareal", "2");
@@ -36,12 +42,13 @@ public class MockLotteryFetcher implements LotteryFetcher {
     quiniela.setMatch(12, "R. Madrid", "Villareal", "2");
     quiniela.setMatch(13, "R. Madrid", "Villareal", "2");
     quiniela.setMatch(14, "R. Madrid", "Villareal", "2");
-    
 
     listLottery.add(quiniela);
 
     listLottery.add(new Bonoloto(new Date(), "1 2 3 4 5 6", "1", "0"));
 
+    simulateLatency();
+    
     return listLottery;
   }
 
@@ -52,6 +59,8 @@ public class MockLotteryFetcher implements LotteryFetcher {
     listBonoloto.add(new Bonoloto(new Date(), "5 55 7 1 0 9", "3", "4"));
     listBonoloto.add(new Bonoloto(new Date(), "5 6 7 1 66 9", "6", "9"));
 
+    simulateLatency();
+    
     return listBonoloto;
   }
 
@@ -119,7 +128,16 @@ public class MockLotteryFetcher implements LotteryFetcher {
 
     listQuiniela.add(quiniela3);
 
+    simulateLatency();
+
     return listQuiniela;
   }
 
+  private void simulateLatency() {
+    try {
+      Thread.sleep(1000 * MOCK_DELAY);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+  }
 }
