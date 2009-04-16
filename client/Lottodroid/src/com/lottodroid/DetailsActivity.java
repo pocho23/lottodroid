@@ -43,7 +43,6 @@ public class DetailsActivity extends ExpandableListActivity {
       }
       
       // Get the view controller, set from the main activity
-      // TODO(pablo): Don't use getSerializable here, there has to be something better!
       @SuppressWarnings("unchecked")
       LotteryViewController<Lottery> viewController = (LotteryViewController) extras
           .getSerializable(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER);
@@ -80,6 +79,7 @@ public class DetailsActivity extends ExpandableListActivity {
    */
   private class FetchSpecificLotteryResultsTask extends UserTask<LotteryViewController<Lottery>, Void, DetailsViewAdapter> {
 
+    @Override
     public DetailsViewAdapter doInBackground(LotteryViewController<Lottery>... params)  {
       LotteryViewController<Lottery> viewController =  params[0];
       LotteryViewController.LotteryId lotteryId = viewController.getId();

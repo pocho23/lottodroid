@@ -1,7 +1,5 @@
 package com.lottodroid;
 
-import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 

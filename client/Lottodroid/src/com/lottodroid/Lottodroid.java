@@ -73,6 +73,7 @@ public class Lottodroid extends ListActivity {
    */
   private class FetchAllLotteryResultsTask extends UserTask<Void, Void, MainViewAdapter> {
 
+    @Override
     public MainViewAdapter doInBackground(Void... params)  {
       LotteryFetcher dataFetcher = Configuration.OFFLINE_MODE ? 
                                               new MockLotteryFetcher()
