@@ -1,5 +1,6 @@
 package com.lottodroid;
 
+import java.net.ConnectException;
 import java.util.List;
 import java.util.zip.DataFormatException;
 
@@ -83,14 +84,14 @@ public class DetailsActivity extends ExpandableListActivity {
     public DetailsViewAdapter doInBackground(LotteryViewController<Lottery>... params)  {
       LotteryViewController<Lottery> viewController =  params[0];
       LotteryViewController.LotteryId lotteryId = viewController.getId();
+      DetailsViewAdapter detailsViewAdapter = null;
       
-      LotteryFetcher dataFetcher = Configuration.OFFLINE_MODE ? 
-          new MockLotteryFetcher()
-        : new ServerLotteryFetcher();
-      
-      List<? extends Lottery> listLottery;
-       
       try {
+        LotteryFetcher dataFetcher = Configuration.OFFLINE_MODE ? 
+                                          new MockLotteryFetcher()
+                                        : new ServerLotteryFetcher(DetailsActivity.this);
+        List<? extends Lottery> listLottery;       
+
         // TODO(pablo): can we get rid of this big "if" clause?
         if (lotteryId == LotteryViewController.LotteryId.BONOLOTO) {
           listLottery = dataFetcher.retrieveLastBonolotos(0, NUM_RESULTS_SHOW);
@@ -102,15 +103,17 @@ public class DetailsActivity extends ExpandableListActivity {
         }
         
         // The adapter is created on a non-UI thread
-        return new DetailsViewAdapter(DetailsActivity.this, listLottery, viewController);
+        detailsViewAdapter = new DetailsViewAdapter(DetailsActivity.this, listLottery, viewController);
         
       } catch (LotteryInfoUnavailableException e) {
         Log.e(TAG, "Lottery info unavailable", e);
       } catch (DataFormatException e) {
         Log.e(TAG, "Inconsistent data fetched from the main activity", e);
-      } 
+      } catch (ConnectException e) {
+        Log.e(TAG, "Network connection unavailable", e);
+      }
       
-      return null;
+      return detailsViewAdapter;
     }
 
     @Override

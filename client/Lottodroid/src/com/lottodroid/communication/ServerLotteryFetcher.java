@@ -1,7 +1,11 @@
 package com.lottodroid.communication;
 
+import java.net.ConnectException;
 import java.util.List;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.lottodroid.Lottodroid;
@@ -19,8 +23,17 @@ public class ServerLotteryFetcher implements LotteryFetcher {
   static final String LOTTERY_VAR = "&controller=";
   static final String LIMIT_VAR = "&limit=";
   static final String START_VAR = "&start=";
- 
   
+  public ServerLotteryFetcher(Context context) throws ConnectException {
+    ConnectivityManager manager = (ConnectivityManager)
+        context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo netInfo = manager.getActiveNetworkInfo();
+
+    if (netInfo == null || netInfo.isAvailable() == false){
+      throw new ConnectException();
+    } 
+  }
+   
   @Override
   public List<Lottery> retrieveLastAllLotteries() throws LotteryInfoUnavailableException {
     try {

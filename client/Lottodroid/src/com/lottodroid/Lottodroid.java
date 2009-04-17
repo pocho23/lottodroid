@@ -1,5 +1,7 @@
 package com.lottodroid;
 
+import java.net.ConnectException;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -103,17 +105,22 @@ public class Lottodroid extends ListActivity {
 
     @Override
     public MainViewAdapter doInBackground(Void... params)  {
-      LotteryFetcher dataFetcher = Configuration.OFFLINE_MODE ? 
-                                              new MockLotteryFetcher()
-                                            : new ServerLotteryFetcher();
+      MainViewAdapter mainViewAdapter = null;
+      
       try {
-        return new MainViewAdapter(Lottodroid.this, dataFetcher.retrieveLastAllLotteries());
-        
+        LotteryFetcher dataFetcher = Configuration.OFFLINE_MODE ? 
+                                              new MockLotteryFetcher()
+                                            : new ServerLotteryFetcher(Lottodroid.this);
+        mainViewAdapter 
+            = new MainViewAdapter(Lottodroid.this, dataFetcher.retrieveLastAllLotteries());
+      
       } catch (LotteryInfoUnavailableException e) {
         Log.e(TAG, "Lottery info unavailable", e);
-      } 
+      } catch (ConnectException e){
+        Log.e(TAG, "Network connection unavailable", e);
+      }
       
-      return null;
+       return mainViewAdapter;
     }
 
     @Override
