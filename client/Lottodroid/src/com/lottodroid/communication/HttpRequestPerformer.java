@@ -58,7 +58,8 @@ class HttpRequestPerformer {
     String string = null;
     
     if (inputStream != null) {
-      BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+      // http.getContentEncoding is null, but we must decode the data in the charset we received
+      BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "ISO-8859-1"));
       while (null != (string = reader.readLine())) {
         outputBuilder.append(string);
       }
