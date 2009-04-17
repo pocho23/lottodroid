@@ -11,9 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lottodroid.communication.LotteryFetcher;
+import com.lottodroid.communication.LotteryFetcherFactory;
 import com.lottodroid.communication.LotteryInfoUnavailableException;
-import com.lottodroid.communication.MockLotteryFetcher;
-import com.lottodroid.communication.ServerLotteryFetcher;
 import com.lottodroid.model.Lottery;
 import com.lottodroid.util.UserTask;
 import com.lottodroid.view.ErrorDialog;
@@ -87,9 +86,7 @@ public class DetailsActivity extends ExpandableListActivity {
       DetailsViewAdapter detailsViewAdapter = null;
       
       try {
-        LotteryFetcher dataFetcher = Configuration.OFFLINE_MODE ? 
-                                          new MockLotteryFetcher()
-                                        : new ServerLotteryFetcher(DetailsActivity.this);
+        LotteryFetcher dataFetcher = LotteryFetcherFactory.newLotteryFetcher(DetailsActivity.this);
         List<? extends Lottery> listLottery;       
 
         // TODO(pablo): can we get rid of this big "if" clause?

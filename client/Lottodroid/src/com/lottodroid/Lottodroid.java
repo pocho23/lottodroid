@@ -15,9 +15,8 @@ import android.widget.ListView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import com.lottodroid.communication.LotteryFetcher;
+import com.lottodroid.communication.LotteryFetcherFactory;
 import com.lottodroid.communication.LotteryInfoUnavailableException;
-import com.lottodroid.communication.MockLotteryFetcher;
-import com.lottodroid.communication.ServerLotteryFetcher;
 import com.lottodroid.model.Lottery;
 import com.lottodroid.util.UserTask;
 import com.lottodroid.view.ErrorDialog;
@@ -108,9 +107,7 @@ public class Lottodroid extends ListActivity {
       MainViewAdapter mainViewAdapter = null;
       
       try {
-        LotteryFetcher dataFetcher = Configuration.OFFLINE_MODE ? 
-                                              new MockLotteryFetcher()
-                                            : new ServerLotteryFetcher(Lottodroid.this);
+        LotteryFetcher dataFetcher = LotteryFetcherFactory.newLotteryFetcher(Lottodroid.this);
         mainViewAdapter 
             = new MainViewAdapter(Lottodroid.this, dataFetcher.retrieveLastAllLotteries());
       
