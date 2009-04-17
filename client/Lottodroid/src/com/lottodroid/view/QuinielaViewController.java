@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lottodroid.FavoriteHandler;
+import com.lottodroid.MockFavoriteHandler;
 import com.lottodroid.R;
 import com.lottodroid.model.Quiniela;
 import com.lottodroid.util.DateFormatter;
@@ -19,11 +21,12 @@ class QuinielaViewController implements LotteryViewController<Quiniela> {
   private static final long serialVersionUID = -8774534644802955726L;
   
   private final String title;
+  private final FavoriteHandler favorites;
   
   /** Maintains the association between quiniela matches and their corresponding layout id's */  
   private final static Map<Integer, Integer> homeTeamsToId = new HashMap<Integer, Integer>();  
   private final static Map<Integer, Integer> awayTeamsToId = new HashMap<Integer, Integer>();  
-  private final static Map<Integer, Integer> resultsToId = new HashMap<Integer, Integer>();  
+  private final static Map<Integer, Integer> resultsToId = new HashMap<Integer, Integer>();
    
   static {  
     homeTeamsToId.put(0, R.id.txtLocal0);
@@ -75,8 +78,9 @@ class QuinielaViewController implements LotteryViewController<Quiniela> {
     resultsToId.put(14, R.id.txtResult14);
    }  
 
-  public QuinielaViewController(String title) {
+  public QuinielaViewController(String title, FavoriteHandler favorites) {
     this.title = title;
+    this.favorites = favorites;
   }
 
   @Override
@@ -90,6 +94,8 @@ class QuinielaViewController implements LotteryViewController<Quiniela> {
     ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(quiniela
         .getDate()));
 
+    ViewUtil.applyFavoriteEffect(favorites, quiniela.getName(), layoutView);
+    
     fillUpView(layoutView, quiniela);
 
     return layoutView;

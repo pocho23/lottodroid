@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lottodroid.FavoriteHandler;
+import com.lottodroid.MockFavoriteHandler;
 import com.lottodroid.R;
 import com.lottodroid.model.Bonoloto;
 import com.lottodroid.util.DateFormatter;
@@ -16,9 +18,11 @@ class BonolotoViewController implements LotteryViewController<Bonoloto> {
   private static final long serialVersionUID = 3726644726024636635L;
 
   private final String title;
+  private final FavoriteHandler favorites;
 
-  public BonolotoViewController(String title) {
+  public BonolotoViewController(String title, FavoriteHandler favorites) {
     this.title = title;
+    this.favorites = favorites;
   }
 
   @Override
@@ -32,6 +36,8 @@ class BonolotoViewController implements LotteryViewController<Bonoloto> {
     ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(bonoloto
         .getDate()));
 
+    ViewUtil.applyFavoriteEffect(favorites, bonoloto.getName(), layoutView);
+    
     fillUpView(layoutView, bonoloto);
 
     return layoutView;
