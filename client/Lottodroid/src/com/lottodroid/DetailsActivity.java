@@ -114,9 +114,7 @@ public class DetailsActivity extends ExpandableListActivity {
     public void end(DetailsViewAdapter adapter) {      
        // Adapter set to null if there is an error or an exception thrown
       if (adapter == null) {     
-        new ErrorDialog(DetailsActivity.this, 
-                        "No se han podido encontrar las " +
-                   		  "fechas anteriores a este sorteo").show();
+        new ErrorDialog(DetailsActivity.this, getString(R.string.error_dialog_content)).show();
       } else {
         setListAdapter(adapter);
         

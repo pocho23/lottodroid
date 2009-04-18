@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import com.lottodroid.communication.LotteryFetcher;
@@ -49,8 +50,7 @@ public class Lottodroid extends ListActivity {
     } catch (IllegalStateException e) {
       Log.e(TAG, "Fatal error: " + e.getMessage());
 
-      new ErrorDialog(Lottodroid.this,  "No se han podido encontrar los " +
-                                        "resultados de los últimos sorteos").show();
+      new ErrorDialog(Lottodroid.this, getString(R.string.error_dialog_content)).show();
     }
   }
 
@@ -67,6 +67,7 @@ public class Lottodroid extends ListActivity {
   @Override
   public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
     super.onCreateContextMenu(menu, v, menuInfo);
+    menu.setHeaderTitle("Opciones");
     menu.add(0, VIEW_DETAILS_MENU_ID , 0, R.string.context_menu_view_details);
   }
   
@@ -120,10 +121,12 @@ public class Lottodroid extends ListActivity {
     public void end(MainViewAdapter adapter) {
       // Adapter set to null if there is an error or an exception thrown
       if (adapter == null) {
-        new ErrorDialog(Lottodroid.this,  "No se han podido encontrar los " +
-        		                              "resultados de los últimos sorteos").show();
+        new ErrorDialog(Lottodroid.this, getString(R.string.error_dialog_content)).show();
       } else {
         setListAdapter(adapter);
+        Toast.makeText(Lottodroid.this,
+            getString(R.string.toast_lottery_options),
+            Toast.LENGTH_LONG).show();
       }
     }
 

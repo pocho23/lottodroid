@@ -2,12 +2,29 @@
 <resources>
   <string name="app_name">Lottodroid</string>
   <string name="main_no_items">No items</string>
+  
+  <!-- Context menu main activity -->
+  <string name="context_menu_main_header">Opciones</string>
   <string name="context_menu_view_details">Ver historial</string>
+  <!-- Toast info about context lottery options -->
+  <string name="toast_lottery_options">
+    Pulsa prolongadamente sobre un sorteo para ver las opciones disponibles
+  </string>
+  
+  <!-- error dialog -->
+  <string name="error_dialog_title">Error</string>
+  <string name="error_dialog_content">
+    No se han podido encontrar los resultados de los últimos sorteos
+  </string>
   
   <!-- about dialog -->
   <string name="about_dialog_title"><i>Lottodroid</i> v%1$s</string>
   <string name="about_dialog_text">
-          Recoge la información de los últimos sorteos de la lotería española.
+    Recoge la información de los últimos sorteos de la lotería española.
   </string>
+  <string name="about_dialog_button_ok">OK</string>
+  <string name="about_dialog_button_email">Email us</string>
+  
+
   
 </resources>

@@ -1,5 +1,7 @@
 package com.lottodroid.view;
 
+import com.lottodroid.R;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,7 +14,7 @@ public class ErrorDialog extends AlertDialog implements OnClickListener {
     super(activity);
     this.activity = activity;
 
-    setTitle("Error");
+    setTitle(activity.getString(R.string.error_dialog_title));
     setButton("OK", this);
     setMessage(msg);
     setCancelable(false);

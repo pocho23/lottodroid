@@ -26,20 +26,21 @@ public class AboutDialog extends AlertDialog {
     setTitle(context.getString(R.string.about_dialog_title,
         getApplicationVersion(context)));
 
-    setButton("OK", (OnClickListener) null);
-    setButton2("Email", new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int whichButton) {
-        /* Create the Intent and fill it with our mails */
-        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+    setButton(context.getString(R.string.about_dialog_button_ok), (OnClickListener) null);
+    setButton2(context.getString(R.string.about_dialog_button_email),
+        new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int whichButton) {
+            /* Create the Intent and fill it with our mails */
+            final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
-        emailIntent.setType("plain/text");
-        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, 
-                             new String[]{"campbell.sx@gmail.com", "pablo.sx@gmail.com"});
+            emailIntent.setType("plain/text");
+            emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {
+                "campbell.sx@gmail.com", "pablo.sx@gmail.com" });
 
-        /* Send it off to the Activity-Chooser */
-        context.startActivity(Intent.createChooser(emailIntent, "Send mail"));
-      }
-    });
+            /* Send it off to the Activity-Chooser */
+            context.startActivity(Intent.createChooser(emailIntent, "Send mail"));
+          }
+        });
   }
 
   /**
