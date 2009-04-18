@@ -1,6 +1,5 @@
 package com.lottodroid;
 
-import java.net.ConnectException;
 import java.util.List;
 import java.util.zip.DataFormatException;
 
@@ -106,9 +105,7 @@ public class DetailsActivity extends ExpandableListActivity {
         Log.e(TAG, "Lottery info unavailable", e);
       } catch (DataFormatException e) {
         Log.e(TAG, "Inconsistent data fetched from the main activity", e);
-      } catch (ConnectException e) {
-        Log.e(TAG, "Network connection unavailable", e);
-      }
+      } 
       
       return detailsViewAdapter;
     }

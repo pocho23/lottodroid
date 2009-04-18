@@ -1,7 +1,5 @@
 package com.lottodroid;
 
-import java.net.ConnectException;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -113,11 +111,9 @@ public class Lottodroid extends ListActivity {
       
       } catch (LotteryInfoUnavailableException e) {
         Log.e(TAG, "Lottery info unavailable", e);
-      } catch (ConnectException e){
-        Log.e(TAG, "Network connection unavailable", e);
-      }
+      } 
       
-       return mainViewAdapter;
+      return mainViewAdapter;
     }
 
     @Override

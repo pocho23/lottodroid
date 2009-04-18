@@ -1,6 +1,5 @@
 package com.lottodroid.communication;
 
-import java.net.ConnectException;
 import java.util.List;
 
 import android.content.Context;
@@ -24,25 +23,22 @@ public class ServerLotteryFetcher implements LotteryFetcher {
   static final String LIMIT_VAR = "&limit=";
   static final String START_VAR = "&start=";
   
-  public ServerLotteryFetcher(Context context) throws ConnectException {
+  public ServerLotteryFetcher(Context context) throws LotteryInfoUnavailableException {
     ConnectivityManager manager = (ConnectivityManager)
         context.getSystemService(Context.CONNECTIVITY_SERVICE);
     NetworkInfo netInfo = manager.getActiveNetworkInfo();
 
     if (netInfo == null || netInfo.isAvailable() == false){
-      throw new ConnectException();
+      throw new LotteryInfoUnavailableException("Unable to connect, no networks found");
     } 
   }
    
   @Override
   public List<Lottery> retrieveLastAllLotteries() throws LotteryInfoUnavailableException {
     try {
-      StringBuilder url = new StringBuilder();
-      url.append(URL_STRING).append(LOTTERY_VAR).append("sorteos");
-
-      Log.i(Lottodroid.TAG, "Connecting to " + url.toString());
+      String url = ServerLotteryFetcher.buildLotteryUrl("sorteos", 0, 1);
+      String response = HttpRequestPerformer.getResponse(url);
       
-      String response = HttpRequestPerformer.getResponse(url.toString());
       return LotteryParser.parseAllLotteries(response);
     } catch (Exception e) {
       Log.e("Lottodroid", "Could not retrieve last lottery results", e);
@@ -53,13 +49,9 @@ public class ServerLotteryFetcher implements LotteryFetcher {
   @Override
   public List<Bonoloto> retrieveLastBonolotos(int start, int limit) throws LotteryInfoUnavailableException {
     try {
-      StringBuilder url = new StringBuilder();
-      url.append(URL_STRING).append(LOTTERY_VAR).append("bonoloto");
-      url.append(LIMIT_VAR).append(limit).append(START_VAR).append(start);
-
-      Log.i(Lottodroid.TAG, "Connecting to " + url.toString());
+      String url = ServerLotteryFetcher.buildLotteryUrl("bonoloto", start, limit);
+      String response = HttpRequestPerformer.getResponse(url);
       
-      String response = HttpRequestPerformer.getResponse(url.toString());
       return LotteryParser.parseBonoloto(response);
     } catch (Exception e) {
       Log.e("Lottodroid", "Could not retrieve last bonoloto results", e);
@@ -70,13 +62,9 @@ public class ServerLotteryFetcher implements LotteryFetcher {
   @Override
   public List<Quiniela> retrieveLastQuinielas(int start, int limit) throws LotteryInfoUnavailableException {
     try {
-      StringBuilder url = new StringBuilder();
-      url.append(URL_STRING).append(LOTTERY_VAR).append("quiniela");
-      url.append(LIMIT_VAR).append(limit).append(START_VAR).append(start);
-
-      Log.i(Lottodroid.TAG, "Connecting to " + url.toString());
+      String url = ServerLotteryFetcher.buildLotteryUrl("quiniela", start, limit);
+      String response = HttpRequestPerformer.getResponse(url);
       
-      String response = HttpRequestPerformer.getResponse(url.toString());
       return LotteryParser.parseQuiniela(response);
     } catch (Exception e) {
       Log.e("Lottodroid", "Could not retrieve last quiniela results", e);
@@ -84,4 +72,21 @@ public class ServerLotteryFetcher implements LotteryFetcher {
     }
   }
 
+  /** 
+   * Build the web service URL to retrieve the lottery data.
+   * 
+   * @param lotteryController argument of the service that indicates the lottery type
+   * @param start Indicates the index to start retrieving results. ( start = 0 : from last result )
+   * @param limit Number of results to retrieve
+   */
+  private static String buildLotteryUrl(String lotteryController, int start, int limit) {
+    StringBuilder url = new StringBuilder();
+    
+    url.append(URL_STRING).append(LOTTERY_VAR).append(lotteryController);
+    url.append(LIMIT_VAR).append(limit).append(START_VAR).append(start);
+
+    Log.i(Lottodroid.TAG, "Connecting to " + url.toString());
+    
+    return url.toString();
+  }
 }
