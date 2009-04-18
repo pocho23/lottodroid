@@ -1,9 +1,11 @@
 package com.lottodroid;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class MockFavoriteHandler implements FavoriteHandler {
+public class MockFavoriteHandler implements FavoriteHandler, Serializable {
 
+  private static final long serialVersionUID = 5092293385153073742L;
   private final Map<String, Boolean> favoritesMap;
 
   public MockFavoriteHandler(Map<String, Boolean> favoritesMap) {
