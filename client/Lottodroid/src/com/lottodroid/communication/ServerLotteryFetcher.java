@@ -16,7 +16,7 @@ import com.lottodroid.model.Quiniela;
  * Talks to the LottoDroid server to get the different lottery results.
  * 
  */
-public class ServerLotteryFetcher implements LotteryFetcher {
+class ServerLotteryFetcher implements LotteryFetcher {
 
   static final String URL_STRING = "http://www.el33.es/lottery/?module=data";
   static final String LOTTERY_VAR = "&controller=";

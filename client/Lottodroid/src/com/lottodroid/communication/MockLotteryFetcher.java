@@ -11,7 +11,7 @@ import com.lottodroid.model.Quiniela;
 /**
  * Implementation for {@link LotteryFetcher} that uses in-memory, hard-coded data.
  */
-public class MockLotteryFetcher implements LotteryFetcher {
+class MockLotteryFetcher implements LotteryFetcher {
 
   /**
    * It sets the amount of time <i>in seconds</i> that we will wait before returning the data, in
