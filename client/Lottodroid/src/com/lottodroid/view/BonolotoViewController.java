@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lottodroid.FavoriteHandler;
-import com.lottodroid.MockFavoriteHandler;
 import com.lottodroid.R;
 import com.lottodroid.model.Bonoloto;
 import com.lottodroid.util.DateFormatter;
@@ -56,9 +55,12 @@ class BonolotoViewController implements LotteryViewController<Bonoloto> {
   }
 
   private void fillUpView(View view, Bonoloto bonoloto) {
-    ((TextView) view.findViewById(R.id.txtNumbers)).setText(bonoloto.getNumbers());
-    ((TextView) view.findViewById(R.id.txtComplementary)).setText(bonoloto.getComplementario());
-    ((TextView) view.findViewById(R.id.txtReinteger)).setText(bonoloto.getReintegro());
+    String numbers =  bonoloto.getNum1() + " " + bonoloto.getNum2() + " " + bonoloto.getNum3() + " " +
+                      bonoloto.getNum4() + " " + bonoloto.getNum5() + " " + bonoloto.getNum6();
+    
+    ((TextView) view.findViewById(R.id.txtNumbers)).setText(numbers);
+    ((TextView) view.findViewById(R.id.txtComplementary)).setText(Integer.toString(bonoloto.getComplementario()));
+    ((TextView) view.findViewById(R.id.txtReinteger)).setText(Integer.toString(bonoloto.getReintegro()));
   }
 
   @Override

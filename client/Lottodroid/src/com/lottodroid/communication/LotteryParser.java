@@ -3,7 +3,6 @@ package com.lottodroid.communication;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -136,16 +135,11 @@ class LotteryParser {
     for (int i = 0; i < numItems; i++) {
       JSONObject item = jsonContent.getJSONObject(i);
 
-      String numbers = item.getString("num1") + " " + item.getString("num2") + " "
-          + item.getString("num3") + " " + item.getString("num4") + " " + item.getString("num5") + " "
-          + item.getString("num6");
-
-      Date date = dfm.parse(item.getString("fecha"));
-      String reintegro = item.getString("reintegro");
-      String complementario = item.getString("complementario");
-
       // Create a new Bonoloto object
-      lotteryList.add(new Bonoloto(date, numbers, reintegro, complementario));
+      lotteryList.add(new Bonoloto(dfm.parse(item.getString("fecha")), 
+          item.getInt("num1"), item.getInt("num2"), item.getInt("num3"), 
+          item.getInt("num4"), item.getInt("num5"), item.getInt("num6"), 
+          item.getInt("reintegro"), item.getInt("complementario")));  
     }
 
     return lotteryList;

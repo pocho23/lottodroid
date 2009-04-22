@@ -22,9 +22,9 @@ class MockLotteryFetcher implements LotteryFetcher {
   @Override
   public List<Lottery> retrieveLastAllLotteries() {
     List<Lottery> listLottery = new LinkedList<Lottery>();
-    listLottery.add(new Bonoloto(new Date(), "5 6 7 1 0 9", "4", "9"));
-    listLottery.add(new Bonoloto(new Date(), "5 55 7 1 0 9", "3", "4"));
-    listLottery.add(new Bonoloto(new Date(), "5 6 7 1 66 9", "6", "9"));
+    listLottery.add(new Bonoloto(new Date(), 1, 2, 3, 4, 5, 6, 4, 3));
+    listLottery.add(new Bonoloto(new Date(), 1, 2, 3, 4, 5, 6, 4, 3));
+    listLottery.add(new Bonoloto(new Date(), 1, 2, 3, 4, 5, 6, 4, 3));
 
     Quiniela quiniela = new Quiniela(new Date());
     quiniela.setMatch(0, "Barcelona", "Villareal", "X");
@@ -45,7 +45,7 @@ class MockLotteryFetcher implements LotteryFetcher {
 
     listLottery.add(quiniela);
 
-    listLottery.add(new Bonoloto(new Date(), "1 2 3 4 5 6", "1", "0"));
+    listLottery.add(new Bonoloto(new Date(), 6, 5, 2, 3, 1, 2, 1, 1));
 
     simulateLatency();
     
@@ -55,9 +55,9 @@ class MockLotteryFetcher implements LotteryFetcher {
   @Override
   public List<Bonoloto> retrieveLastBonolotos(int start, int limit) {
     List<Bonoloto> listBonoloto = new LinkedList<Bonoloto>();
-    listBonoloto.add(new Bonoloto(new Date(), "5 6 7 1 0 9", "4", "9"));
-    listBonoloto.add(new Bonoloto(new Date(), "5 55 7 1 0 9", "3", "4"));
-    listBonoloto.add(new Bonoloto(new Date(), "5 6 7 1 66 9", "6", "9"));
+    listBonoloto.add(new Bonoloto(new Date(), 6, 5, 2, 3, 1, 2, 1, 1));
+    listBonoloto.add(new Bonoloto(new Date(), 6, 5, 2, 3, 1, 2, 1, 1));
+    listBonoloto.add(new Bonoloto(new Date(), 1, 2, 3, 4, 5, 6, 3, 2));
 
     simulateLatency();
     
