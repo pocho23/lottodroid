@@ -9,7 +9,7 @@ public class DateFormatter {
 
   static {
     DateFormatSymbols symbols = new DateFormatSymbols();
-    String[] daysES = { "", "Domingo", "Lunes", "Martes", "Miécoles", "Jueves", "Viernes", "Sábado" };
+    String[] daysES = { "", "Domingo", "Lunes", "Martes", "Mi\u00E9rcoles", "Jueves", "Viernes", "S\u00E1bado" };
     symbols.setWeekdays(daysES);
     formatter = new SimpleDateFormat("EEEE, d/MM/yyyy", symbols);
   }
