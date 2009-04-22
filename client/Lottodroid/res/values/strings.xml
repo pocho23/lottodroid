@@ -6,10 +6,6 @@
   <!-- Context menu main activity -->
   <string name="context_menu_main_header">Opciones</string>
   <string name="context_menu_view_details">Ver historial</string>
-  <!-- Toast info about context lottery options -->
-  <string name="toast_lottery_options">
-    Pulsa prolongadamente sobre un sorteo para ver las opciones disponibles
-  </string>
   
   <!-- error dialog -->
   <string name="error_dialog_title">Error</string>

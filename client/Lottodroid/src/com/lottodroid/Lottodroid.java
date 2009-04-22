@@ -124,9 +124,6 @@ public class Lottodroid extends ListActivity {
         new ErrorDialog(Lottodroid.this, getString(R.string.error_dialog_content)).show();
       } else {
         setListAdapter(adapter);
-        Toast.makeText(Lottodroid.this,
-            getString(R.string.toast_lottery_options),
-            Toast.LENGTH_LONG).show();
       }
     }
 
