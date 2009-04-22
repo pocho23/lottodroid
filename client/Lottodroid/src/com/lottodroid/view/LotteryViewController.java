@@ -16,7 +16,7 @@ import com.lottodroid.model.Lottery;
 public interface LotteryViewController<T extends Lottery> extends Serializable {
 
   enum LotteryId {
-    BONOLOTO, QUINIELA
+    BONOLOTO, QUINIELA, PRIMITIVA, LOTOTURF
   };
 
   View createAndFillUpMainView(T lottery, Context context);

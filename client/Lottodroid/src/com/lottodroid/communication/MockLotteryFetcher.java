@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.lottodroid.model.Bonoloto;
 import com.lottodroid.model.Lottery;
+import com.lottodroid.model.Primitiva;
 import com.lottodroid.model.Quiniela;
 
 /**
@@ -23,8 +24,7 @@ class MockLotteryFetcher implements LotteryFetcher {
   public List<Lottery> retrieveLastAllLotteries() {
     List<Lottery> listLottery = new LinkedList<Lottery>();
     listLottery.add(new Bonoloto(new Date(), 1, 2, 3, 4, 5, 6, 4, 3));
-    listLottery.add(new Bonoloto(new Date(), 1, 2, 3, 4, 5, 6, 4, 3));
-    listLottery.add(new Bonoloto(new Date(), 1, 2, 3, 4, 5, 6, 4, 3));
+    listLottery.add(new Primitiva(new Date(), 1, 2, 3, 4, 5, 6, 4, 3));
 
     Quiniela quiniela = new Quiniela(new Date());
     quiniela.setMatch(0, "Barcelona", "Villareal", "X");
@@ -44,8 +44,6 @@ class MockLotteryFetcher implements LotteryFetcher {
     quiniela.setMatch(14, "R. Madrid", "Villareal", "2");
 
     listLottery.add(quiniela);
-
-    listLottery.add(new Bonoloto(new Date(), 6, 5, 2, 3, 1, 2, 1, 1));
 
     simulateLatency();
     
@@ -131,6 +129,18 @@ class MockLotteryFetcher implements LotteryFetcher {
     simulateLatency();
 
     return listQuiniela;
+  }
+  
+  @Override
+  public List<Primitiva> retrieveLastPrimitivas(int start, int limit) {
+    List<Primitiva> listPrimitiva = new LinkedList<Primitiva>();
+    listPrimitiva.add(new Primitiva(new Date(), 6, 5, 2, 3, 1, 2, 1, 1));
+    listPrimitiva.add(new Primitiva(new Date(), 6, 5, 2, 3, 1, 2, 1, 1));
+    listPrimitiva.add(new Primitiva(new Date(), 1, 2, 3, 4, 5, 6, 3, 2));
+
+    simulateLatency();
+    
+    return listPrimitiva;
   }
 
   private void simulateLatency() {

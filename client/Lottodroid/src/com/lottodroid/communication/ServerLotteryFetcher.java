@@ -10,6 +10,7 @@ import android.util.Log;
 import com.lottodroid.Lottodroid;
 import com.lottodroid.model.Bonoloto;
 import com.lottodroid.model.Lottery;
+import com.lottodroid.model.Primitiva;
 import com.lottodroid.model.Quiniela;
 
 /**
@@ -68,6 +69,19 @@ class ServerLotteryFetcher implements LotteryFetcher {
       return LotteryParser.parseQuiniela(response);
     } catch (Exception e) {
       Log.e("Lottodroid", "Could not retrieve last quiniela results", e);
+      throw new LotteryInfoUnavailableException(e);
+    }
+  }
+  
+  @Override
+  public List<Primitiva> retrieveLastPrimitivas(int start, int limit) throws LotteryInfoUnavailableException {
+    try {
+      String url = ServerLotteryFetcher.buildLotteryUrl("primitiva", start, limit);
+      String response = HttpRequestPerformer.getResponse(url);
+      
+      return LotteryParser.parsePrimitiva(response);
+    } catch (Exception e) {
+      Log.e("Lottodroid", "Could not retrieve last primitiva results", e);
       throw new LotteryInfoUnavailableException(e);
     }
   }

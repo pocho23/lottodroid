@@ -93,6 +93,8 @@ public class DetailsActivity extends ExpandableListActivity {
           listLottery = dataFetcher.retrieveLastBonolotos(0, NUM_RESULTS_SHOW);
         } else if (lotteryId == LotteryViewController.LotteryId.QUINIELA) {
           listLottery = dataFetcher.retrieveLastQuinielas(0, NUM_RESULTS_SHOW);
+        } else if (lotteryId == LotteryViewController.LotteryId.PRIMITIVA) {
+          listLottery = dataFetcher.retrieveLastPrimitivas(0, NUM_RESULTS_SHOW);
         } else {
           // TODO(pablo): check this exception handling
           throw new DataFormatException();

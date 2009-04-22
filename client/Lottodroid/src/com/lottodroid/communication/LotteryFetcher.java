@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.lottodroid.model.Bonoloto;
 import com.lottodroid.model.Lottery;
+import com.lottodroid.model.Primitiva;
 import com.lottodroid.model.Quiniela;
 
 /**
@@ -29,5 +30,8 @@ public interface LotteryFetcher {
 
   /** @see {@link #retrieveLastBonolotos} */
   List<Quiniela> retrieveLastQuinielas(int start, int limit) throws LotteryInfoUnavailableException;
+  
+  /** @see {@link #retrieveLastBonolotos} */
+  List<Primitiva> retrieveLastPrimitivas(int start, int limit) throws LotteryInfoUnavailableException;
 
 }

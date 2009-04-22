@@ -19,6 +19,7 @@ public class FavoriteHandlerFactory {
       Map<String, Boolean> favoritesMap = new HashMap<String, Boolean>();
       favoritesMap.put("Bonoloto", false);
       favoritesMap.put("Quiniela", true);
+      favoritesMap.put("Primitiva", false);
       return new MockFavoriteHandler(favoritesMap);
     } else {
       throw new UnsupportedOperationException("The real implementation is not yet done");
