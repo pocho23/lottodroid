@@ -57,10 +57,7 @@ public class Quiniela implements Lottery {
    */
   public void setMatch(int matchNumber, String homeTeam, String awayTeam, String result)
       throws ArrayIndexOutOfBoundsException {
-    if (matchNumber >= 0 && matchNumber < NUM_MATCHES)
       listMatches[matchNumber] = new Match(homeTeam, awayTeam, result);
-    else
-      throw new ArrayIndexOutOfBoundsException();
   }
 
   /**
@@ -71,10 +68,7 @@ public class Quiniela implements Lottery {
    * @return the local team
    */
   public String getHomeTeam(int matchNumber) throws ArrayIndexOutOfBoundsException, NullPointerException {
-    if (matchNumber >= 0 && matchNumber < NUM_MATCHES )
       return listMatches[matchNumber].homeTeam;
-    else
-      throw new ArrayIndexOutOfBoundsException();
   }
 
   /**
@@ -85,10 +79,7 @@ public class Quiniela implements Lottery {
    * @return the away team
    */
   public String getAwayTeam(int matchNumber) throws ArrayIndexOutOfBoundsException, NullPointerException {
-    if (matchNumber >= 0 && matchNumber < NUM_MATCHES )
       return listMatches[matchNumber].awayTeam;
-    else
-      throw new ArrayIndexOutOfBoundsException();
   }
 
   /**
@@ -98,10 +89,7 @@ public class Quiniela implements Lottery {
    * @return the result
    */
   public String getResult(int matchNumber) throws ArrayIndexOutOfBoundsException, NullPointerException {
-    if (matchNumber >= 0 && matchNumber < NUM_MATCHES )
       return listMatches[matchNumber].result;
-    else
-      throw new ArrayIndexOutOfBoundsException();
   }
 
   @Override

@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lottodroid.FavoriteHandler;
-import com.lottodroid.MockFavoriteHandler;
 import com.lottodroid.R;
 import com.lottodroid.model.Quiniela;
 import com.lottodroid.util.DateFormatter;
@@ -112,16 +111,22 @@ class QuinielaViewController implements LotteryViewController<Quiniela> {
     return convertView;
   }
 
-  /* TODO: error handling here if a match is not set, or maybe check everything 
-   * is correct while parsing */
   private void fillUpView(View view, Quiniela quiniela) {
     final int numMatches = Quiniela.NUM_MATCHES;
     
-    for(int i = 0; i < numMatches; i++) {
-      ((TextView) view.findViewById(homeTeamsToId.get(i))).setText(quiniela.getHomeTeam(i));
-      ((TextView) view.findViewById(awayTeamsToId.get(i))).setText(quiniela.getAwayTeam(i));
-      ((TextView) view.findViewById(resultsToId.get(i))).setText(quiniela.getResult(i));
-
+    try {
+      for (int i = 0; i < numMatches; i++) {
+        ((TextView) view.findViewById(homeTeamsToId.get(i))).setText(quiniela.getHomeTeam(i));
+        ((TextView) view.findViewById(awayTeamsToId.get(i))).setText(quiniela.getAwayTeam(i));
+        ((TextView) view.findViewById(resultsToId.get(i))).setText(quiniela.getResult(i));
+      }
+    } catch (Exception e) {
+      //TODO: handle error displaying results on UI. 
+      
+      // This must be a warning because only one lottery type is wrong, not 
+      // all of them, but if we display an alert, it is show each time the platform repaints the screen.
+      // At the moment the default message on textviews 'OOPS' is displayed instead the real results.
+      //new WarningDialog(context, quiniela.getName()).show();
     }
   }
 
