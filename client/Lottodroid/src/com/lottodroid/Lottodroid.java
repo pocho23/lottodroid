@@ -1,6 +1,7 @@
 package com.lottodroid;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ListView;
-import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import com.lottodroid.communication.LotteryFetcher;
@@ -28,7 +28,15 @@ import com.lottodroid.view.ViewControllerFactory;
 public class Lottodroid extends ListActivity {
 
   public static final String TAG = Lottodroid.class.toString();
+  
+  /** Reference to an interface that contains global information about the application environment 
+   * 
+   *  TODO: think another way to access context needed by SharedPreferences in {@link Configuration}
+   */
+  public static Context context; 
+  
   private static final int VIEW_DETAILS_MENU_ID = Menu.FIRST;
+  
 
   /**
    * Called when the activity is first created.
@@ -36,6 +44,8 @@ public class Lottodroid extends ListActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Lottodroid.context = this;
+    
     setContentView(R.layout.main);
     registerForContextMenu(getListView());
     fetchDataForMainView();

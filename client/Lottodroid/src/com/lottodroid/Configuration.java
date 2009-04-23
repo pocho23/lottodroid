@@ -1,5 +1,8 @@
 package com.lottodroid;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 /**
  * Constants for global configuration.
  */
@@ -16,5 +19,22 @@ public class Configuration {
    * access will handle in-memory data instead.
    */
   public static boolean IN_MEMORY_MODE = true;
+  
+  /**
+   * Name for desired shared preferences file
+   */
+  private static final String PREFERENCES_FILE = "com.Lottodroid.Preferences";
+
+  /**
+   * Retrieve the contents of preferences file {@link PREFERENCES_FILE}. In order to retrieve shared preferences 
+   * use the context of Lottodroid activity
+   * 
+   * @return Returns the single SharedPreferences instance that can be used to retrieve and modify
+   *         the preference values.
+   */
+  public static SharedPreferences getSharedPreferences() {
+    return Lottodroid.context.getSharedPreferences(
+        Configuration.PREFERENCES_FILE, Context.MODE_PRIVATE);
+  }
 
 }

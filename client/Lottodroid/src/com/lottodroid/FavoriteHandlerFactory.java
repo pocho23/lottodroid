@@ -22,7 +22,7 @@ public class FavoriteHandlerFactory {
       favoritesMap.put("Primitiva", false);
       return new MockFavoriteHandler(favoritesMap);
     } else {
-      throw new UnsupportedOperationException("The real implementation is not yet done");
+      return new PreferencesFavoriteHandler();
     }
   }
 
