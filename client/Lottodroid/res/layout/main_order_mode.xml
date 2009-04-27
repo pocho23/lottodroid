@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+  android:layout_height="fill_parent"
+  >
 
   <com.lottodroid.view.TouchInterceptor
     android:id="@+id/android:list"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" />
+    android:layout_height="0dip"
+    android:layout_alignParentTop="true"
+    android:layout_above="@+id/footer" />
 
   <LinearLayout
     android:id="@android:id/empty"
@@ -32,4 +35,23 @@
 
   </LinearLayout>
 
-</LinearLayout>
+  <RelativeLayout
+    android:id="@+id/footer"
+    android:layout_width="fill_parent"
+    android:layout_height="50sp"
+    android:layout_alignParentBottom="true"
+    android:background="#676767"
+    android:orientation="vertical">
+  
+          
+    <Button
+      android:id="@+id/button_save_order_mode"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+      android:layout_alignParentBottom="true"
+      android:text="Guardar orden" />
+  </RelativeLayout>
+
+
+</RelativeLayout>

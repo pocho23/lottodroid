@@ -19,6 +19,8 @@ public interface LotteryViewController<T extends Lottery> extends Serializable {
     BONOLOTO, QUINIELA, PRIMITIVA, LOTOTURF
   };
 
+  View createAndFillUpOrderView(T lottery, Context context);
+  
   View createAndFillUpMainView(T lottery, Context context);
 
   View createAndFillUpDetailsView(T lottery, Context context);

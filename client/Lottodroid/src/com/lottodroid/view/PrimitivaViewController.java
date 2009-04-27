@@ -36,6 +36,18 @@ class PrimitivaViewController implements LotteryViewController<Primitiva> {
 
     return layoutView;
   }
+  
+  @Override
+  public View createAndFillUpOrderView(Primitiva primitiva, Context context) {
+    View layoutView = View.inflate(context, R.layout.main_layout_row, null);
+    
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.primitiva);
+    ((TextView) layoutView.findViewById(R.id.title)).setText(primitiva.getName());
+    ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(primitiva
+        .getDate()));
+
+    return layoutView;
+  }
 
   @Override
   public View createAndFillUpDetailsView(Primitiva primitiva, Context context) {

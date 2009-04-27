@@ -36,6 +36,18 @@ class BonolotoViewController implements LotteryViewController<Bonoloto> {
 
     return layoutView;
   }
+  
+  @Override
+  public View createAndFillUpOrderView(Bonoloto bonoloto, Context context) {
+    View layoutView = View.inflate(context, R.layout.main_layout_row, null);
+    
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.bonoloto);
+    ((TextView) layoutView.findViewById(R.id.title)).setText(bonoloto.getName());
+    ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(bonoloto
+        .getDate()));
+
+    return layoutView;
+  }
 
   @Override
   public View createAndFillUpDetailsView(Bonoloto bonoloto, Context context) {

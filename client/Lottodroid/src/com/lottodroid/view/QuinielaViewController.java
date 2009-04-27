@@ -94,6 +94,18 @@ class QuinielaViewController implements LotteryViewController<Quiniela> {
 
     return layoutView;
   }
+  
+  @Override
+  public View createAndFillUpOrderView(Quiniela quiniela, Context context) {
+    View layoutView = View.inflate(context, R.layout.main_layout_row, null);
+    
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.quiniela);
+    ((TextView) layoutView.findViewById(R.id.title)).setText(quiniela.getName());
+    ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(quiniela
+        .getDate()));
+
+    return layoutView;
+  }
 
   @Override
   public View createAndFillUpDetailsView(Quiniela quiniela, Context context) {
