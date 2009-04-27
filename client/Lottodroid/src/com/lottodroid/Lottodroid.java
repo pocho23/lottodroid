@@ -29,14 +29,7 @@ public class Lottodroid extends ListActivity {
 
   public static final String TAG = Lottodroid.class.toString();
   
-  /** Reference to an interface that contains global information about the application environment 
-   * 
-   *  TODO: think another way to access context needed by SharedPreferences in {@link Configuration}
-   */
-  public static Context context; 
-  
   private static final int VIEW_DETAILS_MENU_ID = Menu.FIRST;
-  
 
   /**
    * Called when the activity is first created.
@@ -44,7 +37,6 @@ public class Lottodroid extends ListActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Lottodroid.context = this;
     
     setContentView(R.layout.main);
     registerForContextMenu(getListView());

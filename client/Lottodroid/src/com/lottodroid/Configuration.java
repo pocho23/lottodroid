@@ -25,16 +25,4 @@ public class Configuration {
    */
   private static final String PREFERENCES_FILE = "com.Lottodroid.Preferences";
 
-  /**
-   * Retrieve the contents of preferences file {@link PREFERENCES_FILE}. In order to retrieve shared preferences 
-   * use the context of Lottodroid activity
-   * 
-   * @return Returns the single SharedPreferences instance that can be used to retrieve and modify
-   *         the preference values.
-   */
-  public static SharedPreferences getSharedPreferences() {
-    return Lottodroid.context.getSharedPreferences(
-        Configuration.PREFERENCES_FILE, Context.MODE_PRIVATE);
-  }
-
 }
