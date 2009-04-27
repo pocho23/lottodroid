@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lottodroid.FavoriteHandler;
 import com.lottodroid.R;
 import com.lottodroid.model.Primitiva;
 import com.lottodroid.util.DateFormatter;
@@ -17,11 +16,9 @@ class PrimitivaViewController implements LotteryViewController<Primitiva> {
   private static final long serialVersionUID = 4189136947988075144L;
   
   private final String title;
-  private final FavoriteHandler favorites;
 
-  public PrimitivaViewController(String title, FavoriteHandler favorites) {
+  public PrimitivaViewController(String title) {
     this.title = title;
-    this.favorites = favorites;
   }
 
   @Override
@@ -35,8 +32,6 @@ class PrimitivaViewController implements LotteryViewController<Primitiva> {
     ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(primitiva
         .getDate()));
 
-    ViewUtil.applyFavoriteEffect(favorites, primitiva.getName(), layoutView);
-    
     fillUpView(layoutView, primitiva);
 
     return layoutView;

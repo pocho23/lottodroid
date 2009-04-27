@@ -1,6 +1,5 @@
 package com.lottodroid.view;
 
-import com.lottodroid.FavoriteHandlerFactory;
 import com.lottodroid.model.Bonoloto;
 import com.lottodroid.model.Lottery;
 import com.lottodroid.model.Primitiva;
@@ -24,14 +23,11 @@ public class ViewControllerFactory {
    */
   public static LotteryViewController<? extends Lottery> createViewController(Lottery lottery) {
     if (lottery instanceof Bonoloto) {
-      return new BonolotoViewController(lottery.getName(), FavoriteHandlerFactory
-          .newFavoriteHandler());
+      return new BonolotoViewController(lottery.getName());
     } else if (lottery instanceof Quiniela) {
-      return new QuinielaViewController(lottery.getName(), FavoriteHandlerFactory
-          .newFavoriteHandler());
+      return new QuinielaViewController(lottery.getName());
     } else if (lottery instanceof Primitiva) {
-      return new PrimitivaViewController(lottery.getName(), FavoriteHandlerFactory
-          .newFavoriteHandler());
+      return new PrimitivaViewController(lottery.getName());
     } else {
       throw new IllegalStateException();
     }
