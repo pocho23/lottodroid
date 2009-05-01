@@ -130,7 +130,7 @@ public class Lottodroid extends ListActivity {
           if (adapter != null) {
             if (item.isChecked()) {
               item.setChecked(false).setIcon(android.R.drawable.button_onoff_indicator_off); 
-              Toast.makeText(this, "Orden guardado con Ã©xito", Toast.LENGTH_SHORT).show();
+              Toast.makeText(this, "Orden guardado con éxito", Toast.LENGTH_SHORT).show();
               
               setOrderModeAndRepaint(false);
             } else {
