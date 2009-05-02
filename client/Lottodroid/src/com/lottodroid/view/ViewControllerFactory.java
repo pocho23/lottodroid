@@ -1,9 +1,7 @@
 package com.lottodroid.view;
 
-import com.lottodroid.model.Bonoloto;
 import com.lottodroid.model.Lottery;
-import com.lottodroid.model.Primitiva;
-import com.lottodroid.model.Quiniela;
+import com.lottodroid.model.LotteryId;
 
 /**
  * Factory for the different view controller types.
@@ -18,16 +16,16 @@ public class ViewControllerFactory {
    * Instantiates and returns the right implementation of a {@link LotteryViewController} for a
    * lottery type.
    * 
-   * @param lottery the lottery object that we are dealing with
+   * @param lotteryId the ID of the lottery object that we are dealing with
    * @return the appropriate view controller
    */
-  public static LotteryViewController<? extends Lottery> createViewController(Lottery lottery) {
-    if (lottery instanceof Bonoloto) {
-      return new BonolotoViewController(lottery.getName());
-    } else if (lottery instanceof Quiniela) {
-      return new QuinielaViewController(lottery.getName());
-    } else if (lottery instanceof Primitiva) {
-      return new PrimitivaViewController(lottery.getName());
+  public static LotteryViewController<? extends Lottery> createViewController(LotteryId lotteryId) {
+    if (lotteryId == LotteryId.BONOLOTO) {
+      return new BonolotoViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.QUINIELA) {
+      return new QuinielaViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.PRIMITIVA) {
+      return new PrimitivaViewController(lotteryId.getName());
     } else {
       throw new IllegalStateException();
     }

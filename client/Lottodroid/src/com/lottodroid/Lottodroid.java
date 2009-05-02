@@ -201,11 +201,6 @@ public class Lottodroid extends ListActivity {
       touchInterceptor.setDropListener(mDropListener);
       touchInterceptor.setDragListener(mDragListener);
       touchInterceptor.setCacheColorHint(0);
-      
-      //List<LotteryId> order = new LinkedList();
-      //sorter.setOrder(order);
-      
-      
     } else {
       setContentView(R.layout.main);
       this.listView = getListView();
@@ -224,7 +219,7 @@ public class Lottodroid extends ListActivity {
     
     @SuppressWarnings("unchecked")
     // TODO(pablo): Can I remove this warning?
-    LotteryViewController viewController = ViewControllerFactory.createViewController(lottery);
+    LotteryViewController viewController = ViewControllerFactory.createViewController(lottery.getId());
     i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
 
     startActivity(i);

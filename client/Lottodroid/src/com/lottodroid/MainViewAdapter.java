@@ -111,7 +111,7 @@ class MainViewAdapter extends BaseAdapter {
   public View getView(int position, View convertView, ViewGroup parent) {
     Lottery lottery = lotteryList.get(position);
     
-    LotteryViewController viewController = ViewControllerFactory.createViewController(lottery);
+    LotteryViewController viewController = ViewControllerFactory.createViewController(lottery.getId());
     if (!orderMode) {
       return viewController.createAndFillUpMainView(lottery, context);
     } else {

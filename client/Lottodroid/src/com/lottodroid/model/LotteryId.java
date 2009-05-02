@@ -5,8 +5,18 @@ package com.lottodroid.model;
  */
 public enum LotteryId {
 
-  BONOLOTO,
-  QUINIELA,
-  PRIMITIVA;
+  BONOLOTO("Bonoloto"),
+  QUINIELA("Quiniela"),
+  PRIMITIVA("Primitiva");
+  
+  private final String name;
+  
+  LotteryId(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
 
 }
