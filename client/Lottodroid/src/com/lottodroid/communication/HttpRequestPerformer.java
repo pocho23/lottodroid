@@ -17,8 +17,10 @@ import java.net.UnknownHostException;
 class HttpRequestPerformer {
 
   /** Time to wait to the server until the connection is canceled, it is specified in milliseconds */
-  private static int CONNECT_TIMEOUT = 5000;
-  private static int READ_TIMEOUT = 3000;
+  private static int CONNECT_TIMEOUT = 10 * 1000; // 10 seconds looks like a reasonable amount
+  
+  /** Time to wait while reading data once the connection is stablished */
+  private static int READ_TIMEOUT = CONNECT_TIMEOUT;
   
   /**
    * Forms an HTTP request
