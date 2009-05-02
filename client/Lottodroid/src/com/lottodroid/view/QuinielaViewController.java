@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lottodroid.R;
+import com.lottodroid.model.LotteryId;
 import com.lottodroid.model.Quiniela;
 import com.lottodroid.util.DateFormatter;
 
@@ -96,13 +97,12 @@ class QuinielaViewController implements LotteryViewController<Quiniela> {
   }
   
   @Override
-  public View createAndFillUpOrderView(Quiniela quiniela, Context context) {
+  public View createAndFillUpOrderView(LotteryId lotteryId, Context context) {
     View layoutView = View.inflate(context, R.layout.main_layout_row, null);
     
     ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.quiniela);
-    ((TextView) layoutView.findViewById(R.id.title)).setText(quiniela.getName());
-    ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(quiniela
-        .getDate()));
+    ((TextView) layoutView.findViewById(R.id.title)).setText(lotteryId.getName());
+    ((TextView) layoutView.findViewById(R.id.date)).setText("");
 
     return layoutView;
   }
@@ -149,7 +149,7 @@ class QuinielaViewController implements LotteryViewController<Quiniela> {
 
   @Override
   public LotteryId getId() {
-    return LotteryViewController.LotteryId.QUINIELA;
+    return LotteryId.QUINIELA;
   }
 
 }

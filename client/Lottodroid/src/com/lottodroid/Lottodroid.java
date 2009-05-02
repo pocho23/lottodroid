@@ -2,6 +2,7 @@ package com.lottodroid;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
@@ -11,7 +12,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,11 +19,12 @@ import com.lottodroid.communication.LotteryFetcher;
 import com.lottodroid.communication.LotteryFetcherFactory;
 import com.lottodroid.communication.LotteryInfoUnavailableException;
 import com.lottodroid.model.Lottery;
+import com.lottodroid.sorting.LotterySorter;
+import com.lottodroid.sorting.LotterySorterFactory;
 import com.lottodroid.util.UserTask;
 import com.lottodroid.view.AboutDialog;
 import com.lottodroid.view.ErrorDialog;
 import com.lottodroid.view.LotteryViewController;
-import com.lottodroid.view.TouchInterceptor;
 import com.lottodroid.view.ViewControllerFactory;
 
 /**
@@ -34,15 +35,13 @@ public class Lottodroid extends ListActivity {
   public static final String TAG = "Lottodroid";
   
   private static final int ORDER_LOTTERY_MENU_ID = Menu.FIRST;
-  
   private static final int ABOUT_MENU_ID = Menu.FIRST + 1;
   
-  private MainViewAdapter adapter;
+  private final LotterySorter sorter = LotterySorterFactory.getLotterySorter();
   
+  private MainViewAdapter adapter;
   private ListView listView;
   
-  private Menu menu;
-
   /**
    * Called when the activity is first created.
    */
@@ -100,27 +99,11 @@ public class Lottodroid extends ListActivity {
         }).show();
   }
 
-  /** Check or uncheck order mode 'checkbox' whether some intent has interrupted the activity */
-  @Override
-  public boolean onPrepareOptionsMenu(final Menu menu) {
-    if (adapter != null) {
-      if (adapter.getOrderMode()) {
-        menu.findItem(ORDER_LOTTERY_MENU_ID).setIcon(android.R.drawable.button_onoff_indicator_on);
-      } else {
-        menu.findItem(ORDER_LOTTERY_MENU_ID).setIcon(android.R.drawable.button_onoff_indicator_off);
-      }
-    }
-    return super.onPrepareOptionsMenu(menu);
-  }
-
   /** Creates the menu items */
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    this.menu = menu;
-    menu.add(0, ORDER_LOTTERY_MENU_ID, 0, "Ordenar sorteos").setCheckable(true);
-
+    menu.add(0, ORDER_LOTTERY_MENU_ID, 0, "Ordenar sorteos");
     menu.add(0, ABOUT_MENU_ID, 0, "Acerca de").setIcon(android.R.drawable.ic_menu_info_details);
-
     return true;
   }
 
@@ -129,88 +112,39 @@ public class Lottodroid extends ListActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
     case ORDER_LOTTERY_MENU_ID:
-      if (adapter != null) {
-        if (item.isChecked()) {
-          item.setChecked(false).setIcon(android.R.drawable.button_onoff_indicator_off);
-          Toast.makeText(this, "Orden guardado con éxito", Toast.LENGTH_SHORT).show();
-
-          setOrderModeAndRepaint(false);
-        } else {
-          item.setChecked(true).setIcon(android.R.drawable.button_onoff_indicator_on);
-          Toast.makeText(this, "Desplaza cada sorteo al lugar deseado", Toast.LENGTH_LONG).show();
-
-          setOrderModeAndRepaint(true);
-        }
-      }
+      // Launch the subactivity to let the user sort the entries
+      Intent i = new Intent(this, SortingActivity.class);
+      // TODO(pablo): should pass the list, instead of the sorter object
+      i.putExtra(IntentExtraDataNames.SORTER_IN, sorter);
+      startActivityForResult(i, 0); // We assume there is only one subactivity
       return true;
 
     case ABOUT_MENU_ID:
       new AboutDialog(this).show();
       return true;
+      
     }
     return false;
   }
   
-  // TODO(pablo): there has to be a better place where to do the refresh operation
   @Override
-  public void onContentChanged() {
-    super.onContentChanged();
-    if (adapter != null) {
-      adapter.refresh();
+  protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    super.onActivityResult(requestCode, resultCode, intent);
+    Log.i(TAG, "Our subactivity has finished.");
+
+    if (resultCode == Activity.RESULT_CANCELED) { // The user pressed the "Back" button
+      Log.i(TAG, "The subactivity did not produce any changes");
+    } else { // resultCode is probably RESULT_OK
+        Log.i(TAG, "The subactivity has changed the order");
+        LotterySorter updated_sorter = (LotterySorter) intent.getExtras()
+          .getSerializable(IntentExtraDataNames.SORTER_OUT);
+        sorter.setOrder(updated_sorter.getOrder());
+        adapter.refresh();
+        listView.invalidateViews();
+        Toast.makeText(this, "Orden guardado con éxito", Toast.LENGTH_SHORT).show();
     }
   }
-
-  /** Listener for the event drag of the order mode */
-  private TouchInterceptor.DragListener mDragListener = new TouchInterceptor.DragListener() {
-    public void drag(int from, int to) {
-      int listSize = adapter.getCount();
-
-      if (from < listSize && to < listSize) {
-        adapter.moveItem(from, to);
-      }
-
-      adapter.notifyDataSetChanged();
-      listView.invalidateViews();
-    }
-  };
-
-  /** Listener for the event drop of the order mode */
-  private TouchInterceptor.DropListener mDropListener = new TouchInterceptor.DropListener() {
-    public void drop(int from, int to) {
-      listView.invalidateViews();
-    }
-  };
-
-  /** Changes view behavior depending of the mode (order or normal) */
-  private void setOrderModeAndRepaint(boolean orderMode) {
-    if (orderMode) {
-      // Set the new layout
-      setContentView(R.layout.main_order_mode);
-      TouchInterceptor touchInterceptor = (TouchInterceptor) getListView();
-      this.listView = touchInterceptor;
-
-      // Listener for the save button
-      ((Button) findViewById(R.id.button_save_order_mode))
-          .setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-              menu.performIdentifierAction(ORDER_LOTTERY_MENU_ID, 0);
-            }
-          });
-
-      // Attach the listeners to the listview of this new layout
-      touchInterceptor.setDropListener(mDropListener);
-      touchInterceptor.setDragListener(mDragListener);
-      touchInterceptor.setCacheColorHint(0);
-    } else {
-      setContentView(R.layout.main);
-      this.listView = getListView();
-    }
-
-    adapter.setOrderMode(orderMode);
-    adapter.notifyDataSetChanged();
-    this.listView.invalidateViews();
-  }
-
+  
   /** Start the new activity details for the lottery type selected */
   private void startDetailsActivity(int position) {
     Intent i = new Intent(this, DetailsActivity.class);

@@ -24,7 +24,7 @@ import com.lottodroid.view.ViewControllerFactory;
  */
 class MainViewAdapter extends BaseAdapter {
 
-  private static final String TAG = "com.lottodroid.MainViewAdapter";
+  private static final String TAG = MainViewAdapter.class.getCanonicalName();
   
   private List<Lottery> lotteryList;
   private final Context context;
@@ -35,8 +35,16 @@ class MainViewAdapter extends BaseAdapter {
   public MainViewAdapter(Context context, List<Lottery> lotteryList) {
     this.context = context;
     this.lotteryList = lotteryList;
-    sorter = LotterySorterFactory.newLotterySorter();
-    refresh();
+    sorter = LotterySorterFactory.getLotterySorter();
+  }
+
+  /**
+   * Sorts the list of lottery results again, reading the order from the {@link sorter} object.
+   */
+  public void refresh() {
+    List<LotteryId> order = sorter.getOrder();
+    lotteryList = sort(lotteryList, order);
+    notifyDataSetChanged();
   }
 
   @Override
@@ -46,7 +54,6 @@ class MainViewAdapter extends BaseAdapter {
 
   @Override
   public Object getItem(int position) {
-    refresh();
     return lotteryList.get(position);
   }
 
@@ -55,37 +62,14 @@ class MainViewAdapter extends BaseAdapter {
     return position;
   }
 
-  // TODO(pablo): we should only work with the IDs, rather than doing the refresh...
-  public void moveItem(int from, int to) {
-    List<LotteryId> order = sorter.getOrder();
-    LotteryId fromId = order.get(from);
-    LotteryId toId = order.get(to);
-    order.set(from, toId);
-    order.set(to, fromId);
-    sorter.setOrder(order);
-    refresh();
-  }
-
-  public boolean getOrderMode() {
-    return this.orderMode;
-  }
-
-  public void setOrderMode(boolean orderMode) {
-    this.orderMode = orderMode;
-  }
-
-  // TODO(pablo): We are currently doing this way too often
-  public void refresh() {
-    List<LotteryId> order = sorter.getOrder();
-    lotteryList = sort(lotteryList, order);
-  }
-
   private List<Lottery> sort(List<Lottery> unsortedLotteries, List<LotteryId> order) {
+    // Create an auxiliar map ids to lotteries
     Map<LotteryId, Lottery> idToLotteryMap = new HashMap<LotteryId, Lottery>();
     for (Lottery lottery : unsortedLotteries) {
       idToLotteryMap.put(lottery.getId(), lottery);
     }
 
+    // Populate the list sortedLotteries in order
     List<Lottery> sortedLotteries = new LinkedList<Lottery>();
     for (LotteryId id : order) {
       Lottery lottery = idToLotteryMap.get(id);
@@ -115,7 +99,7 @@ class MainViewAdapter extends BaseAdapter {
     if (!orderMode) {
       return viewController.createAndFillUpMainView(lottery, context);
     } else {
-      return viewController.createAndFillUpOrderView(lottery, context);
+      return viewController.createAndFillUpOrderView(lottery.getId(), context);
     }
   }
 

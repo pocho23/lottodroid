@@ -11,4 +11,11 @@ class IntentExtraDataNames {
    * activity
    */
   public static String LOTTERY_VIEW_CONTROLLER = "com.lottodroid.ViewController";
+  
+  /** Sorter object, passed from {@link Lottodroid} to {@link SortingActivity}. */
+  public static String SORTER_IN = "com.lottodroid.sorting.LotterySorter-in";
+  
+  /** Sorter object, passed from {@link SortingActivity} to {@link Lottodroid} as a result */
+  public static String SORTER_OUT = "com.lottodroid.sorting.LotterySorter-out";
+  
 }

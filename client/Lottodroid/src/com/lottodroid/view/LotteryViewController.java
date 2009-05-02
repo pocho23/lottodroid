@@ -6,6 +6,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.lottodroid.model.Lottery;
+import com.lottodroid.model.LotteryId;
 
 /**
  * Manages for the view behavior of the different lottery result types, providing methods to fill up
@@ -15,11 +16,7 @@ import com.lottodroid.model.Lottery;
  */
 public interface LotteryViewController<T extends Lottery> extends Serializable {
 
-  enum LotteryId {
-    BONOLOTO, QUINIELA, PRIMITIVA, LOTOTURF
-  };
-
-  View createAndFillUpOrderView(T lottery, Context context);
+  View createAndFillUpOrderView(LotteryId lotteryId, Context context);
   
   View createAndFillUpMainView(T lottery, Context context);
 

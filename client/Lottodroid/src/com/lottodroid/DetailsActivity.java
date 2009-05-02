@@ -13,6 +13,7 @@ import com.lottodroid.communication.LotteryFetcher;
 import com.lottodroid.communication.LotteryFetcherFactory;
 import com.lottodroid.communication.LotteryInfoUnavailableException;
 import com.lottodroid.model.Lottery;
+import com.lottodroid.model.LotteryId;
 import com.lottodroid.util.UserTask;
 import com.lottodroid.view.ErrorDialog;
 import com.lottodroid.view.LotteryViewController;
@@ -81,7 +82,7 @@ public class DetailsActivity extends ExpandableListActivity {
     @Override
     public DetailsViewAdapter doInBackground(LotteryViewController<Lottery>... params)  {
       LotteryViewController<Lottery> viewController =  params[0];
-      LotteryViewController.LotteryId lotteryId = viewController.getId();
+      LotteryId lotteryId = viewController.getId();
       DetailsViewAdapter detailsViewAdapter = null;
       
       try {
@@ -89,11 +90,11 @@ public class DetailsActivity extends ExpandableListActivity {
         List<? extends Lottery> listLottery;       
 
         // TODO(pablo): can we get rid of this big "if" clause?
-        if (lotteryId == LotteryViewController.LotteryId.BONOLOTO) {
+        if (lotteryId == LotteryId.BONOLOTO) {
           listLottery = dataFetcher.retrieveLastBonolotos(0, NUM_RESULTS_SHOW);
-        } else if (lotteryId == LotteryViewController.LotteryId.QUINIELA) {
+        } else if (lotteryId == LotteryId.QUINIELA) {
           listLottery = dataFetcher.retrieveLastQuinielas(0, NUM_RESULTS_SHOW);
-        } else if (lotteryId == LotteryViewController.LotteryId.PRIMITIVA) {
+        } else if (lotteryId == LotteryId.PRIMITIVA) {
           listLottery = dataFetcher.retrieveLastPrimitivas(0, NUM_RESULTS_SHOW);
         } else {
           // TODO(pablo): check this exception handling

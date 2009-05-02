@@ -9,9 +9,8 @@
   <com.lottodroid.view.TouchInterceptor
     android:id="@+id/android:list"
     android:layout_width="fill_parent"
-    android:layout_height="0dip"
-    android:layout_alignParentTop="true"
-    android:layout_above="@+id/footer" />
+    android:layout_height="fill_parent"
+    />
 
   <LinearLayout
     android:id="@android:id/empty"

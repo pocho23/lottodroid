@@ -1,5 +1,6 @@
 package com.lottodroid.sorting;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.lottodroid.model.LotteryId;
@@ -7,7 +8,7 @@ import com.lottodroid.model.LotteryId;
 /**
  * Handles the order in which the lottery results should be shown to the user.
  */
-public interface LotterySorter {
+public interface LotterySorter extends Serializable {
 
   /**
    * Sets the order for the lottery results.
