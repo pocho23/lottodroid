@@ -102,8 +102,10 @@ public class Lottodroid extends ListActivity {
   /** Creates the menu items */
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    menu.add(0, ORDER_LOTTERY_MENU_ID, 0, "Ordenar sorteos");
-    menu.add(0, ABOUT_MENU_ID, 0, "Acerca de").setIcon(android.R.drawable.ic_menu_info_details);
+    menu.add(0, ORDER_LOTTERY_MENU_ID, 0, "Ordenar sorteos")
+      .setIcon(android.R.drawable.ic_menu_sort_alphabetically);
+    menu.add(0, ABOUT_MENU_ID, 0, "Acerca de")
+      .setIcon(android.R.drawable.ic_menu_info_details);
     return true;
   }
 
