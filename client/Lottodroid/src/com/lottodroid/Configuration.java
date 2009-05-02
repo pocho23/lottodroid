@@ -12,14 +12,14 @@ public class Configuration {
    * If the offline mode is true, no communication with the server will be performed: mock data will
    * be generated instead.
    */
-  public static boolean OFFLINE_MODE = true;
+  public static boolean OFFLINE_MODE = false;
 
   /**
-   * If the in-memory mode is true, no dababase accesses will be performed: mocks for the dabase
-   * access will handle in-memory data instead.
+   * If the in-memory mode is true, no file accesses will be performed: mock implementations that
+   * store all data in memory will be used.
    */
   public static boolean IN_MEMORY_MODE = true;
-  
+
   /**
    * Name for desired shared preferences file
    */
