@@ -7,6 +7,7 @@ import java.util.Date;
  */
 public interface Lottery {
   
+  public LotteryId getId();
   public String getName();
   public Date getDate();
   

@@ -62,6 +62,11 @@ public class Bonoloto implements Lottery {
   }
 
   @Override
+  public LotteryId getId() {
+    return LotteryId.BONOLOTO;
+  }
+  
+  @Override
   public Date getDate() {
     return date;
   }
@@ -70,4 +75,5 @@ public class Bonoloto implements Lottery {
   public String getName() {
     return "Bonoloto";
   }
+
 }

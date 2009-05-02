@@ -93,6 +93,11 @@ public class Quiniela implements Lottery {
   }
 
   @Override
+  public LotteryId getId() {
+    return LotteryId.QUINIELA;
+  }
+
+  @Override
   public Date getDate() {
     return date;
   }

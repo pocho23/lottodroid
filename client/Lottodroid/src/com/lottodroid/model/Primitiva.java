@@ -62,6 +62,11 @@ public class Primitiva implements Lottery {
   }
 
   @Override
+  public LotteryId getId() {
+    return LotteryId.PRIMITIVA;
+  }
+  
+  @Override
   public Date getDate() {
     return date;
   }
