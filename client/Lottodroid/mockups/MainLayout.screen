@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Panel" x="224" y="72" width="273" height="337"/>
+  <widgets xsi:type="model:HLine" x="224" y="88" width="273"/>
+  <widgets xsi:type="model:HLine" x="224" y="105" width="273"/>
+  <widgets xsi:type="model:VLine" x="442" y="78" height="8"/>
+  <widgets xsi:type="model:VLine" x="448" y="82" height="4"/>
+  <widgets xsi:type="model:VLine" x="436" y="75" height="11"/>
+  <widgets xsi:type="model:Label" x="229" y="90" width="105" text="Lottodroid">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="459" y="73" width="33" text="12:24">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:HLine" x="224" y="203" width="273"/>
+  <widgets xsi:type="model:Label" x="284" y="119" width="105" text="Lunes, 4/05/2009">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="285" y="133" text="Bonoloto">
+    <font size="14" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Image" x="234" y="119" src="bonoloto.png"/>
+  <widgets xsi:type="model:Label" x="234" y="176" width="23" text="Nº:">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="362" y="176" width="25" text="C:">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="419" y="176" width="21" text="R:">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="256" y="174" width="89" text="2 33 5 5 23 1">
+    <font size="9"/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="379" y="174" width="20" text="4">
+    <font size="9"/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="437" y="174" width="20" text="7">
+    <font size="9"/>
+  </widgets>
+  <widgets xsi:type="model:HLine" x="224" y="298" width="273"/>
+  <widgets xsi:type="model:Label" x="284" y="214" width="115" text="Viernes, 1/05/2009">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="285" y="228" text="Primitiva">
+    <font size="14" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Image" x="234" y="214" src="primitiva.png"/>
+  <widgets xsi:type="model:Label" x="234" y="271" width="23" text="Nº:">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="362" y="271" width="25" text="C:">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="419" y="271" width="21" text="R:">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="256" y="269" width="89" text="6 1 32 8 44 7">
+    <font size="9"/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="379" y="269" width="20" text="1">
+    <font size="9"/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="437" y="269" width="20" text="2">
+    <font size="9"/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="284" y="308" width="115" text="Sábado, 2/05/2009">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="285" y="322" text="Lototurf">
+    <font size="14" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Image" x="234" y="308" src="lototurf.png"/>
+  <widgets xsi:type="model:Label" x="234" y="365" width="23" text="Nº:">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="419" y="385" width="21" text="R:">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="256" y="363" text="8  10  15  18  19  30">
+    <font size="9"/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="437" y="383" width="20" text="5">
+    <font size="9"/>
+  </widgets>
+  <widgets xsi:type="model:VLine" x="491" y="109" height="139"/>
+  <widgets xsi:type="model:Label" x="234" y="385" width="111" text="Caballo ganador:">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="340" y="385" width="31" text="7">
+    <font size="9"/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>

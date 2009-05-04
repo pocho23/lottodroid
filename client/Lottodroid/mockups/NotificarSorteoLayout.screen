@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Panel" x="224" y="73" width="273" height="337"/>
+  <widgets xsi:type="model:HLine" x="224" y="88" width="273"/>
+  <widgets xsi:type="model:HLine" x="224" y="105" width="273"/>
+  <widgets xsi:type="model:VLine" x="442" y="78" height="8"/>
+  <widgets xsi:type="model:VLine" x="448" y="82" height="4"/>
+  <widgets xsi:type="model:VLine" x="436" y="75" height="11"/>
+  <widgets xsi:type="model:Label" x="229" y="90" width="105" text="Lottodroid">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="459" y="73" width="33" text="12:24">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:HLine" x="224" y="144" width="273"/>
+  <widgets xsi:type="model:Label" x="281" y="113" text="Bonoloto">
+    <font size="12" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Image" x="236" y="113" width="34" height="29" src="bonoloto.png"/>
+  <widgets xsi:type="model:Spinner" x="309" y="192" width="41"/>
+  <widgets xsi:type="model:Spinner" x="361" y="192" width="41"/>
+  <widgets xsi:type="model:Spinner" x="413" y="192" width="41"/>
+  <widgets xsi:type="model:Spinner" x="413" y="222" width="41"/>
+  <widgets xsi:type="model:Spinner" x="309" y="222" width="41"/>
+  <widgets xsi:type="model:Spinner" x="360" y="222" width="41"/>
+  <widgets xsi:type="model:Text" x="239" y="192" width="63" height="67" text="Números:"/>
+  <widgets xsi:type="model:Spinner" x="352" y="258" width="41"/>
+  <widgets xsi:type="model:Text" x="239" y="258" height="67" text="Complementario:"/>
+  <widgets xsi:type="model:Spinner" x="352" y="286" width="41"/>
+  <widgets xsi:type="model:Text" x="239" y="286" width="63" height="67" text="Reintegro:"/>
+  <widgets xsi:type="model:Label" x="239" y="326" width="29" text="Día:">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Spinner" x="267" y="326" width="41" text="6"/>
+  <widgets xsi:type="model:Spinner" x="354" y="326" width="41" text="5"/>
+  <widgets xsi:type="model:Spinner" x="436" y="326" width="51" text="2009"/>
+  <widgets xsi:type="model:Label" x="316" y="326" width="34" text="Mes:">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" x="404" y="326" width="29" text="Año:">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Text" x="239" y="152" width="234" height="35" text="Selecciona tu sorteo y te avisaremos cuando esté disponible:"/>
+  <widgets xsi:type="model:TextField" x="389" y="117" width="103" text="Sacude tu móvil!"/>
+  <widgets xsi:type="model:Panel" x="224" y="368" width="273" height="42"/>
+  <widgets xsi:type="model:Button" x="248" y="378" width="97" text="Guardar"/>
+  <widgets xsi:type="model:Button" x="389" y="378" width="84" text="Cancelar"/>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>
