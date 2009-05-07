@@ -16,13 +16,13 @@ class FrontController {
 		if(!empty($_GET['module']))
 		      $moduleName = $_GET['module'];
 		else
-		      $moduleName = 'data';
+		      $moduleName = 'frontend';
 		
 		/* We get the specific controller */
 		if(! empty($_GET['controller']))
 		      $controllerName = $_GET['controller'];
 		else
-		      $controllerName = 'sorteos';
+		      $controllerName = 'home';
 		
 		/* Action for the current controller */
 		if(! empty($_GET['action']))
@@ -43,7 +43,7 @@ class FrontController {
 		else
 		{
 			// Controller and action by default
-			require $config->get('dataControllersDir') . 'errorController.php';
+			require $config->get($moduleName . 'ControllersDir') . 'errorController.php';
 			$error = new errorController();
 			$error->view();
 			return false;
@@ -51,7 +51,7 @@ class FrontController {
 			
 		if (is_callable(array($controllerName, $actionName)) == false) 
 		{
-			require $config->get('dataControllersDir') . 'errorController.php';
+			require $config->get($moduleName . 'ControllersDir') . 'errorController.php';
 			$controllerName = 'errorController';
 			$actionName = 'view';
 		}

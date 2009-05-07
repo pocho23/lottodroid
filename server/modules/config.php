@@ -7,6 +7,9 @@
     
     $config->set('dataControllersDir', $rootPath . '/modules/data/controllers/');
     $config->set('dataModelsDir', $rootPath . '/modules/data/models/');
+    
+    $config->set('frontendControllersDir', $rootPath . '/modules/frontend/controllers/');
+    $config->set('frontendViewsDir', $rootPath . '/modules/frontend/views/');
 
     // Retrieval module
     $config->set('magpierssDir', $rootPath . '/lib/external/magpierss/');
