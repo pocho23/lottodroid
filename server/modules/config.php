@@ -25,5 +25,11 @@
     $config->set('dbuser', 'root');
     $config->set('dbpass', 'root');
     
+    //$config->set('dbhost', 'mysql5-56.90');
+    //$config->set('dbname', 'androidslotto');
+    //$config->set('dbuser', 'androidslotto');
+    //$config->set('dbpass', 'primitiva');
+    
+    
     $config->set('debug', true);
 		
