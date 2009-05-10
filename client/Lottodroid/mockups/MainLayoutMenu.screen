@@ -91,21 +91,17 @@
     <font size="9"/>
   </widgets>
   <widgets xsi:type="model:Panel" x="224" y="344" width="273" height="64"/>
-  <widgets xsi:type="model:VLine" x="312" y="344" height="65"/>
-  <widgets xsi:type="model:VLine" x="398" y="344" height="65"/>
-  <widgets xsi:type="model:Label" x="419" y="385" width="62" text="Acerca de">
+  <widgets xsi:type="model:VLine" x="357" y="344" height="65"/>
+  <widgets xsi:type="model:Label" x="405" y="385" width="62" text="Acerca de">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" x="333" y="384" width="97" text="Ordenar">
+  <widgets xsi:type="model:Label" x="268" y="384" width="56" text="Ordenar">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" x="234" y="385" width="71" text="Mis sorteos">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Label" x="333" y="352" width="51" text="a-z" textAlignment="Center">
+  <widgets xsi:type="model:Label" x="264" y="352" width="51" text="a-z" textAlignment="Center">
     <font size="16" bold="true"/>
   </widgets>
-  <widgets xsi:type="model:Image" x="429" y="351" width="35" height="35" src="ic_menu_info_details.png"/>
+  <widgets xsi:type="model:Image" x="409" y="351" width="35" height="35" src="ic_menu_info_details.png"/>
   <hRuler/>
   <vRuler/>
   <font/>

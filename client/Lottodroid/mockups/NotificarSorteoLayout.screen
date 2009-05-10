@@ -28,23 +28,14 @@
   <widgets xsi:type="model:Text" x="239" y="258" height="67" text="Complementario:"/>
   <widgets xsi:type="model:Spinner" x="352" y="286" width="41"/>
   <widgets xsi:type="model:Text" x="239" y="286" width="63" height="67" text="Reintegro:"/>
-  <widgets xsi:type="model:Label" x="239" y="326" width="29" text="Día:">
+  <widgets xsi:type="model:Label" x="239" y="326" width="43" text="Fecha:">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Spinner" x="267" y="326" width="41" text="6"/>
-  <widgets xsi:type="model:Spinner" x="354" y="326" width="41" text="5"/>
-  <widgets xsi:type="model:Spinner" x="436" y="326" width="51" text="2009"/>
-  <widgets xsi:type="model:Label" x="316" y="326" width="34" text="Mes:">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Label" x="404" y="326" width="29" text="Año:">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Text" x="239" y="152" width="234" height="35" text="Selecciona tu sorteo y te avisaremos cuando esté disponible:"/>
-  <widgets xsi:type="model:TextField" x="389" y="117" width="103" text="Sacude tu móvil!"/>
+  <widgets xsi:type="model:Text" x="239" y="152" width="226" height="35" text="Selecciona tu sorteo y te avisaremos cuando   el resultado esté disponible:"/>
   <widgets xsi:type="model:Panel" x="224" y="368" width="273" height="42"/>
   <widgets xsi:type="model:Button" x="248" y="378" width="97" text="Guardar"/>
   <widgets xsi:type="model:Button" x="389" y="378" width="84" text="Cancelar"/>
+  <widgets xsi:type="model:Icon" x="286" y="325" icon="calendar (medium)"/>
   <hRuler/>
   <vRuler/>
   <font/>
