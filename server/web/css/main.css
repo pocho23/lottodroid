@@ -35,7 +35,7 @@ body { margin: 50px 0 0; background: #fff url(../img/bg.gif) repeat-x; font: .74
 	.step { cursor: pointer; color: #FAFDDD; padding: 4px 0 0 45px;  font-size: 1.4em; float: left; text-align: center;  height: 30px; }
 	.step a { color: #fff; margin: 0 10px 0 0; }
 	
-.col { float: left; width: 360px; margin: 0 30px 16px 0; }
+.col { float: left; width: 381px; margin: 0 30px 16px 0; }
 	.last { float: right; margin: 0; }
 	.info { border: 1px solid #e0e0e0; background: #f4f4f4; padding: 7px; }
 

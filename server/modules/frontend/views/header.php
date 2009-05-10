@@ -31,9 +31,9 @@
 	<div id="bar">
 		<div class="wrap">
 			<span class="stepApp">Apps: </span>
-			<!-- 
-			<span class="step"><a href="#wikiarticle">Wikiarticle</a> &nbsp;&nbsp;&nbsp;&nbsp;|</span>
-			<span class="step"><a href="#wikipicture">Wikipicture</a></span>
-			 -->
+
+			<span class="step"><a href="#wikiarticle">Wikiarticle widget</a> &nbsp;&nbsp;&nbsp;&nbsp;|</span>
+			<span class="step"><a href="#wikipicture">Wikipicture widget</a></span>
+
 		</div>
 	</div>
