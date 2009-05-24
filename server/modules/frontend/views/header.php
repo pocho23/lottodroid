@@ -6,14 +6,35 @@
 	<meta name="description" content="Androidsx brothers, android apps, widgets" />
 	<meta name="keywords" content="Androidsx brothers, android apps, widgets" />
 	<link href="web/css/main.css" rel="stylesheet" type="text/css" />
+	
+	<!--  gallery plugin -->
+	<link href="web/lib/galleria.css" rel="stylesheet" type="text/css" media="screen"> 
+	<script type="text/javascript" src="web/lib/jquery-1.3.2.min.js"></script> 
+	<script type="text/javascript" src="web/lib/jquery.galleria.js"></script> 
+	<script type="text/javascript"> 
+
+	
+	jQuery(function($) {
+		$('.gallery_demo_unstyled').addClass('gallery_demo'); // adds new class name to maintain degradability
+		
+		$('ul.gallery').galleria({
+			history: true, // the containing selector for our main image
+			
+		});
+	});
+	
+	</script>
+	
 </head>
 
 <body>
 	<div id="header">
 		<h1><a href="./">Androidsx brothers</a></h1>
 		<ul id="menu">
-			<li class="active"><a href="./">home</a></li>
-			<li><a href="./index.php?controller=contact">about</a></li>
+		
+			
+			<li <?php echo $homeActive; ?>><a href="./">home</a></li>
+			<li <?php echo $contactActive; ?>><a href="./index.php?controller=contact">about</a></li>
 		</ul>
 	</div>
 
@@ -32,8 +53,8 @@
 		<div class="wrap">
 			<span class="stepApp">Apps: </span>
 
-			<span class="step"><a href="#wikiarticle">Wikiarticle widget</a> &nbsp;&nbsp;&nbsp;&nbsp;|</span>
-			<span class="step"><a href="#wikipicture">Wikipicture widget</a></span>
+			<span class="step"><a href="./index.php#dailystuff">Daily stuff</a></span>
+			
 
 		</div>
 	</div>

@@ -9,7 +9,7 @@ body { margin: 50px 0 0; background: #fff url(../img/bg.gif) repeat-x; font: .74
 	h1 a { text-decoration: none; }
 	h2 { font-size: 2em; color: #FFF2B3; font-weight: normal; margin: 0 0 .8em; }
 	h3 { font-size: 1.5em; border-bottom: 1px solid #eee; margin: 0 0 .8em; }
-	p  { margin: 0 0 2em 0; line-height: 1.8em; }
+	p  { margin: 0 0 1em 0; line-height: 1.8em; }
 	em { border-bottom: 1px dotted #fff; cursor: pointer; }
 	a { color: #9D2900; }
 	a:hover { color: #A0000E; text-decoration: none; }
@@ -36,6 +36,13 @@ body { margin: 50px 0 0; background: #fff url(../img/bg.gif) repeat-x; font: .74
 	.step a { color: #fff; margin: 0 10px 0 0; }
 	
 .col { float: left; width: 381px; margin: 0 30px 16px 0; }
+.colMain { margin: 0 30px 25px 0; }
+
+.list li {
+	margin: 7px;
+	margin-left: 20px;
+	}
+
 	.last { float: right; margin: 0; }
 	.info { border: 1px solid #e0e0e0; background: #f4f4f4; padding: 7px; }
 
