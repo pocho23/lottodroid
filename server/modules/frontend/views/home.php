@@ -5,10 +5,12 @@ include $config->get('frontendViewsDir') . 'header.php';
 ?>
 
 <div class="wrap">
-<div class="colMain">
-<h3 id="dailystuff">Daily stuff</h3>
+
+<div class="colMain" style="float:left;">
+<h3 id="dailystuff">Daily stuff widget</h3>
 <p>Have your daily dose of culture and curiosities in your home screen
 with these small, simple <span style="font-weight: bold;">widgets:</span>
+</p>
 
 
 <ul class="list">
@@ -18,21 +20,30 @@ with these small, simple <span style="font-weight: bold;">widgets:</span>
 	of the day from Wikipedia</li>
 	<li><span style="font-weight: bold;">Picture of the day:</span> picture
 	of the day from Wikipedia</li>
+	<li><span style="font-weight: bold;">Quote of the day:</span>
+	daily random quotes</li>
+	<li><span style="font-weight: bold;">Joke of the day:</span>
+	daily random jokes</li>
 </ul>
 
-</p>
 
 
-<!-- 
-			<p> 
-				The widget is available on the market ( Free ). More information on
-				<a href="http://www.cyrket.com/package/com.lottodroid.widgets.wikiarticle">
-					Cyrket entry of Wikiarticle
-				</a> 
-			</p>
-			 -->
+<p>The widget is available on the market ( Free ). More information on <a
+	href="http://www.cyrket.com/package/com.androidsx.dailystuff"> Cyrket
+entry of Daily stuff widgets </a></p>
+
+</div>
+
+<div class="col" style="float:right;width:20%;border:1px solid grey;padding:5px;">
+<p>Version 2.1:
 
 
+<ul class="list">
+	<li>Added quote of the day</li>
+	<li>Added joke of the day</li>
+	<li>Added author of the quotes, and a link to see more about him.</li>
+	<li>You can read off-line previous days</li>
+</ul>
 </div>
 </div>
 
@@ -41,44 +52,29 @@ with these small, simple <span style="font-weight: bold;">widgets:</span>
 
 <ul class="gallery">
 	<li><a class="selected"
-	href="web/img/screenshot_dailystuff/addwidgets.png"
-		title="Select the widget: Article of the day, Picture of the day or
-		 What hapenned today."> <img
-		 
-		 
-		src="web/img/screenshot_dailystuff/addwidgets_thumb.png" alt="Select the widget: Article of the day, Picture of the day and
-		 What hapenned today.">
-	</a></li>
+		href="web/img/screenshot_dailystuff/addwidgets.png"> <img
+		src="web/img/screenshot_dailystuff/addwidgets_thumb.png"> </a></li>
+		
+	<li><a href="web/img/screenshot_dailystuff/home2.png"> <img
+		src="web/img/screenshot_dailystuff/home2_thumb.png"> </a></li>
 
-	<li><a 
-		href="web/img/screenshot_dailystuff/home.png" title="The 3 widgets of Daily Stuff"> <img
-		src="web/img/screenshot_dailystuff/home_thumb.png" alt="The 3 widgets of Daily Stuff"> </a></li>
+	<li><a href="web/img/screenshot_dailystuff/home.png"> <img
+		src="web/img/screenshot_dailystuff/home_thumb.png"> </a></li>
+		
+	<li><a href="web/img/screenshot_dailystuff/jokes.png"> <img
+		src="web/img/screenshot_dailystuff/jokes_thumb.png"> </a></li>
+		
+	<li><a href="web/img/screenshot_dailystuff/quotes.png"> <img
+		src="web/img/screenshot_dailystuff/quotes_thumb.png"> </a></li>				
 
-	<li><a href="web/img/screenshot_dailystuff/article.png"
-		title="When you click on the 'Article of the day' title it shows
-		the last featured articles. You can click on any link for more information."> <img
-		src="web/img/screenshot_dailystuff/article_thumb.png" alt="When you click on the 'Picture of the day' title it shows
-		the last featured pictures."> </a></li>
+	<li><a href="web/img/screenshot_dailystuff/article.png"> <img
+		src="web/img/screenshot_dailystuff/article_thumb.png"> </a></li>
 
-	<li><a href="web/img/screenshot_dailystuff/picture.png"
-		title="When you click on the 'Picture of the day' widget it shows
-		the last pictures of the last 20 days."> <img
-		src="web/img/screenshot_dailystuff/picture_thumb.png" alt="When you click on the 'Picture of the day' widget it shows
-		the last pictures of the last 20 days."> </a></li>
+	<li><a href="web/img/screenshot_dailystuff/picture.png"> <img
+		src="web/img/screenshot_dailystuff/picture_thumb.png"> </a></li>
 
-
-	<li><a href="web/img/screenshot_dailystuff/event.png" title="When you click on the 'What happened today' widget it shows
-		the relevant events that happened today. Also you can browse the last days information.">
-	<img src="web/img/screenshot_dailystuff/event_thumb.png" alt="When you click on the 'What happened today' widget it shows
-		the relevant events that happened today. Also you can browse the last days information.">
-	</a></li>
-
-	<li><a href="web/img/screenshot_dailystuff/no_connection.png"
-		title="If there was an error on the network or is not available, you can click to try again. Also you can
-		read the information off-line"> <img
-		src="web/img/screenshot_dailystuff/no_connection_thumb.png"
-		alt="Image01"> </a></li>
-
+	<li><a href="web/img/screenshot_dailystuff/event.png"> <img
+		src="web/img/screenshot_dailystuff/event_thumb.png"> </a></li>
 </ul>
 
 </div>
