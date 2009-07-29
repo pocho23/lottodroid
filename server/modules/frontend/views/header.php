@@ -15,11 +15,10 @@
 
 	
 	jQuery(function($) {
-		$('.gallery_demo_unstyled').addClass('gallery_demo'); // adds new class name to maintain degradability
+		//$('.gallery_demo_unstyled').addClass('gallery_demo'); // adds new class name to maintain degradability
 		
 		$('ul.gallery').galleria({
-			history: true, // the containing selector for our main image
-			
+			history: false, // the containing selector for our main image
 		});
 	});
 	
@@ -46,15 +45,5 @@
 					This is a space where we share the applications we have developed for Android platform.
 				</p>
 			</div>
-		</div>
-	</div>
-
-	<div id="bar">
-		<div class="wrap">
-			<span class="stepApp">Apps: </span>
-
-			<span class="step"><a href="./index.php#dailystuff">Daily stuff</a></span>
-			
-
 		</div>
 	</div>
