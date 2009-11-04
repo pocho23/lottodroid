@@ -7,7 +7,11 @@ public enum LotteryId {
 
   BONOLOTO("Bonoloto"),
   QUINIELA("Quiniela"),
-  PRIMITIVA("Primitiva");
+  PRIMITIVA("Primitiva"),
+  LOTOTURF("Lototurf"),
+  EUROMILLON("Euromillon"),
+  LOTERIA_NACIONAL("Lotería Nacional"),
+  QUINIGOL("Quinigol");
   
   private final String name;
   
