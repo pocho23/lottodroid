@@ -15,10 +15,9 @@ public class Lototurf implements Lottery {
   private final int num6;
   private final int caballoGanador;
   private final int reintegro;
-  private final int complementario;
 
   public Lototurf(Date date, int num1, int num2, int num3, int num4, int num5, int num6,
-      int caballoGanador, int reintegro, int complementario) {
+      int caballoGanador, int reintegro) {
     this.date = date;
     this.num1 = num1;
     this.num2 = num2;
@@ -28,7 +27,6 @@ public class Lototurf implements Lottery {
     this.num6 = num6;
     this.caballoGanador = caballoGanador;
     this.reintegro = reintegro;
-    this.complementario = complementario;
   }
 
   public int getNum1() {
@@ -61,10 +59,6 @@ public class Lototurf implements Lottery {
   
   public int getReintegro() {
     return reintegro;
-  }
-
-  public int getComplementario() {
-    return complementario;
   }
 
   @Override
