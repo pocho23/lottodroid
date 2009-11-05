@@ -11,9 +11,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.lottodroid.model.Bonoloto;
+import com.lottodroid.model.Euromillon;
+import com.lottodroid.model.LoteriaNacional;
+import com.lottodroid.model.Lototurf;
 import com.lottodroid.model.Lottery;
 import com.lottodroid.model.Primitiva;
 import com.lottodroid.model.Quiniela;
+import com.lottodroid.model.Quinigol;
 
 /**
  * Parser for the all the lottery draws ( bonoloto, quiniela, etc. ) retrieved
@@ -76,6 +80,62 @@ class LotteryParser {
       throw new LotteryParseException("Error parsing primitiva date", ex);
     }
   }
+  
+  /**
+   * Analogous to {@link #parseBonoloto}
+   */
+  public static List<Lototurf> parseLototurf(String response) throws LotteryParseException {
+    try {
+      return parseLototurfData(parseContentTypeAndGetData(response, "lototurf"));
+
+    } catch (JSONException e) {
+      throw new LotteryParseException("Error parsing lototurf content", e);
+    } catch (ParseException ex) {
+      throw new LotteryParseException("Error parsing lototurf date", ex);
+    }
+  }
+  
+  /**
+   * Analogous to {@link #parseBonoloto}
+   */
+  public static List<Euromillon> parseEuromillon(String response) throws LotteryParseException {
+    try {
+      return parseEuromillonData(parseContentTypeAndGetData(response, "euromillon"));
+
+    } catch (JSONException e) {
+      throw new LotteryParseException("Error parsing euromillon content", e);
+    } catch (ParseException ex) {
+      throw new LotteryParseException("Error parsing euromillon date", ex);
+    }
+  }
+  
+  /**
+   * Analogous to {@link #parseBonoloto}
+   */
+  public static List<LoteriaNacional> parseLoteriaNacional(String response) throws LotteryParseException {
+    try {
+      return parseLoteriaNacionalData(parseContentTypeAndGetData(response, "loterianacional"));
+
+    } catch (JSONException e) {
+      throw new LotteryParseException("Error parsing Loteria Nacional content", e);
+    } catch (ParseException ex) {
+      throw new LotteryParseException("Error parsing Loteria Nacional date", ex);
+    }
+  }
+  
+  /**
+   * Analogous to {@link #parseBonoloto}
+   */
+  public static List<Quinigol> parseQuinigol(String response) throws LotteryParseException {
+    try {
+      return parseQuinigolData(parseContentTypeAndGetData(response, "quinigol"));
+
+    } catch (JSONException e) {
+      throw new LotteryParseException("Error parsing quinigol content", e);
+    } catch (ParseException ex) {
+      throw new LotteryParseException("Error parsing quinigol date", ex);
+    }
+  }
 
   /**
    * Parse the string containing the information of the last results of
@@ -96,6 +156,10 @@ class LotteryParser {
       List<Bonoloto> listBonoloto = parseBonolotoData(jsonObject.getString("bonoloto"));
       List<Quiniela> listQuiniela = parseQuinielaData(jsonObject.getString("quiniela"));
       List<Primitiva> listPrimitiva = parsePrimitivaData(jsonObject.getString("primitiva"));
+      List<Lototurf> listLototurf = parseLototurfData(jsonObject.getString("lototurf"));
+      List<LoteriaNacional> listLoteriaNacional = parseLoteriaNacionalData(jsonObject.getString("loterianacional"));
+      List<Quinigol> listQuinigol = parseQuinigolData(jsonObject.getString("quinigol"));
+      List<Euromillon> listEuromillon = parseEuromillonData(jsonObject.getString("euromillon"));
 
       if (listBonoloto.size() > 0) {
         listLottery.add(listBonoloto.get(0));
@@ -105,6 +169,18 @@ class LotteryParser {
       }
       if (listQuiniela.size() > 0) {
         listLottery.add(listQuiniela.get(0));
+      }
+      if (listLototurf.size() > 0) {
+        listLottery.add(listLototurf.get(0));
+      }
+      if (listQuinigol.size() > 0) {
+        listLottery.add(listQuinigol.get(0));
+      }
+      if (listEuromillon.size() > 0) {
+        listLottery.add(listEuromillon.get(0));
+      }
+      if (listLoteriaNacional.size() > 0) {
+        listLottery.add(listLoteriaNacional.get(0));
       }
 
       return listLottery;
@@ -202,6 +278,87 @@ class LotteryParser {
           item.getInt("reintegro"), item.getInt("complementario")));  
     }
     
+    return lotteryList;
+  }
+  
+  private static List<Lototurf> parseLototurfData(String strContent) throws JSONException, ParseException {
+    List<Lototurf> lotteryList = new LinkedList<Lototurf>();
+
+    JSONArray jsonContent = new JSONArray(strContent);
+    int numItems = jsonContent.length();
+
+    for (int i = 0; i < numItems; i++) {
+      JSONObject item = jsonContent.getJSONObject(i);
+
+      lotteryList.add(new Lototurf(dfm.parse(item.getString("fecha")), 
+          item.getInt("num1"), item.getInt("num2"), item.getInt("num3"), 
+          item.getInt("num4"), item.getInt("num5"), item.getInt("num6"), 
+          item.getInt("caballoGanador"), item.getInt("reintegro")));  
+    }
+    
+    return lotteryList;
+  }
+  
+  private static List<Euromillon> parseEuromillonData(String strContent) throws JSONException, ParseException {
+    List<Euromillon> lotteryList = new LinkedList<Euromillon>();
+
+    JSONArray jsonContent = new JSONArray(strContent);
+    int numItems = jsonContent.length();
+
+    for (int i = 0; i < numItems; i++) {
+      JSONObject item = jsonContent.getJSONObject(i);
+
+      lotteryList.add(new Euromillon(dfm.parse(item.getString("fecha")), 
+          item.getInt("num1"), item.getInt("num2"), item.getInt("num3"), 
+          item.getInt("num4"), item.getInt("num5"), item.getInt("estrella1"), 
+          item.getInt("estrella2")));  
+    }
+    
+    return lotteryList;
+  }
+  
+  private static List<LoteriaNacional> parseLoteriaNacionalData(String strContent) throws JSONException, ParseException {
+    List<LoteriaNacional> lotteryList = new LinkedList<LoteriaNacional>();
+
+    JSONArray jsonContent = new JSONArray(strContent);
+    int numItems = jsonContent.length();
+
+    for (int i = 0; i < numItems; i++) {
+      JSONObject item = jsonContent.getJSONObject(i);
+
+      lotteryList.add(new LoteriaNacional(dfm.parse(item.getString("fecha")), 
+          item.getInt("premio1"), item.getInt("fraccion"), item.getInt("serie"), 
+          item.getInt("premio2"), item.getInt("reintegro1"), item.getInt("reintegro2"), 
+          item.getInt("reintegro3")));  
+    }
+    
+    return lotteryList;
+  }
+  
+  private static List<Quinigol> parseQuinigolData(String strContent) throws JSONException, ParseException {
+    List<Quinigol> lotteryList = new LinkedList<Quinigol>();
+
+    JSONArray jsonContent = new JSONArray(strContent);
+    int numItems = jsonContent.length();
+
+    for (int i = 0; i < numItems; i++) {
+      JSONObject item = jsonContent.getJSONObject(i);
+      Quinigol quinigol = new Quinigol(dfm.parse(item.getString("fecha")));
+      
+      JSONArray results = item.getJSONArray("results");
+      int numResults = results.length();
+
+      for (int j = 0; j < numResults; j++) {
+        JSONObject match = results.getJSONObject(j);
+
+        quinigol.setMatch(j,  match.getString("local"), 
+                              match.getString("visitante"), 
+                              match.getString("marcadorLocal"),
+                              match.getString("marcadorVisitante"));  
+      }
+      lotteryList.add(quinigol);
+    }
+
     return lotteryList;
   }
 }

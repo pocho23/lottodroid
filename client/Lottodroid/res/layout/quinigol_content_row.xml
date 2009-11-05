@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="fill_parent"
+  android:layout_width="fill_parent"
+  android:padding="10dip">
+
+  <TableRow>
+    <TextView
+      android:id="@+id/txtLocal0"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant0"
+      android:text="OOPS" />
+      
+      
+    <TextView
+      android:id="@+id/txtResultLocal0"
+      android:paddingLeft="15dip"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtResultVisitant0"
+      android:text="OOPS" />
+  </TableRow>
+   <TableRow>
+    <TextView
+      android:id="@+id/txtLocal1"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant1"
+      android:text="OOPS" />
+      
+      
+    <TextView
+      android:id="@+id/txtResultLocal1"
+      android:paddingLeft="15dip"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtResultVisitant1"
+      android:text="OOPS" />
+  </TableRow>
+    <TableRow>
+    <TextView
+      android:id="@+id/txtLocal2"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant2"
+      android:text="OOPS" />
+      
+      
+    <TextView
+      android:id="@+id/txtResultLocal2"
+      android:paddingLeft="15dip"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtResultVisitant2"
+      android:text="OOPS" />
+  </TableRow>
+    <TableRow>
+    <TextView
+      android:id="@+id/txtLocal3"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant3"
+      android:text="OOPS" />
+      
+      
+    <TextView
+      android:id="@+id/txtResultLocal3"
+      android:paddingLeft="15dip"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtResultVisitant3"
+      android:text="OOPS" />
+  </TableRow>
+    <TableRow>
+    <TextView
+      android:id="@+id/txtLocal4"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant4"
+      android:text="OOPS" />
+      
+      
+    <TextView
+      android:id="@+id/txtResultLocal4"
+      android:paddingLeft="15dip"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtResultVisitant4"
+      android:text="OOPS" />
+  </TableRow>
+    <TableRow>
+    <TextView
+      android:id="@+id/txtLocal5"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtVisitant5"
+      android:text="OOPS" />
+      
+      
+    <TextView
+      android:id="@+id/txtResultLocal5"
+      android:paddingLeft="15dip"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="-"
+      android:paddingRight="10dip"
+      android:paddingLeft="10dip" />
+
+    <TextView
+      android:id="@+id/txtResultVisitant5"
+      android:text="OOPS" />
+  </TableRow>
+  
+  
+  
+  
+  
+
+</TableLayout>

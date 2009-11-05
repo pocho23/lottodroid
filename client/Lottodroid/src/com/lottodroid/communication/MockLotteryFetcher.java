@@ -5,9 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.lottodroid.model.Bonoloto;
+import com.lottodroid.model.Euromillon;
+import com.lottodroid.model.LoteriaNacional;
+import com.lottodroid.model.Lototurf;
 import com.lottodroid.model.Lottery;
 import com.lottodroid.model.Primitiva;
 import com.lottodroid.model.Quiniela;
+import com.lottodroid.model.Quinigol;
 
 /**
  * Implementation for {@link LotteryFetcher} that uses in-memory, hard-coded data.
@@ -25,7 +29,20 @@ class MockLotteryFetcher implements LotteryFetcher {
     List<Lottery> listLottery = new LinkedList<Lottery>();
     listLottery.add(new Bonoloto(new Date(), 1, 2, 3, 4, 5, 6, 4, 3));
     listLottery.add(new Primitiva(new Date(), 1, 2, 3, 4, 5, 6, 4, 3));
-
+    listLottery.add(new Lototurf(new Date(), 1, 2, 3, 4, 5, 6, 3, 4));
+    listLottery.add(new LoteriaNacional(new Date(), 1, 2, 3, 4, 5, 6, 3));
+    listLottery.add(new Euromillon(new Date(), 6, 5, 2, 3, 1, 2, 1));
+    
+    Quinigol quinigol2 = new Quinigol(new Date());
+    quinigol2.setMatch(0, "Barcelona", "Villareal", "2", "M");
+    quinigol2.setMatch(1, "Betis", "Villareal", "1", "0");
+    quinigol2.setMatch(2, "R. Madrid", "Villareal", "2", "0");
+    quinigol2.setMatch(3, "R. Madrid", "Villareal", "2", "0");
+    quinigol2.setMatch(4, "R. Madrid", "Villareal", "2", "0");
+    quinigol2.setMatch(5, "R. Madrid", "Villareal", "2", "0");
+    
+    listLottery.add(quinigol2);
+    
     Quiniela quiniela = new Quiniela(new Date());
     quiniela.setMatch(0, "Barcelona", "Villareal", "X");
     quiniela.setMatch(1, "R. Madrid", "Villareal", "2");
@@ -143,6 +160,72 @@ class MockLotteryFetcher implements LotteryFetcher {
     return listPrimitiva;
   }
 
+  @Override
+  public List<Euromillon> retrieveLastEuromillones(int start, int limit) {
+      List<Euromillon> listPrimitiva = new LinkedList<Euromillon>();
+      listPrimitiva.add(new Euromillon(new Date(), 6, 5, 2, 3, 1, 2, 1));
+      listPrimitiva.add(new Euromillon(new Date(), 6, 5, 2, 3, 1, 2, 1));
+      listPrimitiva.add(new Euromillon(new Date(), 1, 2, 3, 4, 5, 6, 3));
+      listPrimitiva.add(new Euromillon(new Date(), 6, 5, 2, 3, 1, 2, 1));
+      listPrimitiva.add(new Euromillon(new Date(), 6, 5, 2, 3, 1, 2, 1));
+      listPrimitiva.add(new Euromillon(new Date(), 1, 2, 3, 4, 5, 6, 3));
+      listPrimitiva.add(new Euromillon(new Date(), 6, 5, 2, 3, 1, 2, 1));
+      listPrimitiva.add(new Euromillon(new Date(), 6, 5, 2, 3, 1, 2, 1));
+      listPrimitiva.add(new Euromillon(new Date(), 1, 2, 3, 4, 5, 6, 3));
+
+      simulateLatency();
+      
+      return listPrimitiva;
+  }
+
+  @Override
+  public List<LoteriaNacional> retrieveLastLoteriasNacionales(int start, int limit) {
+    List<LoteriaNacional> listPrimitiva = new LinkedList<LoteriaNacional>();
+    listPrimitiva.add(new LoteriaNacional(new Date(), 1, 2, 3, 4, 5, 6, 3));
+  
+    simulateLatency();
+    
+    return listPrimitiva;
+  }
+
+  @Override
+  public List<Lototurf> retrieveLastLototurfs(int start, int limit) {
+    List<Lototurf> listPrimitiva = new LinkedList<Lototurf>();
+    listPrimitiva.add(new Lototurf(new Date(), 6, 5, 2, 3, 1, 2, 1, 4));
+    listPrimitiva.add(new Lototurf(new Date(), 1, 2, 3, 4, 5, 6, 3, 4));
+  
+    simulateLatency();
+    
+    return listPrimitiva;
+  }
+
+  @Override
+  public List<Quinigol> retrieveLastQuinigoles(int start, int limit) {
+    List<Quinigol> listQuiniela = new LinkedList<Quinigol>();
+
+    Quinigol quiniela = new Quinigol(new Date());
+    quiniela.setMatch(0, "Barcelona", "Villareal", "4", "4");
+    quiniela.setMatch(1, "Betis", "Villareal", "1", "3");
+    quiniela.setMatch(2, "R. Madrid", "Villareal", "2", "3");
+    quiniela.setMatch(3, "R. Madrid", "Villareal", "2", "M");
+    quiniela.setMatch(4, "R. Madrid", "Villareal", "2", "3");
+    quiniela.setMatch(5, "R. Madrid", "Villareal", "2", "3");
+
+    listQuiniela.add(quiniela);
+
+    Quinigol quiniela2 = new Quinigol(new Date());
+    quiniela2.setMatch(0, "Barcelona", "Villareal", "2", "M");
+    quiniela2.setMatch(1, "Betis", "Villareal", "1", "0");
+    quiniela2.setMatch(2, "R. Madrid", "Villareal", "2", "0");
+    quiniela2.setMatch(3, "R. Madrid", "Villareal", "2", "0");
+    quiniela2.setMatch(4, "R. Madrid", "Villareal", "2", "0");
+    quiniela2.setMatch(5, "R. Madrid", "Villareal", "2", "0");
+
+    simulateLatency();
+
+    return listQuiniela;
+  }
+  
   private void simulateLatency() {
     try {
       Thread.sleep(1000 * MOCK_DELAY);

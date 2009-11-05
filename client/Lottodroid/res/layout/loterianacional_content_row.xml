@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="fill_parent"
+  android:layout_width="fill_parent">
+  <TableRow>
+    <TextView
+      android:text=" Premio 1:"
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtPremio1"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="Fracción:"
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtFraccion"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>
+    <TextView
+      android:text=" Serie:"
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtSerie"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="Premio 2:"
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtPremio2"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
+  </TableRow>
+    <TableRow>
+    <TextView
+      android:text=" Reintegros: "
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtReintegro1"
+      android:paddingRight="5dip"
+      android:text="OOPS" />
+      
+   <TextView
+      android:id="@+id/txtReintegro2"
+      android:text="OOPS" />
+      
+    <TextView
+      android:id="@+id/txtReintegro3"
+      android:text="OOPS" />
+
+  </TableRow>
+</TableLayout>

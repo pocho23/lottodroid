@@ -5,29 +5,25 @@
   android:layout_width="fill_parent">
   <TableRow>
     <TextView
-      android:text=" Números:"
+      android:text=" Nº:"
       android:padding="5dip"
       android:textColor="#fee" />
     <TextView
       android:id="@+id/txtNumbers"
-      android:text="1 2 5 4 5 3 " />
+      android:paddingRight="15dip"
+      android:text="OOPS" />
 
     <TextView
-      android:text="C. Ganador:"
+      android:text="Estrellas:"
       android:padding="5dip"
       android:textColor="#fee" />
     <TextView
-      android:id="@+id/txtCaballoGanador"
-      android:text="2" />
-  </TableRow>
-   <TableRow>
-    <TextView
-      android:text=" Reintegro:"
-      android:padding="5dip"
-      android:textColor="#fee" />
-    <TextView
-      android:id="@+id/txtReinteger"
-      android:text="1" />
+      android:id="@+id/txtEstrella1"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
 
+    <TextView
+      android:id="@+id/txtEstrella2"
+      android:text="OOPS" />
   </TableRow>
 </TableLayout>

@@ -26,6 +26,14 @@ public class ViewControllerFactory {
       return new QuinielaViewController(lotteryId.getName());
     } else if (lotteryId == LotteryId.PRIMITIVA) {
       return new PrimitivaViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.LOTOTURF) {
+      return new LototurfViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.QUINIGOL) {
+      return new QuinigolViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.EUROMILLON) {
+      return new EuromillonViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.LOTERIA_NACIONAL) {
+      return new LoteriaNacionalViewController(lotteryId.getName());
     } else {
       throw new IllegalStateException();
     }

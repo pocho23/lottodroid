@@ -9,9 +9,13 @@ import android.util.Log;
 
 import com.lottodroid.Lottodroid;
 import com.lottodroid.model.Bonoloto;
+import com.lottodroid.model.Euromillon;
+import com.lottodroid.model.LoteriaNacional;
+import com.lottodroid.model.Lototurf;
 import com.lottodroid.model.Lottery;
 import com.lottodroid.model.Primitiva;
 import com.lottodroid.model.Quiniela;
+import com.lottodroid.model.Quinigol;
 
 /**
  * Talks to the LottoDroid server to get the different lottery results.
@@ -19,27 +23,27 @@ import com.lottodroid.model.Quiniela;
  */
 class ServerLotteryFetcher implements LotteryFetcher {
 
-  static final String URL_STRING = "http://www.el33.es/lottery/?module=data";
+  static final String URL_STRING = "http://www.androidsx.com/api/?module=data";
   static final String LOTTERY_VAR = "&controller=";
   static final String LIMIT_VAR = "&limit=";
   static final String START_VAR = "&start=";
-  
+
   public ServerLotteryFetcher(Context context) throws LotteryInfoUnavailableException {
-    ConnectivityManager manager = (ConnectivityManager)
-        context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    ConnectivityManager manager = (ConnectivityManager) context
+        .getSystemService(Context.CONNECTIVITY_SERVICE);
     NetworkInfo netInfo = manager.getActiveNetworkInfo();
 
-    if (netInfo == null || netInfo.isAvailable() == false){
+    if (netInfo == null || netInfo.isAvailable() == false) {
       throw new LotteryInfoUnavailableException("Unable to connect, no networks found");
-    } 
+    }
   }
-   
+
   @Override
   public List<Lottery> retrieveLastAllLotteries() throws LotteryInfoUnavailableException {
     try {
       String url = ServerLotteryFetcher.buildLotteryUrl("sorteos", 0, 1);
       String response = HttpRequestPerformer.getResponse(url);
-      
+
       return LotteryParser.parseAllLotteries(response);
     } catch (Exception e) {
       Log.e("Lottodroid", "Could not retrieve last lottery results", e);
@@ -48,11 +52,12 @@ class ServerLotteryFetcher implements LotteryFetcher {
   }
 
   @Override
-  public List<Bonoloto> retrieveLastBonolotos(int start, int limit) throws LotteryInfoUnavailableException {
+  public List<Bonoloto> retrieveLastBonolotos(int start, int limit)
+      throws LotteryInfoUnavailableException {
     try {
       String url = ServerLotteryFetcher.buildLotteryUrl("bonoloto", start, limit);
       String response = HttpRequestPerformer.getResponse(url);
-      
+
       return LotteryParser.parseBonoloto(response);
     } catch (Exception e) {
       Log.e("Lottodroid", "Could not retrieve last bonoloto results", e);
@@ -61,24 +66,26 @@ class ServerLotteryFetcher implements LotteryFetcher {
   }
 
   @Override
-  public List<Quiniela> retrieveLastQuinielas(int start, int limit) throws LotteryInfoUnavailableException {
+  public List<Quiniela> retrieveLastQuinielas(int start, int limit)
+      throws LotteryInfoUnavailableException {
     try {
       String url = ServerLotteryFetcher.buildLotteryUrl("quiniela", start, limit);
       String response = HttpRequestPerformer.getResponse(url);
-      
+
       return LotteryParser.parseQuiniela(response);
     } catch (Exception e) {
       Log.e("Lottodroid", "Could not retrieve last quiniela results", e);
       throw new LotteryInfoUnavailableException(e);
     }
   }
-  
+
   @Override
-  public List<Primitiva> retrieveLastPrimitivas(int start, int limit) throws LotteryInfoUnavailableException {
+  public List<Primitiva> retrieveLastPrimitivas(int start, int limit)
+      throws LotteryInfoUnavailableException {
     try {
       String url = ServerLotteryFetcher.buildLotteryUrl("primitiva", start, limit);
       String response = HttpRequestPerformer.getResponse(url);
-      
+
       return LotteryParser.parsePrimitiva(response);
     } catch (Exception e) {
       Log.e("Lottodroid", "Could not retrieve last primitiva results", e);
@@ -86,7 +93,63 @@ class ServerLotteryFetcher implements LotteryFetcher {
     }
   }
 
-  /** 
+  @Override
+  public List<Lototurf> retrieveLastLototurfs(int start, int limit)
+      throws LotteryInfoUnavailableException {
+    try {
+      String url = ServerLotteryFetcher.buildLotteryUrl("lototurf", start, limit);
+      String response = HttpRequestPerformer.getResponse(url);
+
+      return LotteryParser.parseLototurf(response);
+    } catch (Exception e) {
+      Log.e("Lottodroid", "Could not retrieve last lototurf results", e);
+      throw new LotteryInfoUnavailableException(e);
+    }
+  }
+
+  @Override
+  public List<Euromillon> retrieveLastEuromillones(int start, int limit)
+      throws LotteryInfoUnavailableException {
+    try {
+      String url = ServerLotteryFetcher.buildLotteryUrl("euromillon", start, limit);
+      String response = HttpRequestPerformer.getResponse(url);
+
+      return LotteryParser.parseEuromillon(response);
+    } catch (Exception e) {
+      Log.e("Lottodroid", "Could not retrieve last euromillon results", e);
+      throw new LotteryInfoUnavailableException(e);
+    }
+  }
+  
+  @Override
+  public List<LoteriaNacional> retrieveLastLoteriasNacionales(int start, int limit)
+      throws LotteryInfoUnavailableException {
+    try {
+      String url = ServerLotteryFetcher.buildLotteryUrl("loterianacional", start, limit);
+      String response = HttpRequestPerformer.getResponse(url);
+
+      return LotteryParser.parseLoteriaNacional(response);
+    } catch (Exception e) {
+      Log.e("Lottodroid", "Could not retrieve last loterianacional results", e);
+      throw new LotteryInfoUnavailableException(e);
+    }
+  }
+
+  @Override
+  public List<Quinigol> retrieveLastQuinigoles(int start, int limit)
+      throws LotteryInfoUnavailableException {
+    try {
+      String url = ServerLotteryFetcher.buildLotteryUrl("quinigol", start, limit);
+      String response = HttpRequestPerformer.getResponse(url);
+
+      return LotteryParser.parseQuinigol(response);
+    } catch (Exception e) {
+      Log.e("Lottodroid", "Could not retrieve last quinigol results", e);
+      throw new LotteryInfoUnavailableException(e);
+    }
+  }
+
+  /**
    * Build the web service URL to retrieve the lottery data.
    * 
    * @param lotteryController argument of the service that indicates the lottery type
@@ -95,12 +158,12 @@ class ServerLotteryFetcher implements LotteryFetcher {
    */
   private static String buildLotteryUrl(String lotteryController, int start, int limit) {
     StringBuilder url = new StringBuilder();
-    
+
     url.append(URL_STRING).append(LOTTERY_VAR).append(lotteryController);
     url.append(LIMIT_VAR).append(limit).append(START_VAR).append(start);
 
     Log.i(Lottodroid.TAG, "Connecting to " + url.toString());
-    
+
     return url.toString();
   }
 }

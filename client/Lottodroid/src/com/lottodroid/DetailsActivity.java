@@ -96,6 +96,14 @@ public class DetailsActivity extends ExpandableListActivity {
           listLottery = dataFetcher.retrieveLastQuinielas(0, NUM_RESULTS_SHOW);
         } else if (lotteryId == LotteryId.PRIMITIVA) {
           listLottery = dataFetcher.retrieveLastPrimitivas(0, NUM_RESULTS_SHOW);
+        } else if (lotteryId == LotteryId.QUINIGOL) {
+          listLottery = dataFetcher.retrieveLastQuinigoles(0, NUM_RESULTS_SHOW);
+        } else if (lotteryId == LotteryId.LOTOTURF) {
+          listLottery = dataFetcher.retrieveLastLototurfs(0, NUM_RESULTS_SHOW);
+        } else if (lotteryId == LotteryId.EUROMILLON) {
+          listLottery = dataFetcher.retrieveLastEuromillones(0, NUM_RESULTS_SHOW);
+        } else if (lotteryId == LotteryId.LOTERIA_NACIONAL) {
+          listLottery = dataFetcher.retrieveLastLoteriasNacionales(0, NUM_RESULTS_SHOW);
         } else {
           // TODO(pablo): check this exception handling
           throw new DataFormatException();
