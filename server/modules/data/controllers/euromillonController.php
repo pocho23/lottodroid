@@ -1,6 +1,6 @@
 <?php
 
-class bonolotoController extends ControllerBase
+class euromillonController extends ControllerBase
 {
 	function __construct()
 	{
