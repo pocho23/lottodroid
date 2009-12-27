@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<!-- 
+  Copyright (c) 2009 Omar Pera Mira, Pablo Pera Mira
+ 
+  You can find a copy of the MIT License along with this source file.
+  Otherwise see <http://www.opensource.org/licenses/mit-license.php>  
+-->
+
+<LinearLayout
+  android:id="@+id/mainPanelLayout"
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  >
+  android:layout_height="fill_parent">
 
+  
+  <!-- Contains the WebView. We need this separate layout for it, -->
+  <!-- otherwise it won't let the buttons appear in a long web page -->
+  <LinearLayout
+    android:id="@+id/webviewParent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
+
+ 
   <com.lottodroid.view.TouchInterceptor
     android:id="@+id/android:list"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:layout_weight="0"
     />
 
   <LinearLayout
@@ -34,23 +55,35 @@
 
   </LinearLayout>
 
-  <RelativeLayout
+    <!-- Empty text view that makes the webview appear always at the ... -->
+    <!-- ... upper part of the screen, requires such an ugly trick here -->
+    <TextView
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:layout_weight="1"
+      android:height="10000sp"
+      android:background="#000"
+      android:text="" />
+  </LinearLayout>
+
+  <!-- Panel for the previous/next buttons -->
+  <LinearLayout
     android:id="@+id/footer"
+    android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="50sp"
+    android:layout_height="wrap_content"
+    android:layout_weight="0"
     android:layout_alignParentBottom="true"
-    android:background="#676767"
-    android:orientation="vertical">
-  
-          
+    android:background="#676767">
+      
     <Button
       android:id="@+id/button_save_order_mode"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_centerHorizontal="true"
       android:layout_alignParentBottom="true"
+      android:layout_weight="1"
       android:text="Guardar orden" />
-  </RelativeLayout>
+  </LinearLayout>
 
-
-</RelativeLayout>
+</LinearLayout>
