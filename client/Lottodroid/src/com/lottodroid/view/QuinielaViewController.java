@@ -86,7 +86,7 @@ class QuinielaViewController implements LotteryViewController<Quiniela> {
     LinearLayout layoutContent = (LinearLayout) layoutView.findViewById(R.id.layoutContent);
     layoutContent.addView(View.inflate(context, R.layout.quiniela_content_row, null));
 
-    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.quiniela);
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(getIconResource());
     ((TextView) layoutView.findViewById(R.id.title)).setText(quiniela.getName());
     ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(quiniela
         .getDate()));
@@ -100,7 +100,7 @@ class QuinielaViewController implements LotteryViewController<Quiniela> {
   public View createAndFillUpOrderView(LotteryId lotteryId, Context context) {
     View layoutView = View.inflate(context, R.layout.main_layout_row, null);
     
-    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.quiniela);
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(getIconResource());
     ((TextView) layoutView.findViewById(R.id.title)).setText(lotteryId.getName());
     ((TextView) layoutView.findViewById(R.id.date)).setText("");
 

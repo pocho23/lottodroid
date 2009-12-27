@@ -28,7 +28,7 @@ class LoteriaNacionalViewController implements LotteryViewController<LoteriaNaci
     LinearLayout layoutContent = (LinearLayout) layoutView.findViewById(R.id.layoutContent);
     layoutContent.addView(View.inflate(context, R.layout.loterianacional_content_row, null));
 
-    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.bonoloto);
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(getIconResource());
     ((TextView) layoutView.findViewById(R.id.title)).setText(loteriaNacional.getName());
     ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(loteriaNacional
         .getDate()));
@@ -42,7 +42,7 @@ class LoteriaNacionalViewController implements LotteryViewController<LoteriaNaci
   public View createAndFillUpOrderView(LotteryId lotteryId, Context context) {
     View layoutView = View.inflate(context, R.layout.main_layout_row, null);
     
-    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.bonoloto);
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(getIconResource());
     ((TextView) layoutView.findViewById(R.id.title)).setText(lotteryId.getName());
     ((TextView) layoutView.findViewById(R.id.date)).setText("");
     
@@ -80,7 +80,7 @@ class LoteriaNacionalViewController implements LotteryViewController<LoteriaNaci
 
   @Override
   public int getIconResource() {
-    return R.drawable.bonoloto;
+    return R.drawable.loterianacional;
   }
 
   @Override

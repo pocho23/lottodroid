@@ -28,7 +28,7 @@ class EuromillonViewController implements LotteryViewController<Euromillon> {
     LinearLayout layoutContent = (LinearLayout) layoutView.findViewById(R.id.layoutContent);
     layoutContent.addView(View.inflate(context, R.layout.euromillon_content_row, null));
 
-    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.bonoloto);
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(getIconResource());
     ((TextView) layoutView.findViewById(R.id.title)).setText(euromillon.getName());
     ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(euromillon
         .getDate()));
@@ -42,7 +42,7 @@ class EuromillonViewController implements LotteryViewController<Euromillon> {
   public View createAndFillUpOrderView(LotteryId lotteryId, Context context) {
     View layoutView = View.inflate(context, R.layout.main_layout_row, null);
     
-    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.bonoloto);
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(getIconResource());
     ((TextView) layoutView.findViewById(R.id.title)).setText(lotteryId.getName());
     ((TextView) layoutView.findViewById(R.id.date)).setText("");
     
@@ -72,7 +72,7 @@ class EuromillonViewController implements LotteryViewController<Euromillon> {
 
   @Override
   public int getIconResource() {
-    return R.drawable.bonoloto;
+    return R.drawable.euromillon;
   }
 
   @Override

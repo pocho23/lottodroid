@@ -68,7 +68,7 @@ class QuinigolViewController implements LotteryViewController<Quinigol> {
     LinearLayout layoutContent = (LinearLayout) layoutView.findViewById(R.id.layoutContent);
     layoutContent.addView(View.inflate(context, R.layout.quinigol_content_row, null));
 
-    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.quiniela);
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(getIconResource());
     ((TextView) layoutView.findViewById(R.id.title)).setText(quinigol.getName());
     ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(quinigol
         .getDate()));
@@ -82,7 +82,7 @@ class QuinigolViewController implements LotteryViewController<Quinigol> {
   public View createAndFillUpOrderView(LotteryId lotteryId, Context context) {
     View layoutView = View.inflate(context, R.layout.main_layout_row, null);
     
-    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.quiniela);
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(getIconResource());
     ((TextView) layoutView.findViewById(R.id.title)).setText(lotteryId.getName());
     ((TextView) layoutView.findViewById(R.id.date)).setText("");
 
@@ -122,7 +122,7 @@ class QuinigolViewController implements LotteryViewController<Quinigol> {
 
   @Override
   public int getIconResource() {
-    return R.drawable.quiniela;
+    return R.drawable.quinigol;
   }
 
   @Override

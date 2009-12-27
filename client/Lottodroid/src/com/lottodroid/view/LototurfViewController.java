@@ -28,7 +28,7 @@ class LototurfViewController implements LotteryViewController<Lototurf> {
     LinearLayout layoutContent = (LinearLayout) layoutView.findViewById(R.id.layoutContent);
     layoutContent.addView(View.inflate(context, R.layout.lototurf_content_row, null));
 
-    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.lototurf);
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(getIconResource());
     ((TextView) layoutView.findViewById(R.id.title)).setText(lototurf.getName());
     ((TextView) layoutView.findViewById(R.id.date)).setText(DateFormatter.toSpanishString(lototurf
         .getDate()));
@@ -42,7 +42,7 @@ class LototurfViewController implements LotteryViewController<Lototurf> {
   public View createAndFillUpOrderView(LotteryId lotteryId, Context context) {
     View layoutView = View.inflate(context, R.layout.main_layout_row, null);
 
-    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(R.drawable.lototurf);
+    ((ImageView) layoutView.findViewById(R.id.icon)).setImageResource(getIconResource());
     ((TextView) layoutView.findViewById(R.id.title)).setText(lotteryId.getName());
     ((TextView) layoutView.findViewById(R.id.date)).setText("");
 
