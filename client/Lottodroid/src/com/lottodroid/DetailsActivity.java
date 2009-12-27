@@ -26,7 +26,7 @@ public class DetailsActivity extends ExpandableListActivity {
   public static final String TAG = DetailsActivity.class.toString();
   
   /** Number of last results displayed by default */
-  private static int NUM_RESULTS_SHOW = 3;
+  private static int NUM_RESULTS_SHOW = 2;
   
   /**
    * Called when the activity is first created.

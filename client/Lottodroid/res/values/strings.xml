@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">Lottodroid</string>
-  <string name="main_no_items">No items</string>
+  <string name="main_no_items">No hay sorteos disponibles</string>
   
   <!-- Context menu main activity -->
   <string name="context_menu_main_header">Opciones</string>
@@ -10,16 +10,22 @@
   <!-- error dialog -->
   <string name="error_dialog_title">Error</string>
   <string name="error_dialog_content">
-    No se han podido encontrar los resultados de los últimos sorteos
+    No se han podido encontrar los resultados de los últimos sorteos\n\nLo más probable es que no tengas conexión y nuestro servidor esté funcionando
+    perfectamente, o eso esperamos :)
   </string>
   
   <!-- about dialog -->
   <string name="about_dialog_title"><i>Lottodroid</i> v%1$s</string>
   <string name="about_dialog_text">
-    Recoge la información de los últimos sorteos de la lotería española.
+    Recoge la información de los últimos sorteos de la lotería española.\n\n
+    
+    Desarrollado por androidsx.com.\n\n
+    
+    Todos los iconos y la información de los sorteos provienen de la página oficial de Loterías y 
+    Apuestas del Estado: http://www.loteriasyapuestas.es/ 
   </string>
   <string name="about_dialog_button_ok">OK</string>
-  <string name="about_dialog_button_email">Email us</string>
+  <string name="about_dialog_button_email">Dínos algo!</string>
   
 
   

@@ -3,9 +3,7 @@ package com.lottodroid;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -78,25 +76,20 @@ public class Lottodroid extends ListActivity {
   protected void onListItemClick(ListView l, View v, final int position, long id) {
     super.onListItemClick(l, v, position, id);
     
-    // Strange bug: if we set an adapter in Light theme the text is not displayed but with
-    // setItems yes, and in default theme happens the other way around
+    startDetailsActivity(position);
     
-    //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
-    //    android.R.layout.simple_list_item_1, new String[] { "Ver historial" });
-
-    // ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
-    // android.R.layout.simple_list_item_1, new String[] { "Ver historial" });
-
-    new AlertDialog.Builder(Lottodroid.this).setTitle("Opciones").setItems(
-        new String[] { "Ver historial" }, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            // TODO: there is no way that not depend on button positions?
-            if (which == 0) {
-              startDetailsActivity(position);
-            }
-          }
-        }).show();
+    // There is only one option
+    //
+    //    new AlertDialog.Builder(Lottodroid.this).setTitle("Opciones").setItems(
+    //        new String[] { "Ver historial" }, new DialogInterface.OnClickListener() {
+    //          @Override
+    //          public void onClick(DialogInterface dialog, int which) {
+    //            // TODO: there is no way that not depend on button positions?
+    //            if (which == 0) {
+    //              startDetailsActivity(position);
+    //            }
+    //          }
+    //        }).show();
   }
 
   /** Creates the menu items */
@@ -143,7 +136,7 @@ public class Lottodroid extends ListActivity {
         sorter.setOrder(updated_sorter.getOrder());
         adapter.refresh();
         listView.invalidateViews();
-        Toast.makeText(this, "Orden guardado con éxito", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Orden guardado con ï¿½xito", Toast.LENGTH_SHORT).show();
     }
   }
   

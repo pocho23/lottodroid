@@ -20,7 +20,7 @@ public class AboutDialog extends AlertDialog {
     super(context);
 
     setView(View.inflate(context, R.layout.about_dialog, null));
-    setIcon(R.drawable.primitiva);
+    setIcon(R.drawable.icon);
     
     // set the title with the application version
     setTitle(context.getString(R.string.about_dialog_title,
@@ -35,7 +35,7 @@ public class AboutDialog extends AlertDialog {
 
             emailIntent.setType("plain/text");
             emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {
-                "campbell.sx@gmail.com", "pablo.sx@gmail.com" });
+                "android.sx@gmail.com" });
 
             /* Send it off to the Activity-Chooser */
             context.startActivity(Intent.createChooser(emailIntent, "Send mail"));
