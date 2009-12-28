@@ -35,7 +35,7 @@ class MainViewAdapter extends BaseAdapter {
   public MainViewAdapter(Context context, List<Lottery> lotteryList) {
     this.context = context;
     this.lotteryList = lotteryList;
-    sorter = LotterySorterFactory.getLotterySorter();
+    sorter = LotterySorterFactory.getLotterySorter(context);
   }
 
   /**

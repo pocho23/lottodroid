@@ -1,5 +1,6 @@
 package com.lottodroid;
 
+import java.io.Serializable;
 import java.util.List;
 
 import android.app.Activity;
@@ -17,6 +18,7 @@ import com.lottodroid.communication.LotteryFetcher;
 import com.lottodroid.communication.LotteryFetcherFactory;
 import com.lottodroid.communication.LotteryInfoUnavailableException;
 import com.lottodroid.model.Lottery;
+import com.lottodroid.model.LotteryId;
 import com.lottodroid.sorting.LotterySorter;
 import com.lottodroid.sorting.LotterySorterFactory;
 import com.lottodroid.util.UserTask;
@@ -35,7 +37,7 @@ public class Lottodroid extends ListActivity {
   private static final int ORDER_LOTTERY_MENU_ID = Menu.FIRST;
   private static final int ABOUT_MENU_ID = Menu.FIRST + 1;
   
-  private final LotterySorter sorter = LotterySorterFactory.getLotterySorter();
+  private final LotterySorter sorter = LotterySorterFactory.getLotterySorter(this);
   
   private MainViewAdapter adapter;
   private ListView listView;
@@ -109,8 +111,8 @@ public class Lottodroid extends ListActivity {
     case ORDER_LOTTERY_MENU_ID:
       // Launch the subactivity to let the user sort the entries
       Intent i = new Intent(this, SortingActivity.class);
-      // TODO(pablo): should pass the list, instead of the sorter object
-      i.putExtra(IntentExtraDataNames.SORTER_IN, sorter);
+      // TODO(pablo): fix the ugly casting!
+      i.putExtra(IntentExtraDataNames.SORTER_IN, (Serializable) sorter.getOrder());
       startActivityForResult(i, 0); // We assume there is only one subactivity
       return true;
 
@@ -131,9 +133,9 @@ public class Lottodroid extends ListActivity {
       Log.i(TAG, "The subactivity did not produce any changes");
     } else { // resultCode is probably RESULT_OK
         Log.i(TAG, "The subactivity has changed the order");
-        LotterySorter updated_sorter = (LotterySorter) intent.getExtras()
+        final List<LotteryId> lotteryIds = (List<LotteryId>) intent.getExtras()
           .getSerializable(IntentExtraDataNames.SORTER_OUT);
-        sorter.setOrder(updated_sorter.getOrder());
+        sorter.setOrder(lotteryIds);
         adapter.refresh();
         listView.invalidateViews();
         Toast.makeText(this, "Orden guardado con �xito", Toast.LENGTH_SHORT).show();

@@ -20,34 +20,33 @@ import com.lottodroid.view.ViewControllerFactory;
 class SortingViewAdapter extends BaseAdapter {
 
   private final Context context;
-  private final LotterySorter sorter;
+  private final List<LotteryId> lotteryIds;
 
-  public SortingViewAdapter(Context context, LotterySorter sorter) {
+  public SortingViewAdapter(Context context, List<LotteryId> lotteryIds) {
     this.context = context;
-    this.sorter = sorter;
+    this.lotteryIds = lotteryIds;
   }
 
   public void moveItem(int from, int to) {
-    List<LotteryId> order = sorter.getOrder();
+    List<LotteryId> order = lotteryIds;
     LotteryId fromId = order.get(from);
     LotteryId toId = order.get(to);
     order.set(from, toId);
     order.set(to, fromId);
-    sorter.setOrder(order);
   }
 
-  public LotterySorter getSorter() {
-    return sorter;
+  public List<LotteryId> getLotteryIdList() {
+    return lotteryIds;
   }
   
   @Override
   public int getCount() {
-    return sorter.getOrder().size();
+    return lotteryIds.size();
   }
 
   @Override
   public Object getItem(int position) {
-    return sorter.getOrder().get(position);
+    return lotteryIds.get(position);
   }
 
   @Override
@@ -57,7 +56,7 @@ class SortingViewAdapter extends BaseAdapter {
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
-    LotteryId lotteryId = sorter.getOrder().get(position);
+    LotteryId lotteryId = lotteryIds.get(position);
 
     LotteryViewController<? extends Lottery> viewController = ViewControllerFactory
         .createViewController(lotteryId);

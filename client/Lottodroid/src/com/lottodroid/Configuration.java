@@ -18,11 +18,16 @@ public class Configuration {
    * If the in-memory mode is true, no file accesses will be performed: mock implementations that
    * store all data in memory will be used.
    */
-  public static boolean IN_MEMORY_MODE = true;
+  public static boolean IN_MEMORY_MODE = false;
 
   /**
    * Name for desired shared preferences file
    */
-  private static final String PREFERENCES_FILE = "com.Lottodroid.Preferences";
+  public static final String PREFERENCES_FILE_NAME = "com.Lottodroid.Preferences";
+  
+  /**
+   * Name of the property in the preferences that keeps the sorted list of lottery IDs.
+   */
+  public static final String PREFERENCE_SORTED_LIST_ATTRIBUTE = "com.Lottodroid.Preferences.SortedList";
 
 }

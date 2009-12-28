@@ -22,5 +22,14 @@ public enum LotteryId {
   public String getName() {
     return name;
   }
+  
+  public static LotteryId fromName(String name) {
+    for (LotteryId value : values()) {
+      if (name.equals(value.getName())) {
+        return value;
+      }
+    }
+    return null;
+  }
 
 }

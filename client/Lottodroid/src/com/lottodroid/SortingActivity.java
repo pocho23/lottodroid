@@ -1,5 +1,8 @@
 package com.lottodroid;
 
+import java.io.Serializable;
+import java.util.List;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.lottodroid.sorting.LotterySorter;
+import com.lottodroid.model.LotteryId;
 import com.lottodroid.view.TouchInterceptor;
 
 /**
@@ -52,9 +55,9 @@ public class SortingActivity extends ListActivity {
 
     setContentView(R.layout.main_order_mode);
     
-    LotterySorter sorter = (LotterySorter) getIntent().getExtras().getSerializable(
+    final List<LotteryId> lotteryIds = (List<LotteryId>) getIntent().getExtras().getSerializable(
         IntentExtraDataNames.SORTER_IN);
-    adapter = new SortingViewAdapter(this, sorter);
+    adapter = new SortingViewAdapter(this, lotteryIds);
     setListAdapter(adapter);
     
     // Listener for the save button
@@ -63,7 +66,7 @@ public class SortingActivity extends ListActivity {
           public void onClick(View v) {
             // Return the sorter to the activity that called us
             Intent data = new Intent();
-            data.putExtra(IntentExtraDataNames.SORTER_OUT, adapter.getSorter());
+            data.putExtra(IntentExtraDataNames.SORTER_OUT, (Serializable) adapter.getLotteryIdList());
             setResult(RESULT_OK, data);
             finish();
           }
