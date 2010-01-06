@@ -467,7 +467,7 @@ class RSSreader
 		$matches = explode(',',$description);
 		$numMatches = count ($matches);
 	
-		if (!$numMatches)
+		if ($numMatches != 6)
 		{
 			return false;
 		}
