@@ -5,13 +5,13 @@ package com.androidsx.lottodroid.model;
  */
 public enum LotteryId {
 
-  BONOLOTO("Bonoloto"),
-  QUINIELA("Quiniela"),
-  PRIMITIVA("Primitiva"),
-  LOTOTURF("Lototurf"),
   EUROMILLON("Euromillon"),
-  LOTERIA_NACIONAL("Lotería Nacional"),
-  QUINIGOL("Quinigol");
+  BONOLOTO("Bonoloto"),
+  QUINIELA("Quiniela"),  
+  PRIMITIVA("Primitiva"),
+  LOTERIA_NACIONAL("Lotería Nacional"), 
+  QUINIGOL("Quinigol"),
+  LOTOTURF("Lototurf");
   
   private final String name;
   
