@@ -10,6 +10,7 @@ import android.util.Log;
 import com.androidsx.lottodroid.Lottodroid;
 import com.androidsx.lottodroid.model.Bonoloto;
 import com.androidsx.lottodroid.model.Euromillon;
+import com.androidsx.lottodroid.model.GordoPrimitiva;
 import com.androidsx.lottodroid.model.LoteriaNacional;
 import com.androidsx.lottodroid.model.Lototurf;
 import com.androidsx.lottodroid.model.Lottery;
@@ -61,6 +62,20 @@ class ServerLotteryFetcher implements LotteryFetcher {
       return LotteryParser.parseBonoloto(response);
     } catch (Exception e) {
       Log.e("Lottodroid", "Could not retrieve last bonoloto results", e);
+      throw new LotteryInfoUnavailableException(e);
+    }
+  }
+  
+  @Override
+  public List<GordoPrimitiva> retrieveLastGordoPrimitivas(int start, int limit)
+      throws LotteryInfoUnavailableException {
+    try {
+      String url = ServerLotteryFetcher.buildLotteryUrl("gordoprimitiva", start, limit);
+      String response = HttpRequestPerformer.getResponse(url);
+
+      return LotteryParser.parseGordoPrimitiva(response);
+    } catch (Exception e) {
+      Log.e("Lottodroid", "Could not retrieve last gordoprimitiva results", e);
       throw new LotteryInfoUnavailableException(e);
     }
   }

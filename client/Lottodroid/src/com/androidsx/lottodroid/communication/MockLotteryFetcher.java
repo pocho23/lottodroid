@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.androidsx.lottodroid.model.Bonoloto;
 import com.androidsx.lottodroid.model.Euromillon;
+import com.androidsx.lottodroid.model.GordoPrimitiva;
 import com.androidsx.lottodroid.model.LoteriaNacional;
 import com.androidsx.lottodroid.model.Lototurf;
 import com.androidsx.lottodroid.model.Lottery;
@@ -32,6 +33,7 @@ class MockLotteryFetcher implements LotteryFetcher {
     listLottery.add(new Lototurf(new Date(), 1, 2, 3, 4, 5, 6, 3, 4));
     listLottery.add(new LoteriaNacional(new Date(), 1, 2, 3, 4, 5, 6, 3));
     listLottery.add(new Euromillon(new Date(), 6, 5, 2, 3, 1, 2, 1));
+    listLottery.add(new GordoPrimitiva(new Date(), 6, 5, 2, 3, 1, 2));
     
     Quinigol quinigol2 = new Quinigol(new Date());
     quinigol2.setMatch(0, "Barcelona", "Villareal", "2", "M");
@@ -77,6 +79,18 @@ class MockLotteryFetcher implements LotteryFetcher {
     simulateLatency();
     
     return listBonoloto;
+  }
+  
+  @Override
+  public List<GordoPrimitiva> retrieveLastGordoPrimitivas(int start, int limit) {
+    List<GordoPrimitiva> listGordoPrimitiva = new LinkedList<GordoPrimitiva>();
+    listGordoPrimitiva.add(new GordoPrimitiva(new Date(), 6, 5, 2, 3, 1, 1));
+    listGordoPrimitiva.add(new GordoPrimitiva(new Date(), 6, 5, 2, 3, 1, 1));
+    listGordoPrimitiva.add(new GordoPrimitiva(new Date(), 1, 2, 3, 4, 3, 2));
+
+    simulateLatency();
+    
+    return listGordoPrimitiva;
   }
 
   @Override

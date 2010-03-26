@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import com.androidsx.lottodroid.model.Bonoloto;
 import com.androidsx.lottodroid.model.Euromillon;
+import com.androidsx.lottodroid.model.GordoPrimitiva;
 import com.androidsx.lottodroid.model.LoteriaNacional;
 import com.androidsx.lottodroid.model.Lototurf;
 import com.androidsx.lottodroid.model.Lottery;
@@ -64,6 +65,22 @@ class LotteryParser {
       throw new LotteryParseException("Error parsing quiniela date", ex);
     } catch (Exception ex) {
       throw new LotteryParseException("Error creating quiniela object", ex);
+    }
+  }
+  
+  /**
+   * Analogous to {@link #parseBonoloto}
+   */
+  public static List<GordoPrimitiva> parseGordoPrimitiva(String response) throws LotteryParseException {
+    try {
+      return parseGordoPrimitivaData(parseContentTypeAndGetData(response, "gordoprimitiva"));
+
+    } catch (JSONException e) {
+      throw new LotteryParseException("Error parsing gordoprimitiva content", e);
+    } catch (ParseException ex) {
+      throw new LotteryParseException("Error parsing gordoprimitiva date", ex);
+    } catch (Exception ex) {
+      throw new LotteryParseException("Error creating gordoprimitiva object", ex);
     }
   }
   
@@ -160,6 +177,7 @@ class LotteryParser {
       List<LoteriaNacional> listLoteriaNacional = parseLoteriaNacionalData(jsonObject.getString("loterianacional"));
       List<Quinigol> listQuinigol = parseQuinigolData(jsonObject.getString("quinigol"));
       List<Euromillon> listEuromillon = parseEuromillonData(jsonObject.getString("euromillon"));
+      List<GordoPrimitiva> listGordoPrimitiva = parseGordoPrimitivaData(jsonObject.getString("gordoprimitiva"));
 
       if (listBonoloto.size() > 0) {
         listLottery.add(listBonoloto.get(0));
@@ -181,6 +199,9 @@ class LotteryParser {
       }
       if (listLoteriaNacional.size() > 0) {
         listLottery.add(listLoteriaNacional.get(0));
+      }
+      if (listGordoPrimitiva.size() > 0) {
+        listLottery.add(listGordoPrimitiva.get(0));
       }
 
       return listLottery;
@@ -232,6 +253,24 @@ class LotteryParser {
           item.getInt("num1"), item.getInt("num2"), item.getInt("num3"), 
           item.getInt("num4"), item.getInt("num5"), item.getInt("num6"), 
           item.getInt("reintegro"), item.getInt("complementario")));  
+    }
+
+    return lotteryList;
+  }
+  
+  private static List<GordoPrimitiva> parseGordoPrimitivaData(String strContent) throws JSONException, ParseException {
+    List<GordoPrimitiva> lotteryList = new LinkedList<GordoPrimitiva>();
+
+    JSONArray jsonContent = new JSONArray(strContent);
+    int numItems = jsonContent.length();
+
+    for (int i = 0; i < numItems; i++) {
+      JSONObject item = jsonContent.getJSONObject(i);
+
+      lotteryList.add(new GordoPrimitiva(dfm.parse(item.getString("fecha")), 
+          item.getInt("num1"), item.getInt("num2"), item.getInt("num3"), 
+          item.getInt("num4"), item.getInt("num5"),  
+          item.getInt("reintegro")));  
     }
 
     return lotteryList;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.androidsx.lottodroid.model.Bonoloto;
 import com.androidsx.lottodroid.model.Euromillon;
+import com.androidsx.lottodroid.model.GordoPrimitiva;
 import com.androidsx.lottodroid.model.LoteriaNacional;
 import com.androidsx.lottodroid.model.Lototurf;
 import com.androidsx.lottodroid.model.Lottery;
@@ -34,6 +35,9 @@ public interface LotteryFetcher {
 
   /** @see {@link #retrieveLastBonolotos} */
   List<Quiniela> retrieveLastQuinielas(int start, int limit) throws LotteryInfoUnavailableException;
+  
+  /** @see {@link #retrieveLastBonolotos} */
+  List<GordoPrimitiva> retrieveLastGordoPrimitivas(int start, int limit) throws LotteryInfoUnavailableException;
   
   /** @see {@link #retrieveLastBonolotos} */
   List<Primitiva> retrieveLastPrimitivas(int start, int limit) throws LotteryInfoUnavailableException;

@@ -34,6 +34,8 @@ public class ViewControllerFactory {
       return new EuromillonViewController(lotteryId.getName());
     } else if (lotteryId == LotteryId.LOTERIA_NACIONAL) {
       return new LoteriaNacionalViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.GORDO_PRIMITIVA) {
+      return new GordoPrimitivaViewController(lotteryId.getName());
     } else {
       throw new IllegalStateException();
     }

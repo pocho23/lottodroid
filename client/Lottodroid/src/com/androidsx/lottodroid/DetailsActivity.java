@@ -104,6 +104,8 @@ public class DetailsActivity extends ExpandableListActivity {
           listLottery = dataFetcher.retrieveLastEuromillones(0, NUM_RESULTS_SHOW);
         } else if (lotteryId == LotteryId.LOTERIA_NACIONAL) {
           listLottery = dataFetcher.retrieveLastLoteriasNacionales(0, NUM_RESULTS_SHOW);
+        } else if (lotteryId == LotteryId.GORDO_PRIMITIVA) {
+          listLottery = dataFetcher.retrieveLastGordoPrimitivas(0, NUM_RESULTS_SHOW);
         } else {
           // TODO(pablo): check this exception handling
           throw new DataFormatException();

@@ -7,6 +7,7 @@ public enum LotteryId {
 
   EUROMILLON("Euromillon"),
   BONOLOTO("Bonoloto"),
+  GORDO_PRIMITIVA("Gordo primitiva"),
   QUINIELA("Quiniela"),  
   PRIMITIVA("Primitiva"),
   LOTERIA_NACIONAL("Lotería Nacional"), 
