@@ -26,7 +26,7 @@ class sorteosController extends ControllerBase
 		
 		require_once $path . 'GordoPrimitiva.php';
 		$gordoPrimitiva = new GordoPrimitiva();
-		$list['primitiva'] = $gordoPrimitiva->getLastRecord();
+		$list['gordoprimitiva'] = $gordoPrimitiva->getLastRecord();
 		
 		require_once $path . 'LoteriaNacional.php';
 		$loteriaNacional = new LoteriaNacional();
