@@ -1,10 +1,13 @@
 package com.androidsx.lottodroid;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +24,7 @@ import com.androidsx.lottodroid.model.Lottery;
 import com.androidsx.lottodroid.model.LotteryId;
 import com.androidsx.lottodroid.sorting.LotterySorter;
 import com.androidsx.lottodroid.sorting.LotterySorterFactory;
+import com.androidsx.lottodroid.util.DateFormatter;
 import com.androidsx.lottodroid.util.UserTask;
 import com.androidsx.lottodroid.view.AboutDialog;
 import com.androidsx.lottodroid.view.ErrorDialog;
@@ -77,21 +81,23 @@ public class Lottodroid extends ListActivity {
   @Override
   protected void onListItemClick(ListView l, View v, final int position, long id) {
     super.onListItemClick(l, v, position, id);
-    
-    startDetailsActivity(position);
-    
-    // There is only one option
-    //
-    //    new AlertDialog.Builder(Lottodroid.this).setTitle("Opciones").setItems(
-    //        new String[] { "Ver historial" }, new DialogInterface.OnClickListener() {
-    //          @Override
-    //          public void onClick(DialogInterface dialog, int which) {
-    //            // TODO: there is no way that not depend on button positions?
-    //            if (which == 0) {
-    //              startDetailsActivity(position);
-    //            }
-    //          }
-    //        }).show();
+  
+    if(Configuration.SERVER_MODE || Configuration.IN_MEMORY_MODE) {
+    	startDetailsActivity(position);
+    } else {
+	    new AlertDialog.Builder(Lottodroid.this).setTitle("Opciones")
+	    		.setItems(new String[] { "Otra fecha", "Ver premios" }, 
+	    				new DialogInterface.OnClickListener() {
+		    		@Override
+		    		public void onClick(DialogInterface dialog, int which) {
+		    			// TODO: there is no way that not depend on button positions?
+		    			if (which == 0) 
+		    				startFullActivity(position);
+		    			else if (which == 1) 
+		    				startFullActivity(position);
+		    		}}).show();
+    }
+
   }
 
   /** Creates the menu items */
@@ -152,6 +158,20 @@ public class Lottodroid extends ListActivity {
     // TODO(pablo): Can I remove this warning?
     LotteryViewController viewController = ViewControllerFactory.createViewController(lottery.getId());
     i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
+
+    startActivity(i);
+  }
+  
+  /** Start the new activity details for the lottery type selected */
+  private void startFullActivity(int position) {
+    Intent i = new Intent(this, FullActivity.class);
+
+    Lottery lottery = (Lottery) listView.getItemAtPosition(position);
+    
+    LotteryViewController viewController = ViewControllerFactory.createViewController(lottery.getId());
+    
+    i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
+    i.putExtra("date", DateFormatter.toLotoluckString(lottery.getDate()));
 
     startActivity(i);
   }

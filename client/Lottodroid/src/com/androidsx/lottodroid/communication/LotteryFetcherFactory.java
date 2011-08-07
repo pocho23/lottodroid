@@ -12,7 +12,8 @@ public class LotteryFetcherFactory {
   public static LotteryFetcher newLotteryFetcher(Context context)
       throws LotteryInfoUnavailableException {
     return Configuration.OFFLINE_MODE ? new MockLotteryFetcher()
-        : new ServerLotteryFetcher(context);
+        : Configuration.SERVER_MODE ? new ServerLotteryFetcher(context)
+    	: new LotoluckLotteryFetcher(context);
   }
 
 }

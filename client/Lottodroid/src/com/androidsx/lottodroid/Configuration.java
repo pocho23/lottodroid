@@ -11,6 +11,12 @@ public class Configuration {
    * be generated instead.
    */
   public static boolean OFFLINE_MODE = false;
+  
+  /**
+   * If the server mode is true, no communication with the lotoluck will be performed: parsed data will
+   * be generated instead.
+   */
+  public static boolean SERVER_MODE = false;
 
   /**
    * If the in-memory mode is true, no file accesses will be performed: mock implementations that

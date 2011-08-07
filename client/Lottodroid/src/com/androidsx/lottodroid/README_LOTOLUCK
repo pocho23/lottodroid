@@ -1,0 +1,121 @@
+-----------------------------
+* WEB SERVICE   		*
+-----------------------------
+
+El resultado de los datos viene en formato XML y cada sorteo dispone de un controlador.
+Estos datos se encuentran en la siguiente url:
+
+http://www.lotoluck.com/xml_euro/resultados_loterias.cfm?username=DroidSX&password=pablOmar
+
+Con esta búsqueda, obtendremos un xml con los últimos sorteos. Aunque podemos especializar mÃ¡s
+las búsquedas, añadiendo al final de la url el controlador &fecha= y una fecha concreta en formato
+YYYYMMDD. Ej: &fecha=20110726
+
+De momento se disponen de dichos sorteos ( a su derecha se encuentra el controlador, que se insertarÃ¡
+al final de la url; la acciÃ³n por defecto es 'view' ):
+
+	- LOTERIA PRIMITIVA {&juego=1}
+	- BONOLOTO {&juego=2}
+	- EL GORDO DE L.P. {&juego=3}
+	- LOTTO 6/49 {&juego=4}
+	- LOTERÃ�A NACIONAL.  {&juego=9}
+	- ONCE {&juego=10}
+	- CUPONAZO ONE {&juego=11}
+	- ONCE FINDE {&juego=12}
+	- QUINIELA {&juego=13}
+	- EUROMILLONES {&juego=14}
+	- COMBO {&juego=15}
+	- LOTOTURF {&juego=16}
+	- QUINTUPLE PLUS {&juego=17}
+	- EL QUINIGOL {&juego=18}
+	- LOTERIA 7/19 {&juego=19}
+	
+
+-----------------------------
+* ESTRUCTURA XML		*
+-----------------------------
+
+La estructura del xml es la siguiente:
+
+<!ELEMENT ResultadosLoterias (Juego+)>
+<!ELEMENT Juego (IdJuego,NombreJuego,IdSorteo,Fecha,Titular,Resultados,Premios)>
+<!ELEMENT IdJuego (#PCDATA)>
+<!ELEMENT NombreJuego (#PCDATA)>
+<!ELEMENT IdSorteo (#PCDATA)>
+<!ELEMENT Fecha (#PCDATA)>
+<!ELEMENT Titular (#PCDATA)>
+<!ELEMENT Resultados (Resultado+)>
+<!ELEMENT Premios (Premio+)>
+<!ELEMENT Resultado EMPTY>
+<!ATTLIST Resultado 
+	Orden CDATA #REQUIRED
+	Valor CDATA #REQUIRED
+	Significado CDATA #REQUIRED
+	Equipo1 CDATA #IMPLIED
+	GolesEquipo1 CDATA #IMPLIED
+	Equipo2 CDATA #IMPLIED
+	GolesEquipo2 CDATA #IMPLIED >
+<!ELEMENT Premio EMPTY>
+<!ATTLIST Premio 
+	Categoria CDATA #REQUIRED
+	ImporteEuros CDATA #REQUIRED
+	ImportePesetas CDATA #REQUIRED
+	Acertantes CDATA #IMPLIED 
+	AcertantesESP CDATA #IMPLIED
+	NumeroPremiado CDATA #IMPLIED >
+
+
+-----------------------------
+* EJEMPLOS		*
+-----------------------------
+
+Independientemente de la consulta, siempre recibes un xml como el que vemos a continuación:
+
+<?xml version="1.0" encoding="ISO8859-1" standalone="no"?>
+<!DOCTYPE ResultadosLoterias(View Source for full doctype...)>
+<ResultadosLoterias>
+	<Juego>
+		<IdJuego>1</IdJuego>
+		<NombreJuego>La Primitiva</NombreJuego>
+		<IdSorteo>8315</IdSorteo>
+		<Fecha>20080531</Fecha>
+		<Titular>Sorteo de La Primitiva correspondiente al 31-05-2008. Combinacion ganadora 12, 17, 31, 38, 48, 49;Complementario:2;Reintegro:8.</Titular>
+		<Resultados>
+			<Resultado Orden="1" Valor="22" Significado="Numero"/>
+			<Resultado Orden="2" Valor="27" Significado="Numero"/>
+			<Resultado Orden="3" Valor="31" Significado="Numero"/>
+			<Resultado Orden="4" Valor="38" Significado="Numero"/>
+			<Resultado Orden="5" Valor="48" Significado="Numero"/>
+			<Resultado Orden="6" Valor="49" Significado="Numero"/>
+			<Resultado Orden="7" Valor="2" Significado="Numero"/>
+			<Resultado Orden="8" Valor="8" Significado="Numero"/>
+		</Resultados>
+		<Premios>
+			<Premio Categoria="1" ImporteEuros="0.00" ImportePesetas="0" Acertantes="0"/>
+			<Premio Categoria="2" ImporteEuros="88951.86" ImportePesetas="14800344" Acertantes="5"/>
+			<Premio Categoria="3" ImporteEuros="3971.07" ImportePesetas="660730" Acertantes="224"/>
+			<Premio Categoria="4" ImporteEuros="93.20" ImportePesetas="15507" Acertantes="14317"/>
+			<Premio Categoria="5" ImporteEuros="8.00" ImportePesetas="1331" Acertantes="280799"/>
+			<Premio Categoria="R" ImporteEuros="1.00" ImportePesetas="166" Acertantes="1731792"/>
+		</Premios>
+	</Juego>
+	
+	<Juego>
+		<IdJuego>9</IdJuego>
+		<NombreJuego>Loteria Nacional</NombreJuego>
+		<IdSorteo>8312</IdSorteo>
+		<Fecha>20080531</Fecha>
+		<Titular>Sorteo de la Loteria Nacional correspondiente al 31-05-2008. Numero premiado 52927;Serio:2;Fraccion:3;Terminaciones: 2 - 6 - 7.</Titular>
+		<Resultados>
+			<Resultado Orden="1" Valor="52927" Significado="Numero"/>
+			<Resultado Orden="2" Valor="2" Significado="Serie"/>
+			<Resultado Orden="3" Valor="3" Significado="Fraccion"/>
+			<Resultado Orden="4" Valor="2 - 6 - 7" Significado="Terminaciones"/>
+		</Resultados>
+		<Premios>
+			<Premio Categoria="Primer premio" ImporteEuros="600000.00" ImportePesetas="99831600" NumeroPremiado="52927"/>
+			<Premio Categoria="Premio especial" ImporteEuros="300000.00" ImportePesetas="499158000" NumeroPremiado="52927(Frac.3, Serie2)"/>
+			<Premio Categoria="Terminaciones" ImporteEuros="Reintegros:" ImportePesetas="Reintegros:" NumeroPremiado="2 - 6 - 7"/>
+			<Premio Categoria="Segundo premio" ImporteEuros="120060.00" ImportePesetas="19976303" NumeroPremiado="51282"/>
+		</Premios>
+	</Juego>
