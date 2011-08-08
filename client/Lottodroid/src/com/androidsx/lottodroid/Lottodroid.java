@@ -1,7 +1,6 @@
 package com.androidsx.lottodroid;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
@@ -81,20 +80,31 @@ public class Lottodroid extends ListActivity {
   @Override
   protected void onListItemClick(ListView l, View v, final int position, long id) {
     super.onListItemClick(l, v, position, id);
+    
+    String[] options = null;
+    
+    Lottery lottery = (Lottery) listView.getItemAtPosition(position);
+    
+    if(lottery.getId() == LotteryId.QUINIELA || lottery.getId() == LotteryId.QUINIGOL)
+    	options = new String[] { "Otra fecha", "Ver premios", "Ver goles" };
+    else
+    	options = new String[] { "Otra fecha", "Ver premios" };
   
     if(Configuration.SERVER_MODE || Configuration.IN_MEMORY_MODE) {
     	startDetailsActivity(position);
     } else {
 	    new AlertDialog.Builder(Lottodroid.this).setTitle("Opciones")
-	    		.setItems(new String[] { "Otra fecha", "Ver premios" }, 
+	    		.setItems(options, 
 	    				new DialogInterface.OnClickListener() {
 		    		@Override
 		    		public void onClick(DialogInterface dialog, int which) {
 		    			// TODO: there is no way that not depend on button positions?
 		    			if (which == 0) 
-		    				startFullActivity(position);
+		    				startPrizeActivity(position);
 		    			else if (which == 1) 
-		    				startFullActivity(position);
+		    				startPrizeActivity(position);
+		    			else if (which == 2)
+		    				startScoresActivity(position);
 		    		}}).show();
     }
 
@@ -163,17 +173,30 @@ public class Lottodroid extends ListActivity {
   }
   
   /** Start the new activity details for the lottery type selected */
-  private void startFullActivity(int position) {
-    Intent i = new Intent(this, FullActivity.class);
+  private void startPrizeActivity(int position) {
+    Intent i = new Intent(this, PrizeActivity.class);
 
     Lottery lottery = (Lottery) listView.getItemAtPosition(position);
-    
     LotteryViewController viewController = ViewControllerFactory.createViewController(lottery.getId());
     
     i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
-    i.putExtra("date", DateFormatter.toLotoluckString(lottery.getDate()));
+    i.putExtra("date", Long.parseLong(DateFormatter.toLotoluckString(lottery.getDate())));
 
     startActivity(i);
+  }
+  
+  /** Start the new activity details for the lottery type selected */
+  private void startScoresActivity(int position) {
+	Intent i = new Intent(this, ScoresActivity.class);
+
+	Lottery lottery = (Lottery) listView.getItemAtPosition(position);
+	    
+	LotteryViewController viewController = ViewControllerFactory.createViewController(lottery.getId());
+	   
+	i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
+	i.putExtra("date", Long.parseLong(DateFormatter.toLotoluckString(lottery.getDate())));
+
+	startActivity(i);
   }
 
   /**

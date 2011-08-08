@@ -18,6 +18,33 @@ public class Primitiva implements Lottery {
 	private final int complementario;
 	private ArrayList<Premio> premios = new ArrayList<Premio>();
 
+	/** Inner class that represents a Primitiva Premio */
+	public class Premio {
+
+		private final int acertantes;
+		private final String categoria;
+		private final float importeEuros;
+		private final long importePesetas;
+
+		private Premio(int acertantes, String categoria, float importeEuros,
+				long importePesetas) {
+			this.acertantes = acertantes;
+			this.categoria = categoria;
+			this.importeEuros = importeEuros;
+			this.importePesetas = importePesetas;
+		}
+
+		@Override
+		public String toString() {
+			return new StringBuilder().append("Acertantes: ")
+					.append(acertantes).append("  Categoria: ")
+					.append(categoria).append("  ImporteEuros: ")
+					.append(importeEuros).append("  ImportePesetas: ")
+					.append(importePesetas).toString();
+		}
+	}
+
+
 	public Primitiva(Date date, int num1, int num2, int num3, int num4,
 			int num5, int num6, int reintegro, int complementario) {
 		this.date = date;
@@ -44,47 +71,20 @@ public class Primitiva implements Lottery {
 	public int getNumPremios() {
 		return premios.size();
 	}
+	public int getAcetantes(int index) {
+		return premios.get(index).acertantes;
+	}
 
-	/** Inner class that represents a Primitiva Premio */
-	public class Premio {
+	public String getCategoria(int index) {
+		return premios.get(index).categoria;
+	}
 
-		private final int acertantes;
-		private final String categoria;
-		private final float importeEuros;
-		private final long importePesetas;
+	public float getImporteEuros(int index) {
+		return premios.get(index).importeEuros;
+	}
 
-		private Premio(int acertantes, String categoria, float importeEuros,
-				long importePesetas) {
-			this.acertantes = acertantes;
-			this.categoria = categoria;
-			this.importeEuros = importeEuros;
-			this.importePesetas = importePesetas;
-		}
-
-		public int getAcetantes() {
-			return acertantes;
-		}
-
-		public String getCategoria() {
-			return categoria;
-		}
-
-		public float getImporteEuros() {
-			return importeEuros;
-		}
-
-		public long getImportePesetas() {
-			return importePesetas;
-		}
-
-		@Override
-		public String toString() {
-			return new StringBuilder().append("Acertantes: ")
-					.append(acertantes).append("  Categoria: ")
-					.append(categoria).append("  ImporteEuros: ")
-					.append(importeEuros).append("  ImportePesetas: ")
-					.append(importePesetas).toString();
-		}
+	public long getImportePesetas(int index) {
+		return premios.get(index).importePesetas;
 	}
 
 	public int getNum1() {

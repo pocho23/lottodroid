@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="fill_parent"
+  android:layout_width="fill_parent"
+  android:paddingTop="4dp">
+  <TableRow>
+
+    <TextView
+      android:text="C:"
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtAwardCategory"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
+
+	<TextView
+      android:text="Acertantes:"
+      android:padding="5dip"
+      android:textColor="#fee"
+      android:id="@+id/txtAct" />
+    <TextView
+      android:id="@+id/txtNumAcertantes"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
+
+    <TextView
+      android:text="Premio:"
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtImporteEuros"
+      android:text="OOPS" />
+      
+  </TableRow>
+</TableLayout>

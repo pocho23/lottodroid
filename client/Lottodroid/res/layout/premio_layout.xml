@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+
+
+	<TextView android:id="@+id/premios_title"
+		android:layout_width='fill_parent' android:layout_height='fill_parent'
+		android:layout_weight='1' android:textStyle="bold" android:textSize="16px"
+		android:layout_marginTop='5dip' android:singleLine='true'
+		android:ellipsize='marquee' android:text='Premios' />
+
+	<ScrollView android:layout_width="fill_parent" android:id="@+id/scrollView1"
+		android:layout_height="wrap_content">
+
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:id="@+id/premio_list_row">
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

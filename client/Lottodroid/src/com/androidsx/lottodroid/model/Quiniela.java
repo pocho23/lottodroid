@@ -7,7 +7,7 @@ import java.util.Date;
  * Results for a Quiniela draw.
  * 
  */
-public class Quiniela implements Lottery {
+public class Quiniela implements FootballLotery {
 
 	public static final int NUM_MATCHES = 15;
 	
@@ -36,18 +36,6 @@ public class Quiniela implements Lottery {
 			this.homeTeam = homeTeam;
 			this.awayTeam = awayTeam;
 			this.result = result;
-		}
-
-		public String getHomeTeam() {
-			return homeTeam;
-		}
-
-		public String getAwayTeam() {
-			return awayTeam;
-		}
-
-		public String getResult() {
-			return result;
 		}
 	}
 
@@ -104,20 +92,6 @@ public class Quiniela implements Lottery {
 		return listMatches[matchNumber].result;
 	}
 
-	public void addPremio(int acertantes, String categoria, float importeEuros,
-			long importePesetas) {
-		premios.add(new Premio(acertantes, categoria, importeEuros,
-				importePesetas));
-	}
-
-	public Premio getPremio(int index) {
-		return premios.get(index);
-	}
-
-	public int getNumPremios() {
-		return premios.size();
-	}
-	
 	/** Inner class that represents a Quinigol Score */
 	private class Score {
 		private int homeScore;
@@ -126,13 +100,6 @@ public class Quiniela implements Lottery {
 		public Score(int homeScore, int awayScore) {
 			this.homeScore = homeScore;
 			this.awayScore = awayScore;
-		}
-		
-		public int getHomeScore(){
-			return homeScore;
-		}
-		public int getAwayScore(){
-			return awayScore;
 		}
 	}
 	
@@ -187,22 +154,6 @@ public class Quiniela implements Lottery {
 			this.importePesetas = importePesetas;
 		}
 
-		public int getAcetantes() {
-			return acertantes;
-		}
-
-		public String getCategoria() {
-			return categoria;
-		}
-
-		public float getImporteEuros() {
-			return importeEuros;
-		}
-
-		public long getImportePesetas() {
-			return importePesetas;
-		}
-
 		@Override
 		public String toString() {
 			return new StringBuilder().append("Acertantes: ")
@@ -212,6 +163,37 @@ public class Quiniela implements Lottery {
 					.append(importePesetas).toString();
 		}
 	}
+	
+	public void addPremio(int acertantes, String categoria, float importeEuros,
+			long importePesetas) {
+		premios.add(new Premio(acertantes, categoria, importeEuros,
+				importePesetas));
+	}
+
+	public Premio getPremio(int index) {
+		return premios.get(index);
+	}
+
+	public int getNumPremios() {
+		return premios.size();
+	}
+
+	public int getAcetantes(int index) {
+		return premios.get(index).acertantes;
+	}
+
+	public String getCategoria(int index) {
+		return premios.get(index).categoria;
+	}
+
+	public float getImporteEuros(int index) {
+		return premios.get(index).importeEuros;
+	}
+
+	public long getImportePesetas(int index) {
+		return premios.get(index).importePesetas;
+	}
+
 
 	@Override
 	public LotteryId getId() {
@@ -228,4 +210,8 @@ public class Quiniela implements Lottery {
 		return "Quiniela";
 	}
 
+	@Override
+	public int getNumMatches() {
+		return NUM_MATCHES;
+	}
 }

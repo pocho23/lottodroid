@@ -15,17 +15,17 @@ import com.androidsx.lottodroid.model.Lottery;
 import com.androidsx.lottodroid.model.LotteryId;
 import com.androidsx.lottodroid.view.LotteryViewController;
 
-public class FullActivity extends Activity {
+public class PrizeActivity extends Activity {
 
-	public static final String TAG = FullActivity.class.toString();
+	public static final String TAG = PrizeActivity.class.toString();
 	private LinearLayout fullView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.full_view);
-		fullView = (LinearLayout) findViewById(R.id.full);
+		setContentView(R.layout.prize_view);
+		fullView = (LinearLayout) findViewById(R.id.prize);
 
 		try {
 			Bundle extras = getIntent().getExtras();
@@ -34,19 +34,12 @@ public class FullActivity extends Activity {
 			}
 
 			// Get the date, set from the main activity
-			String date = (String) extras.getSerializable("date");
+			String date = (String) extras.getSerializable("date").toString();
 
 			// Get the view controller, set from the main activity
 			@SuppressWarnings("unchecked")
 			LotteryViewController<Lottery> viewController = (LotteryViewController) extras
 					.getSerializable(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER);
-
-			// set the icon and title
-			// ImageView iconCtrl = (ImageView) findViewById(R.id.icon);
-			// TextView titleCtrl = (TextView) findViewById(R.id.title);
-
-			// titleCtrl.setText(viewController.getTitle());
-			// iconCtrl.setImageResource(viewController.getIconResource());
 
 			fetchDataForFullView(date, viewController);
 
@@ -65,7 +58,7 @@ public class FullActivity extends Activity {
 
 			LotteryId lotteryId = viewController.getId();
 			LotteryFetcher dataFetcher = LotteryFetcherFactory
-					.newLotteryFetcher(FullActivity.this);
+					.newLotteryFetcher(PrizeActivity.this);
 
 			List<? extends Lottery> listLottery;
 
@@ -91,9 +84,8 @@ public class FullActivity extends Activity {
 			}
 			
 			fullView.addView(viewController.createAndFillUpMainView(listLottery.get(0), this));
-			//setContentView(viewController.createAndFillUpMainView(listLottery.get(0), this));
+			fullView.addView(viewController.createAndFillUpFullView(listLottery.get(0), this));
 
-			// TODO Change ViewController or add another controller for prices
 
 		} catch (LotteryInfoUnavailableException e) {
 			Log.e(TAG, "Lottery info unavailable", e);

@@ -30,18 +30,6 @@ public class LoteriaNacional implements Lottery {
 		this.reintegro3 = reintegro3;
 	}
 
-	public void addPremio(String categoria, float importeEuros, long importePesetas) {
-		premios.add(new Premio(categoria, importeEuros,	importePesetas));
-	}
-
-	public Premio getPremio(int index) {
-		return premios.get(index);
-	}
-
-	public int getNumPremios() {
-		return premios.size();
-	}
-
 	/** Inner class that represents a LoteriaNacional Premio */
 	public class Premio {
 
@@ -56,18 +44,6 @@ public class LoteriaNacional implements Lottery {
 			this.importePesetas = importePesetas;
 		}
 
-		public String getCategoria() {
-			return categoria;
-		}
-
-		public float getImporteEuros() {
-			return importeEuros;
-		}
-
-		public long getImportePesetas() {
-			return importePesetas;
-		}
-
 		@Override
 		public String toString() {
 			return new StringBuilder().append("  Categoria: ")
@@ -76,7 +52,31 @@ public class LoteriaNacional implements Lottery {
 					.append(importePesetas).toString();
 		}
 	}
+	
+	public void addPremio(String categoria, float importeEuros, long importePesetas) {
+		premios.add(new Premio(categoria, importeEuros,	importePesetas));
+	}
 
+	public Premio getPremio(int index) {
+		return premios.get(index);
+	}
+
+	public int getNumPremios() {
+		return premios.size();
+	}
+
+	public String getCategoria(int index) {
+		return premios.get(index).categoria;
+	}
+
+	public float getImporteEuros(int index) {
+		return premios.get(index).importeEuros;
+	}
+
+	public long getImportePesetas(int index) {
+		return premios.get(index).importePesetas;
+	}
+	
 	public int getPremio1() {
 		return premio1;
 	}

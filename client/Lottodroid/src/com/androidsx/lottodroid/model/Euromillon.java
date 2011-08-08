@@ -29,20 +29,6 @@ public class Euromillon implements Lottery {
 		this.estrella2 = estrella2;
 	}
 
-	public void addPremio(int acertantes, int acertantesEsp, String categoria, float importeEuros,
-			long importePesetas) {
-		premios.add(new Premio(acertantes, acertantesEsp, categoria, importeEuros,
-				importePesetas));
-	}
-
-	public Premio getPremio(int index) {
-		return premios.get(index);
-	}
-
-	public int getNumPremios() {
-		return premios.size();
-	}
-
 	/** Inner class that represents a Euromillon Premio */
 	public class Premio {
 
@@ -61,26 +47,6 @@ public class Euromillon implements Lottery {
 			this.importePesetas = importePesetas;
 		}
 
-		public int getAcetantes() {
-			return acertantes;
-		}
-		
-		public int getAcetantesEsp() {
-			return acertantesEsp;
-		}
-
-		public String getCategoria() {
-			return categoria;
-		}
-
-		public float getImporteEuros() {
-			return importeEuros;
-		}
-
-		public long getImportePesetas() {
-			return importePesetas;
-		}
-
 		@Override
 		public String toString() {
 			return new StringBuilder().append("Acertantes: ")
@@ -90,6 +56,40 @@ public class Euromillon implements Lottery {
 					.append(importeEuros).append("  ImportePesetas: ")
 					.append(importePesetas).toString();
 		}
+	}
+	
+	public void addPremio(int acertantes, int acertantesEsp, String categoria, float importeEuros,
+			long importePesetas) {
+		premios.add(new Premio(acertantes, acertantesEsp, categoria, importeEuros,
+				importePesetas));
+	}
+
+	public Premio getPremio(int index) {
+		return premios.get(index);
+	}
+
+	public int getNumPremios() {
+		return premios.size();
+	}
+	
+	public int getAcetantes(int index) {
+		return premios.get(index).acertantes;
+	}
+	
+	public int getAcetantesEsp(int index) {
+		return premios.get(index).acertantesEsp;
+	}
+
+	public String getCategoria(int index) {
+		return premios.get(index).categoria;
+	}
+
+	public float getImporteEuros(int index) {
+		return premios.get(index).importeEuros;
+	}
+
+	public long getImportePesetas(int index) {
+		return premios.get(index).importePesetas;
 	}
 
 	public int getNum1() {

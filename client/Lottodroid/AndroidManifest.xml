@@ -12,7 +12,8 @@
         </activity>
         <activity android:name="DetailsActivity"></activity>  
         <activity android:name="SortingActivity"></activity>
-        <activity android:name="FullActivity"></activity>
+        <activity android:name="PrizeActivity"></activity>
+        <activity android:name="ScoresActivity"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission> 
