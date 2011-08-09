@@ -25,7 +25,23 @@ public class DateFormatter {
     return formatter.format(date);
   }
   
-  public static String toLotoluckString(Date date) {
-	    return formatterLotoluck.format(date);
+  public static long toLotoluckString(Date date) {
+	return Long.parseLong(formatterLotoluck.format(date));
   }
+  
+  public static long toLotoluckString(int year, int month, int day) {
+	StringBuilder date = new StringBuilder();
+	date.append(year);
+	
+	if(month < 10)
+		date.append(0);
+	date.append(month);
+	
+	if(day < 10) 
+		date.append(0);
+	date.append(day);
+	
+	return Long.parseLong(date.toString());
+}
+  
 }

@@ -34,7 +34,7 @@ public class PrizeActivity extends Activity {
 			}
 
 			// Get the date, set from the main activity
-			String date = (String) extras.getSerializable("date").toString();
+			Long date = (Long) extras.getSerializable("date");
 
 			// Get the view controller, set from the main activity
 			@SuppressWarnings("unchecked")
@@ -51,7 +51,7 @@ public class PrizeActivity extends Activity {
 
 	}
 
-	private void fetchDataForFullView(String date,
+	private void fetchDataForFullView(Long date,
 			LotteryViewController viewController) {
 
 		try {

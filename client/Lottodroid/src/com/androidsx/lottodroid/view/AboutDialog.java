@@ -35,7 +35,7 @@ public class AboutDialog extends AlertDialog {
 
             emailIntent.setType("plain/text");
             emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {
-                "android.sx@gmail.com" });
+                "lottodroid-support@androidsx.com" });
 
             /* Send it off to the Activity-Chooser */
             context.startActivity(Intent.createChooser(emailIntent, "Send mail"));

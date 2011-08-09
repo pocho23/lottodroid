@@ -55,7 +55,8 @@ public class SortingActivity extends ListActivity {
 
     setContentView(R.layout.main_order_mode);
     
-    final List<LotteryId> lotteryIds = (List<LotteryId>) getIntent().getExtras().getSerializable(
+    @SuppressWarnings("unchecked")
+	final List<LotteryId> lotteryIds = (List<LotteryId>) getIntent().getExtras().getSerializable(
         IntentExtraDataNames.SORTER_IN);
     adapter = new SortingViewAdapter(this, lotteryIds);
     setListAdapter(adapter);
@@ -82,8 +83,4 @@ public class SortingActivity extends ListActivity {
     
     Toast.makeText(this, "Desplaza cada sorteo al lugar deseado", Toast.LENGTH_LONG).show();
   }
-  
-  
-  
-  
 }

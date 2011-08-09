@@ -1,37 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_height="fill_parent"
-  android:layout_width="fill_parent"
-  android:paddingTop="4dp">
-  <TableRow>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent" android:layout_width="fill_parent"
+	android:orientation="horizontal" android:paddingTop="7dp">
 
-    <TextView
-      android:text="C:"
-      android:padding="5dip"
-      android:textColor="#fee" />
-    <TextView
-      android:id="@+id/txtAwardCategory"
-      android:paddingRight="15dip"
-      android:text="OOPS" />
+	<TextView android:text="C:" android:textColor="#fee"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" />
+	<TextView android:id="@+id/txtAwardCategory"
+		android:paddingLeft="18dip" android:text="OPS" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
 
-	<TextView
-      android:text="Acertantes:"
-      android:padding="5dip"
-      android:textColor="#fee"
-      android:id="@+id/txtAct" />
-    <TextView
-      android:id="@+id/txtNumAcertantes"
-      android:paddingRight="15dip"
-      android:text="OOPS" />
+	<TextView android:text="Acertantes:" android:textColor="#fee"
+		android:id="@+id/txtAct" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:paddingLeft="45dp"/>
+	<TextView android:id="@+id/txtNumAcertantes"
+		android:paddingLeft="123dip" android:text="OOPS" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
 
-    <TextView
-      android:text="Premio:"
-      android:padding="5dip"
-      android:textColor="#fee" />
-    <TextView
-      android:id="@+id/txtImporteEuros"
-      android:text="OOPS" />
-      
-  </TableRow>
-</TableLayout>
+	<TextView android:text="Premio:" android:textColor="#fee"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:paddingLeft="184dp" />
+	<TextView android:id="@+id/txtImporteEuros" android:text="OOPS"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:paddingLeft="239dp" />
+
+</AbsoluteLayout>

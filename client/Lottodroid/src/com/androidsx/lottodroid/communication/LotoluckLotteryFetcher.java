@@ -43,7 +43,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 	public List<Lottery> retrieveLastAllLotteries()
 			throws LotteryInfoUnavailableException {
 		try {
-			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.SORTEOS, "");
+			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.SORTEOS, 0);
 			//String response = HttpRequestPerformer.getResponse(url);
 			
 			return LotteryXMLParser.parseAllLotteries(url);
@@ -60,8 +60,8 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			String url;
 			StringBuilder response = new StringBuilder();
 			do {
-				url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.BONOLOTO, DateLotteries.getPreviousBonoloto(
-						DateLotteries.getCurrentDate()));
+				url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.BONOLOTO,
+						Long.parseLong(DateLotteries.getPreviousBonoloto(DateLotteries.getCurrentDate())));
 				//response.append(HttpRequestPerformer.getResponse(url));
 			} while (++start < limit);
 			return LotteryXMLParser.parseBonoloto(url);
@@ -78,8 +78,8 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			String url;
 			StringBuilder response = new StringBuilder();
 			do {
-				url = LotoluckLotteryFetcher.buildLotteryUrl(
-						LotteryXMLParser.GORDO_PRIMITIVA, DateLotteries.getPreviousGordoPrimitiva(DateLotteries.getCurrentDate()));
+				url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.GORDO_PRIMITIVA,
+						Long.parseLong(DateLotteries.getPreviousGordoPrimitiva(DateLotteries.getCurrentDate())));
 				response.append(HttpRequestPerformer.getResponse(url));
 			} while (++start < limit);
 			return LotteryXMLParser.parseGordoPrimitiva(response.toString());
@@ -97,7 +97,8 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			String url;
 			StringBuilder response = new StringBuilder();
 			do {
-			url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.QUINIELA, DateLotteries.getPreviousQuiniela(DateLotteries.getCurrentDate()));
+			url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.QUINIELA,
+					Long.parseLong(DateLotteries.getPreviousQuiniela(DateLotteries.getCurrentDate())));
 			response.append(HttpRequestPerformer.getResponse(url));
 			} while (++start < limit);
 			return LotteryXMLParser.parseQuiniela(response.toString());
@@ -115,7 +116,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			StringBuilder response = new StringBuilder();
 			do {
 			url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.PRIMITIVA,
-					DateLotteries.getPreviousPrimitiva(DateLotteries.getCurrentDate()));
+					Long.parseLong(DateLotteries.getPreviousPrimitiva(DateLotteries.getCurrentDate())));
 			response.append(HttpRequestPerformer.getResponse(url));
 			} while (++start < limit);
 			return LotteryXMLParser.parsePrimitiva(response.toString());
@@ -133,7 +134,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			StringBuilder response = new StringBuilder();
 			do {
 			url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.LOTOTURF,
-					DateLotteries.getPreviousLotortuf((DateLotteries.getCurrentDate())));
+					Long.parseLong(DateLotteries.getPreviousLotortuf((DateLotteries.getCurrentDate()))));
 			response.append(HttpRequestPerformer.getResponse(url));
 			} while (++start < limit);
 			return LotteryXMLParser.parseLototurf(response.toString());
@@ -151,7 +152,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			StringBuilder response = new StringBuilder();
 			do {
 			url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.EUROMILLONES,
-					DateLotteries.getPreviousEuromillon(DateLotteries.getCurrentDate()));
+					Long.parseLong(DateLotteries.getPreviousEuromillon(DateLotteries.getCurrentDate())));
 			response.append(HttpRequestPerformer.getResponse(url));
 			} while (++start < limit);
 			return LotteryXMLParser.parseEuromillon(response.toString());
@@ -168,8 +169,8 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			String url;
 			StringBuilder response = new StringBuilder();
 			do {
-			url = LotoluckLotteryFetcher.buildLotteryUrl(
-					LotteryXMLParser.LOTERIA_NACIONAL, DateLotteries.getPreviousLoteriaNacional(DateLotteries.getCurrentDate()));
+			url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.LOTERIA_NACIONAL,
+					Long.parseLong(DateLotteries.getPreviousLoteriaNacional(DateLotteries.getCurrentDate())));
 			response.append(HttpRequestPerformer.getResponse(url));
 			} while (++start < limit);
 			return LotteryXMLParser.parseLoteriaNacional(response.toString());
@@ -188,7 +189,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			StringBuilder response = new StringBuilder();
 			do {
 			url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.QUINIGOL, 
-					DateLotteries.getPreviousQuinigol(DateLotteries.getCurrentDate()));
+					Long.parseLong(DateLotteries.getPreviousQuinigol(DateLotteries.getCurrentDate())));
 			response.append(HttpRequestPerformer.getResponse(url));
 			} while (++start < limit);
 			return LotteryXMLParser.parseQuinigol(response.toString());
@@ -206,7 +207,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 	 *            from last result )
 	 * @param limit Number of results to retrieve
 	 */
-	private static String buildLotteryUrl(int lotteryController, String date) {
+	private static String buildLotteryUrl(int lotteryController, long date) {
 		StringBuilder url = new StringBuilder();
 
 		url.append(URL_STRING);
@@ -223,7 +224,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 	}
 
 	@Override
-	public List<Bonoloto> retrieveBonolotos(String date)
+	public List<Bonoloto> retrieveBonolotos(Long date)
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.BONOLOTO, date);
@@ -237,7 +238,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 	}
 
 	@Override
-	public List<Quiniela> retrieveQuinielas(String date)
+	public List<Quiniela> retrieveQuinielas(Long date)
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.QUINIELA, date);
@@ -251,7 +252,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 	}
 
 	@Override
-	public List<GordoPrimitiva> retrieveGordoPrimitivas(String date)
+	public List<GordoPrimitiva> retrieveGordoPrimitivas(Long date)
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.GORDO_PRIMITIVA, date);
@@ -265,7 +266,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 	}
 
 	@Override
-	public List<Primitiva> retrievePrimitivas(String date)
+	public List<Primitiva> retrievePrimitivas(Long date)
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.PRIMITIVA, date);
@@ -279,7 +280,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 	}
 
 	@Override
-	public List<Lototurf> retrieveLototurfs(String date)
+	public List<Lototurf> retrieveLototurfs(Long date)
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.LOTOTURF, date);
@@ -293,7 +294,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 	}
 
 	@Override
-	public List<LoteriaNacional> retrieveLoteriasNacionales(String date)
+	public List<LoteriaNacional> retrieveLoteriasNacionales(Long date)
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.LOTERIA_NACIONAL, date);
@@ -307,7 +308,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 	}
 
 	@Override
-	public List<Quinigol> retrieveQuinigoles(String date)
+	public List<Quinigol> retrieveQuinigoles(Long date)
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.QUINIGOL, date);
@@ -321,7 +322,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 	}
 
 	@Override
-	public List<Euromillon> retrieveEuromillones(String date)
+	public List<Euromillon> retrieveEuromillones(Long date)
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.EUROMILLONES, date);

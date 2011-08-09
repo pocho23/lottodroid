@@ -60,28 +60,28 @@ public interface LotteryFetcher {
    * @param date the date to make the search
    * @return a list of {@link Bonoloto} objects
    */
-  List<Bonoloto> retrieveBonolotos(String date) throws LotteryInfoUnavailableException;
+  List<Bonoloto> retrieveBonolotos(Long date) throws LotteryInfoUnavailableException;
 
   /** @see {@link #retrieveBonolotos} */
-  List<Quiniela> retrieveQuinielas(String date) throws LotteryInfoUnavailableException;
+  List<Quiniela> retrieveQuinielas(Long date) throws LotteryInfoUnavailableException;
   
   /** @see {@link #retrieveBonolotos} */
-  List<GordoPrimitiva> retrieveGordoPrimitivas(String date) throws LotteryInfoUnavailableException;
+  List<GordoPrimitiva> retrieveGordoPrimitivas(Long date) throws LotteryInfoUnavailableException;
   
   /** @see {@link #retrieveBonolotos} */
-  List<Primitiva> retrievePrimitivas(String date) throws LotteryInfoUnavailableException;
+  List<Primitiva> retrievePrimitivas(Long date) throws LotteryInfoUnavailableException;
 
   /** @see {@link #retrieveBonolotos} */
-  List<Lototurf> retrieveLototurfs(String date) throws LotteryInfoUnavailableException;
+  List<Lototurf> retrieveLototurfs(Long date) throws LotteryInfoUnavailableException;
   
   /** @see {@link #retrieveBonolotos} */
-  List<LoteriaNacional> retrieveLoteriasNacionales(String date) throws LotteryInfoUnavailableException;
+  List<LoteriaNacional> retrieveLoteriasNacionales(Long date) throws LotteryInfoUnavailableException;
   
   /** @see {@link #retrieveBonolotos} */
-  List<Quinigol> retrieveQuinigoles(String date) throws LotteryInfoUnavailableException;
+  List<Quinigol> retrieveQuinigoles(Long date) throws LotteryInfoUnavailableException;
   
   /** @see {@link #retrieveBonolotos} */
-  List<Euromillon> retrieveEuromillones(String date) throws LotteryInfoUnavailableException;
+  List<Euromillon> retrieveEuromillones(Long date) throws LotteryInfoUnavailableException;
   
 
 }

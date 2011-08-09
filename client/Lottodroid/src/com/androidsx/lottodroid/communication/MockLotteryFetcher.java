@@ -249,56 +249,56 @@ class MockLotteryFetcher implements LotteryFetcher {
   }
 
   	@Override
-	public List<Bonoloto> retrieveBonolotos(String date)
+	public List<Bonoloto> retrieveBonolotos(Long date)
 			throws LotteryInfoUnavailableException {
 		// This method is just used when retrieve data from Lotoluck
 		return null;
 	}
 	
 	@Override
-	public List<Quiniela> retrieveQuinielas(String date)
+	public List<Quiniela> retrieveQuinielas(Long date)
 			throws LotteryInfoUnavailableException {
 		// This method is just used when retrieve data from Lotoluck
 		return null;
 	}
 	
 	@Override
-	public List<GordoPrimitiva> retrieveGordoPrimitivas(String date)
+	public List<GordoPrimitiva> retrieveGordoPrimitivas(Long date)
 			throws LotteryInfoUnavailableException {
 		// This method is just used when retrieve data from Lotoluck
 		return null;
 	}
 	
 	@Override
-	public List<Primitiva> retrievePrimitivas(String date)
+	public List<Primitiva> retrievePrimitivas(Long date)
 			throws LotteryInfoUnavailableException {
 		// This method is just used when retrieve data from Lotoluck
 		return null;
 	}
 	
 	@Override
-	public List<Lototurf> retrieveLototurfs(String date)
+	public List<Lototurf> retrieveLototurfs(Long date)
 			throws LotteryInfoUnavailableException {
 		// This method is just used when retrieve data from Lotoluck
 		return null;
 	}
 	
 	@Override
-	public List<LoteriaNacional> retrieveLoteriasNacionales(String date)
+	public List<LoteriaNacional> retrieveLoteriasNacionales(Long date)
 			throws LotteryInfoUnavailableException {
 		// This method is just used when retrieve data from Lotoluck
 		return null;
 	}
 	
 	@Override
-	public List<Quinigol> retrieveQuinigoles(String date)
+	public List<Quinigol> retrieveQuinigoles(Long date)
 			throws LotteryInfoUnavailableException {
 		// This method is just used when retrieve data from Lotoluck
 		return null;
 	}
 	
 	@Override
-	public List<Euromillon> retrieveEuromillones(String date)
+	public List<Euromillon> retrieveEuromillones(Long date)
 			throws LotteryInfoUnavailableException {
 		// This method is just used when retrieve data from Lotoluck
 		return null;

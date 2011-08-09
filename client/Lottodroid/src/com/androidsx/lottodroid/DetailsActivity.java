@@ -44,7 +44,7 @@ public class DetailsActivity extends ExpandableListActivity {
       
       // Get the view controller, set from the main activity
       @SuppressWarnings("unchecked")
-      LotteryViewController<Lottery> viewController = (LotteryViewController) extras
+      LotteryViewController<? extends Lottery> viewController = (LotteryViewController<? extends Lottery>) extras
           .getSerializable(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER);
       
       // set the icon and title

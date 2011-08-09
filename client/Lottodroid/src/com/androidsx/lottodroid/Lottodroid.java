@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.androidsx.lottodroid.calendar.CalendarActivity;
 import com.androidsx.lottodroid.communication.LotteryFetcher;
 import com.androidsx.lottodroid.communication.LotteryFetcherFactory;
 import com.androidsx.lottodroid.communication.LotteryInfoUnavailableException;
@@ -100,7 +101,7 @@ public class Lottodroid extends ListActivity {
 		    		public void onClick(DialogInterface dialog, int which) {
 		    			// TODO: there is no way that not depend on button positions?
 		    			if (which == 0) 
-		    				startPrizeActivity(position);
+		    				startCalendarActivity(position);
 		    			else if (which == 1) 
 		    				startPrizeActivity(position);
 		    			else if (which == 2)
@@ -149,7 +150,8 @@ public class Lottodroid extends ListActivity {
       Log.i(TAG, "The subactivity did not produce any changes");
     } else { // resultCode is probably RESULT_OK
         Log.i(TAG, "The subactivity has changed the order");
-        final List<LotteryId> lotteryIds = (List<LotteryId>) intent.getExtras()
+        @SuppressWarnings("unchecked")
+		final List<LotteryId> lotteryIds = (List<LotteryId>) intent.getExtras()
           .getSerializable(IntentExtraDataNames.SORTER_OUT);
         sorter.setOrder(lotteryIds);
         adapter.refresh();
@@ -164,37 +166,48 @@ public class Lottodroid extends ListActivity {
 
     Lottery lottery = (Lottery) listView.getItemAtPosition(position);
     
-    @SuppressWarnings("unchecked")
-    // TODO(pablo): Can I remove this warning?
-    LotteryViewController viewController = ViewControllerFactory.createViewController(lottery.getId());
+    LotteryViewController<? extends Lottery> viewController = ViewControllerFactory.createViewController(lottery.getId());
     i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
 
     startActivity(i);
   }
+
+  /** Start the new activity calendar for the lottery type selected */
+  private void startCalendarActivity(int position) {
+    Intent i = new Intent(this, CalendarActivity.class);
+
+    Lottery lottery = (Lottery) listView.getItemAtPosition(position);
+    LotteryViewController<? extends Lottery> viewController = ViewControllerFactory.createViewController(lottery.getId());
+    
+    i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
+    i.putExtra("date", DateFormatter.toLotoluckString(lottery.getDate()));
+
+    startActivity(i);
+  }
   
-  /** Start the new activity details for the lottery type selected */
+  /** Start the new activity prize for the lottery type selected */
   private void startPrizeActivity(int position) {
     Intent i = new Intent(this, PrizeActivity.class);
 
     Lottery lottery = (Lottery) listView.getItemAtPosition(position);
-    LotteryViewController viewController = ViewControllerFactory.createViewController(lottery.getId());
+    LotteryViewController<? extends Lottery> viewController = ViewControllerFactory.createViewController(lottery.getId());
     
     i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
-    i.putExtra("date", Long.parseLong(DateFormatter.toLotoluckString(lottery.getDate())));
+    i.putExtra("date", DateFormatter.toLotoluckString(lottery.getDate()));
 
     startActivity(i);
   }
   
-  /** Start the new activity details for the lottery type selected */
+  /** Start the new activity scores for the lottery type selected */
   private void startScoresActivity(int position) {
 	Intent i = new Intent(this, ScoresActivity.class);
 
 	Lottery lottery = (Lottery) listView.getItemAtPosition(position);
 	    
-	LotteryViewController viewController = ViewControllerFactory.createViewController(lottery.getId());
+	LotteryViewController<? extends Lottery> viewController = ViewControllerFactory.createViewController(lottery.getId());
 	   
 	i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
-	i.putExtra("date", Long.parseLong(DateFormatter.toLotoluckString(lottery.getDate())));
+	i.putExtra("date", DateFormatter.toLotoluckString(lottery.getDate()));
 
 	startActivity(i);
   }
