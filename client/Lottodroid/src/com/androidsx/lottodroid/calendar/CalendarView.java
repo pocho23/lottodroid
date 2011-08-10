@@ -17,16 +17,24 @@
 package com.androidsx.lottodroid.calendar;
 
 import java.util.Calendar;
+import java.util.zip.DataFormatException;
 
+import com.androidsx.lottodroid.IntentExtraDataNames;
 import com.androidsx.lottodroid.R;
+import com.androidsx.lottodroid.model.Lottery;
+import com.androidsx.lottodroid.util.DateLotteries;
+import com.androidsx.lottodroid.view.LotteryViewController;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.MonthDisplayHelper;
 import android.view.MotionEvent;
 import android.widget.ImageView;
@@ -37,6 +45,8 @@ import android.widget.ImageView;
  *
  */
 public class CalendarView extends ImageView {
+	
+	public static final String TAG = CalendarView.class.toString();
 	
     private static int WEEK_TOP_MARGIN = 74;
     private static int WEEK_LEFT_MARGIN = 40;
@@ -54,6 +64,7 @@ public class CalendarView extends ImageView {
     private OnCalendarCreated onCalendarCreated = null;
     private MonthDisplayHelper mHelper;
     private Drawable mDecoration = null;
+    private LotteryViewController<Lottery> viewController;
     
     /**
      * It will be called when a day is touched.
@@ -88,7 +99,22 @@ public class CalendarView extends ImageView {
 
 	public CalendarView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		mDecoration = context.getResources().getDrawable(R.drawable.typeb_calendar_today);		
+		mDecoration = context.getResources().getDrawable(R.drawable.typeb_calendar_today);
+		
+		try {
+			Bundle extras = ((Activity)context).getIntent().getExtras();
+
+			if (extras == null) {
+				throw new DataFormatException();
+			}
+			// Get the view controller, set from the main activity
+			viewController = (LotteryViewController) extras
+					.getSerializable(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER);
+		} catch (DataFormatException e) {
+			Log.e(TAG, "Errors passing data from main activity", e);
+		} catch (IllegalStateException e) {
+			Log.e(TAG, "Fatal error: " + e.getMessage());
+		}		
 		initCalendarView();
 	}
 	
@@ -142,21 +168,30 @@ public class CalendarView extends ImageView {
 	    }
 
 	    Calendar today = Calendar.getInstance();
-	    int thisDay = 0;
+	    // we instantiate it to 32 to be out of the month
+	    int thisDay = 32;
 	    mToday = null;
 	    
 	    boolean correctYear = mHelper.getYear() == today.get(Calendar.YEAR);
 	    boolean correctMonth = mHelper.getMonth() == today.get(Calendar.MONTH);
 	    
+	    boolean beforeThisYear = mHelper.getYear() <= Calendar.getInstance().get(Calendar.YEAR);
+	    boolean beforeThisMonth = mHelper.getMonth() <= Calendar.getInstance().get(Calendar.MONTH);
+	    
 	    if(correctYear && correctMonth) {
 	    	thisDay = today.get(Calendar.DAY_OF_MONTH);
 	    }
+	    
+	    boolean beforeToday;
 		// build cells
 		Rect Bound = new Rect(CELL_MARGIN_LEFT, CELL_MARGIN_TOP, CELL_WIDTH+CELL_MARGIN_LEFT, CELL_HEIGH+CELL_MARGIN_TOP);
 		for(int week=0; week<mCells.length; week++) {
 			for(int day=0; day<mCells[week].length; day++) {
 				if(tmpCalendar[week][day].isThisMonth()) {
-					if(day==0 || day==6 )
+					beforeToday = tmpCalendar[week][day].day < thisDay;
+					if(DateLotteries.isALotteryDay(viewController.getId(), day) && beforeToday && beforeThisMonth && beforeThisYear)
+						mCells[week][day] = new BlueCell(tmpCalendar[week][day].day, tmpCalendar[week][day].month, new Rect(Bound), CELL_TEXT_SIZE);
+					else if(day==0 || day==6)
 						mCells[week][day] = new RedCell(tmpCalendar[week][day].day, tmpCalendar[week][day].month, new Rect(Bound), CELL_TEXT_SIZE);
 					else 
 						mCells[week][day] = new Cell(tmpCalendar[week][day].day, tmpCalendar[week][day].month, new Rect(Bound), CELL_TEXT_SIZE);
@@ -280,7 +315,8 @@ public class CalendarView extends ImageView {
 	}
 	
 	/**
-	 * Extends the class Cell in order to provide a grey color
+	 * Extends the class Cell in order to provide a grey color.
+	 * It is used for the days of another month.
 	 * @author Hugo
 	 *
 	 */
@@ -293,6 +329,7 @@ public class CalendarView extends ImageView {
 	
 	/**
 	 * Extends the class Cell in order to provide a red color
+	 * It is used for the weekends.
 	 * @author Hugo
 	 *
 	 */
@@ -300,6 +337,19 @@ public class CalendarView extends ImageView {
 		public RedCell(int dayOfMon, int month, Rect rect, float s) {
 			super(dayOfMon, month, rect, s);
 			mPaint.setColor(0xdddd0000);
+		}			
+	}
+	
+	/**
+	 * Extends the class Cell in order to provide a blue color
+	 * It is used for the expected lottery days
+	 * @author Hugo
+	 *
+	 */
+	private class BlueCell extends Cell {
+		public BlueCell(int dayOfMon, int month, Rect rect, float s) {
+			super(dayOfMon, month, rect, s);
+			mPaint.setColor(Color.BLUE);
 		}			
 	}
 }

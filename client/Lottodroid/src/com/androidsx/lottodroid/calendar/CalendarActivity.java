@@ -5,7 +5,6 @@ import java.util.zip.DataFormatException;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -24,7 +23,6 @@ public class CalendarActivity extends Activity implements CalendarView.OnCellTou
 	
 	private CalendarView calendarView = null;
 	private TextView txtMonth;
-	private Handler mHandler = new Handler();
 	private LotteryViewController<Lottery> viewController;
 	
     /** Called when the activity is first created. */
@@ -32,33 +30,30 @@ public class CalendarActivity extends Activity implements CalendarView.OnCellTou
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+		try {
+			Bundle extras = getIntent().getExtras();
+			if (extras == null) {
+				throw new DataFormatException();
+			}
+			// Get the view controller, set from the main activity
+			viewController = (LotteryViewController) extras
+					.getSerializable(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER);
+		} catch (DataFormatException e) {
+			Log.e(TAG, "Errors passing data from main activity", e);
+		} catch (IllegalStateException e) {
+			Log.e(TAG, "Fatal error: " + e.getMessage());
+		}
+        
         setContentView(R.layout.calendar_activity);
         calendarView = (CalendarView)findViewById(R.id.calendar);
         calendarView.setOnCellTouchListener(this);
         calendarView.setOnCalendarCreated(onCalendarCreated);
         
         txtMonth = (TextView) findViewById(R.id.txt_month);
-        txtMonth.setText(Months.getMonth(calendarView.getMonth()));
-
-		try {
-			Bundle extras = getIntent().getExtras();
-			if (extras == null) {
-				throw new DataFormatException();
-			}
-
-			// Get the view controller, set from the main activity
-			viewController = (LotteryViewController) extras
-					.getSerializable(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER);
-
-		} catch (DataFormatException e) {
-			Log.e(TAG, "Errors passing data from main activity", e);
-		} catch (IllegalStateException e) {
-			Log.e(TAG, "Fatal error: " + e.getMessage());
-		}
+        txtMonth.setText(Months.getMonth(calendarView.getMonth()) + " " + calendarView.getYear());
     }
     
-    private OnCalendarCreated onCalendarCreated = new OnCalendarCreated() {
-		
+    private OnCalendarCreated onCalendarCreated = new OnCalendarCreated() {	
 		@Override
 		public void onCreate(CalendarView calendarView) {
 			txtMonth.setText(Months.getMonth(calendarView.getMonth()) + " " + calendarView.getYear());

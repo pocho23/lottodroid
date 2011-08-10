@@ -24,6 +24,12 @@
     Todos los iconos y la información de los sorteos provienen de la página oficial de Loterías y 
     Apuestas del Estado: http://www.loteriasyapuestas.es/ 
   </string>
+    <string name="error_dialog_text">
+    Lo sentimos pero no hay resultados para la fecha elegida.
+  </string>
+  <string name="sugerencia_error_dialog_text">
+    ¿Por qué no pruebas con otra fecha?
+  </string>
   <string name="about_dialog_button_ok">OK</string>
   <string name="about_dialog_button_email">Dínos algo!</string>
   

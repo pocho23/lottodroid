@@ -94,7 +94,7 @@ class LoteriaNacionalViewController implements LotteryViewController<LoteriaNaci
   }
 
   @Override
-  public View createAndFillUpFullView(LoteriaNacional lottery, Context context) {
+  public View createAndFillUpPrizeView(LoteriaNacional lottery, Context context) {
 	View awards =  View.inflate(context, R.layout.premio_layout, null);
 	LinearLayout rows = (LinearLayout) awards.findViewById(R.id.premio_list_row);
 	View layoutView;

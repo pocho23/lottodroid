@@ -6,6 +6,7 @@ import java.util.zip.DataFormatException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.androidsx.lottodroid.communication.LotteryFetcher;
@@ -84,15 +85,13 @@ public class PrizeActivity extends Activity {
 			}
 			
 			fullView.addView(viewController.createAndFillUpMainView(listLottery.get(0), this));
-			fullView.addView(viewController.createAndFillUpFullView(listLottery.get(0), this));
-
+			fullView.addView(viewController.createAndFillUpPrizeView(listLottery.get(0), this));
 
 		} catch (LotteryInfoUnavailableException e) {
+			fullView.addView(View.inflate(this, R.layout.error_view, null));
 			Log.e(TAG, "Lottery info unavailable", e);
 		} catch (DataFormatException e) {
 			Log.e(TAG, "Inconsistent data fetched from the main activity", e);
 		}
-
 	}
-
 }

@@ -3,13 +3,35 @@ package com.androidsx.lottodroid.util;
 import java.util.Calendar;
 
 import com.androidsx.lottodroid.communication.LotteryInfoUnavailableException;
+import com.androidsx.lottodroid.model.LotteryId;
 
 public class DateLotteries {
 
 	private DateLotteries() {
 		// This class is not to be instantiated
 	}
+	
+	public static boolean isALotteryDay(LotteryId id, int day) {
+		if(id == LotteryId.BONOLOTO) {
+			return (equals(day, Calendar.MONDAY) || equals(day, Calendar.TUESDAY)
+					|| equals(day, Calendar.WEDNESDAY) || equals(day, Calendar.FRIDAY));
+		} 
+		else if(id == LotteryId.EUROMILLON || id == LotteryId.PRIMITIVA) {
+			return (equals(day, Calendar.TUESDAY) || equals(day, Calendar.FRIDAY));
+		} 
+		else if(id == LotteryId.GORDO_PRIMITIVA || id == LotteryId.LOTERIA_NACIONAL
+				|| id == LotteryId.LOTERIA_NACIONAL) {
+			return equals(day, Calendar.SUNDAY);
+		} 
+		else {
+			return false;
+		}
+		
+	}
 
+	private static boolean equals(int day, int weekDay) {
+		return day+1 == weekDay;
+	}
 	
 	public static String getCurrentDate() {
 		Calendar date = Calendar.getInstance();

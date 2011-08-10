@@ -22,7 +22,7 @@ public interface LotteryViewController<T extends Lottery> extends Serializable {
 
   View createAndFillUpDetailsView(T lottery, Context context);
   
-  View createAndFillUpFullView(T lottery, Context context);
+  View createAndFillUpPrizeView(T lottery, Context context);
 
   String getTitle();
 

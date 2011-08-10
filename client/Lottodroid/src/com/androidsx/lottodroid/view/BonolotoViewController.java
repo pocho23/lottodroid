@@ -86,7 +86,7 @@ class BonolotoViewController implements LotteryViewController<Bonoloto> {
   }
 
   @Override
-  public View createAndFillUpFullView(Bonoloto lottery, Context context) {
+  public View createAndFillUpPrizeView(Bonoloto lottery, Context context) {
 
 	View awards =  View.inflate(context, R.layout.premio_layout, null);
 	LinearLayout rows = (LinearLayout) awards.findViewById(R.id.premio_list_row);

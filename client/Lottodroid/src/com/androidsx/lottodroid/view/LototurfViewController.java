@@ -88,7 +88,7 @@ class LototurfViewController implements LotteryViewController<Lototurf> {
   }
 
   @Override
-  public View createAndFillUpFullView(Lototurf lottery, Context context) {
+  public View createAndFillUpPrizeView(Lototurf lottery, Context context) {
 	  View awards =  View.inflate(context, R.layout.premio_layout, null);
 		LinearLayout rows = (LinearLayout) awards.findViewById(R.id.premio_list_row);
 		View layoutView;
