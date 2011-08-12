@@ -79,6 +79,18 @@ public class PrizeActivity extends Activity {
 				listLottery = dataFetcher.retrieveLoteriasNacionales(date);
 			} else if (lotteryId == LotteryId.GORDO_PRIMITIVA) {
 				listLottery = dataFetcher.retrieveGordoPrimitivas(date);
+			} else if (lotteryId == LotteryId.CUPONAZO_ONCE) {
+				listLottery = dataFetcher.retrieveCuponazoOnce(date);
+			} else if (lotteryId == LotteryId.LOTERIA7_39) {
+				listLottery = dataFetcher.retrieveLoteria7_39(date);
+			} else if (lotteryId == LotteryId.LOTTO6_49) {
+				listLottery = dataFetcher.retrieveLotto6_49(date);
+			} else if (lotteryId == LotteryId.ONCE) {
+				listLottery = dataFetcher.retrieveOnce(date);
+			} else if (lotteryId == LotteryId.ONCE_FINDE) {
+				listLottery = dataFetcher.retrieveOnceFinde(date);
+			} else if (lotteryId == LotteryId.QUINTUPLE_PLUS) {
+				listLottery = dataFetcher.retrieveQuintuplePlus(date);
 			} else {
 				// TODO(pablo): check this exception handling
 				throw new DataFormatException();

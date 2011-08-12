@@ -5,14 +5,20 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.androidsx.lottodroid.model.Bonoloto;
+import com.androidsx.lottodroid.model.CuponazoOnce;
 import com.androidsx.lottodroid.model.Euromillon;
 import com.androidsx.lottodroid.model.GordoPrimitiva;
+import com.androidsx.lottodroid.model.Loteria7_39;
 import com.androidsx.lottodroid.model.LoteriaNacional;
 import com.androidsx.lottodroid.model.Lototurf;
 import com.androidsx.lottodroid.model.Lottery;
+import com.androidsx.lottodroid.model.Lotto6_49;
+import com.androidsx.lottodroid.model.Once;
+import com.androidsx.lottodroid.model.OnceFinde;
 import com.androidsx.lottodroid.model.Primitiva;
 import com.androidsx.lottodroid.model.Quiniela;
 import com.androidsx.lottodroid.model.Quinigol;
+import com.androidsx.lottodroid.model.QuintuplePlus;
 
 /**
  * Implementation for {@link LotteryFetcher} that uses in-memory, hard-coded data.
@@ -303,4 +309,47 @@ class MockLotteryFetcher implements LotteryFetcher {
 		// This method is just used when retrieve data from Lotoluck
 		return null;
 	}
+
+	@Override
+	public List<CuponazoOnce> retrieveCuponazoOnce(Long date)
+			throws LotteryInfoUnavailableException {
+		// This method is just used when retrieve data from Lotoluck
+		return null;
+	}
+
+	@Override
+	public List<Loteria7_39> retrieveLoteria7_39(Long date)
+			throws LotteryInfoUnavailableException {
+		// This method is just used when retrieve data from Lotoluck
+		return null;
+	}
+
+	@Override
+	public List<Lotto6_49> retrieveLotto6_49(Long date)
+			throws LotteryInfoUnavailableException {
+		// This method is just used when retrieve data from Lotoluck
+		return null;
+	}
+
+	@Override
+	public List<Once> retrieveOnce(Long date)
+			throws LotteryInfoUnavailableException {
+		// This method is just used when retrieve data from Lotoluck
+		return null;
+	}
+
+	@Override
+	public List<OnceFinde> retrieveOnceFinde(Long date)
+			throws LotteryInfoUnavailableException {
+		// This method is just used when retrieve data from Lotoluck
+		return null;
+	}
+
+	@Override
+	public List<QuintuplePlus> retrieveQuintuplePlus(Long date)
+			throws LotteryInfoUnavailableException {
+		// This method is just used when retrieve data from Lotoluck
+		return null;
+	}
+
 }

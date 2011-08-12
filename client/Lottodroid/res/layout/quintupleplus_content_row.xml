@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="fill_parent"
+  android:layout_width="fill_parent">
+  <TableRow>
+    <TextView
+      android:text=" 1ª Carrera:"
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtRace1"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
+      
+    <TextView
+      android:text=" 2ª Carrera:"
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtRace2"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>    
+    <TextView
+      android:text=" 3ª Carrera:"
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtRace3"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
+      
+    <TextView
+      android:text=" 4ª Carrera:"
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtRace4"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
+  </TableRow>
+  <TableRow>    
+    <TextView
+      android:text=" 5ª Carrera:"
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtRace5"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
+      
+    <TextView
+      android:text=" 5ª - 2º Caballo:"
+      android:padding="5dip"
+      android:textColor="#fee" />
+    <TextView
+      android:id="@+id/txtRace5_2"
+      android:paddingRight="15dip"
+      android:text="OOPS" />
+  </TableRow>
+</TableLayout>

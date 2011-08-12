@@ -5,7 +5,7 @@
   android:layout_width="fill_parent">
   <TableRow>
     <TextView
-      android:text=" Números:"
+      android:text=" Número:"
       android:padding="5dip"
       android:textColor="#fee" />
     <TextView
@@ -14,11 +14,12 @@
       android:text="OOPS" />
 
     <TextView
-      android:text="Reintegro:"
+      android:text="Serie:"
       android:padding="5dip"
       android:textColor="#fee" />
     <TextView
-      android:id="@+id/txtReinteger"
+      android:id="@+id/txtSerie"
+      android:paddingRight="15dip"
       android:text="OOPS" />
   </TableRow>
 </TableLayout>

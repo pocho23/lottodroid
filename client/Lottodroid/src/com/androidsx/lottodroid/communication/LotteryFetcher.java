@@ -3,14 +3,20 @@ package com.androidsx.lottodroid.communication;
 import java.util.List;
 
 import com.androidsx.lottodroid.model.Bonoloto;
+import com.androidsx.lottodroid.model.CuponazoOnce;
 import com.androidsx.lottodroid.model.Euromillon;
 import com.androidsx.lottodroid.model.GordoPrimitiva;
+import com.androidsx.lottodroid.model.Loteria7_39;
 import com.androidsx.lottodroid.model.LoteriaNacional;
 import com.androidsx.lottodroid.model.Lototurf;
 import com.androidsx.lottodroid.model.Lottery;
+import com.androidsx.lottodroid.model.Lotto6_49;
+import com.androidsx.lottodroid.model.Once;
+import com.androidsx.lottodroid.model.OnceFinde;
 import com.androidsx.lottodroid.model.Primitiva;
 import com.androidsx.lottodroid.model.Quiniela;
 import com.androidsx.lottodroid.model.Quinigol;
+import com.androidsx.lottodroid.model.QuintuplePlus;
 
 /**
  * Fetches data about the lottery results.
@@ -83,5 +89,22 @@ public interface LotteryFetcher {
   /** @see {@link #retrieveBonolotos} */
   List<Euromillon> retrieveEuromillones(Long date) throws LotteryInfoUnavailableException;
   
+  /** @see {@link #retrieveBonolotos} */
+  List<CuponazoOnce> retrieveCuponazoOnce(Long date) throws LotteryInfoUnavailableException;
+  
+  /** @see {@link #retrieveBonolotos} */
+  List<Loteria7_39> retrieveLoteria7_39(Long date) throws LotteryInfoUnavailableException;
+  
+  /** @see {@link #retrieveBonolotos} */
+  List<Lotto6_49> retrieveLotto6_49(Long date) throws LotteryInfoUnavailableException;
+  
+  /** @see {@link #retrieveBonolotos} */
+  List<Once> retrieveOnce(Long date) throws LotteryInfoUnavailableException;
+  
+  /** @see {@link #retrieveBonolotos} */
+  List<OnceFinde> retrieveOnceFinde(Long date) throws LotteryInfoUnavailableException;
+  
+  /** @see {@link #retrieveBonolotos} */
+  List<QuintuplePlus> retrieveQuintuplePlus(Long date) throws LotteryInfoUnavailableException;
 
 }

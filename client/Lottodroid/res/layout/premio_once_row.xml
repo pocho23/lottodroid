@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent" android:layout_width="fill_parent"
+	android:orientation="vertical" android:paddingTop="4dp" android:paddingBottom="4dp">
+
+	<TextView android:id="@+id/txtAwardCategory" android:textColor="#fee"
+		android:paddingLeft="18dip" android:text="OPS" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+	<TextView android:id="@+id/txtImporteEuros" android:text="OOPS"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:paddingLeft="60dp" android:paddingTop="28dp" />
+
+</AbsoluteLayout>

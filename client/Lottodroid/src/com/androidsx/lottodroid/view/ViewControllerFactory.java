@@ -36,6 +36,18 @@ public class ViewControllerFactory {
       return new LoteriaNacionalViewController(lotteryId.getName());
     } else if (lotteryId == LotteryId.GORDO_PRIMITIVA) {
       return new GordoPrimitivaViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.CUPONAZO_ONCE) {
+        return new CuponazoOnceViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.LOTERIA7_39) {
+        return new Loteria7_39ViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.LOTTO6_49) {
+        return new Lotto6_49ViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.ONCE) {
+        return new OnceViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.ONCE_FINDE) {
+        return new OnceFindeViewController(lotteryId.getName());
+    } else if (lotteryId == LotteryId.QUINTUPLE_PLUS) {
+        return new QuintuplePlusViewController(lotteryId.getName());
     } else {
       throw new IllegalStateException();
     }
