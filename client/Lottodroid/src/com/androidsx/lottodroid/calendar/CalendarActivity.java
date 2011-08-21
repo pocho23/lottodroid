@@ -23,6 +23,7 @@ public class CalendarActivity extends Activity implements CalendarView.OnCellTou
 	
 	private CalendarView calendarView = null;
 	private TextView txtMonth;
+	private TextView txtInfo;
 	private LotteryViewController<Lottery> viewController;
 	
     /** Called when the activity is first created. */
@@ -51,6 +52,10 @@ public class CalendarActivity extends Activity implements CalendarView.OnCellTou
         
         txtMonth = (TextView) findViewById(R.id.txt_month);
         txtMonth.setText(Months.getMonth(calendarView.getMonth()) + " " + calendarView.getYear());
+        
+        txtInfo = (TextView) findViewById(R.id.txt_info);
+        txtInfo.setText(txtInfo.getText() + " " + viewController.getTitle());
+        setTitle("Lottodroid, " + viewController.getTitle());
     }
     
     private OnCalendarCreated onCalendarCreated = new OnCalendarCreated() {	
@@ -79,7 +84,17 @@ public class CalendarActivity extends Activity implements CalendarView.OnCellTou
 	    i.putExtra("date", date);
 
 	    startActivity(i);
+	    //startActivityForResult(i, 100);
 	}
+	/*
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(resultCode == RESULT_OK)
+			new ErrorDialog(CalendarActivity.this, getString(R.string.error_dialog_text) + "\n\n" + getString(R.string.sugerencia_error_dialog_text)).show();
+		else if(resultCode == RESULT_FIRST_USER) {
+			new ErrorDialog(CalendarActivity.this, getString(R.string.error_dialog_content)).show();
+		}
+	}*/
 	
 	/** Go forward to the day we are. Called from the XML view. */
     public void onButtonTodayClick(@SuppressWarnings("unused") View v) {

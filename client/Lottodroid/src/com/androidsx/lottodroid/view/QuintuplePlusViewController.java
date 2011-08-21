@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.androidsx.lottodroid.R;
-import com.androidsx.lottodroid.model.Bonoloto;
 import com.androidsx.lottodroid.model.LotteryId;
 import com.androidsx.lottodroid.model.QuintuplePlus;
 import com.androidsx.lottodroid.util.DateFormatter;
@@ -73,7 +72,7 @@ class QuintuplePlusViewController implements LotteryViewController<QuintuplePlus
 
   @Override
   public int getIconResource() {
-    return R.drawable.icon;
+    return R.drawable.lototurf;
   }
 
   @Override

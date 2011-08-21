@@ -73,7 +73,7 @@ class Lotto6_49ViewController implements LotteryViewController<Lotto6_49> {
 
   @Override
   public int getIconResource() {
-    return R.drawable.icon;
+    return R.drawable.lotocatalunya;
   }
 
   @Override

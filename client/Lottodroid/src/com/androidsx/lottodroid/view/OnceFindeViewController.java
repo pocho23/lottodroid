@@ -68,7 +68,7 @@ class OnceFindeViewController implements LotteryViewController<OnceFinde> {
 
   @Override
   public int getIconResource() {
-    return R.drawable.icon;
+    return R.drawable.once;
   }
 
   @Override

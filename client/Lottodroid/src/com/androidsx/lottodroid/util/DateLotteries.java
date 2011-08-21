@@ -12,7 +12,7 @@ public class DateLotteries {
 	}
 	
 	public static boolean isALotteryDay(LotteryId id, int day) {
-		if(id == LotteryId.BONOLOTO) {
+		if((id == LotteryId.BONOLOTO) || (id == LotteryId.ONCE)) {
 			return (equals(day, Calendar.MONDAY) || equals(day, Calendar.TUESDAY)
 					|| equals(day, Calendar.WEDNESDAY) || equals(day, Calendar.FRIDAY));
 		} 
@@ -22,7 +22,15 @@ public class DateLotteries {
 		else if(id == LotteryId.GORDO_PRIMITIVA || id == LotteryId.LOTERIA_NACIONAL
 				|| id == LotteryId.LOTERIA_NACIONAL) {
 			return equals(day, Calendar.SUNDAY);
-		} 
+		} else if(id == LotteryId.CUPONAZO_ONCE) {
+			return equals(day, Calendar.FRIDAY);
+		} else if(id == LotteryId.LOTERIA7_39) {
+			return (equals(day, Calendar.SUNDAY) || equals(day, Calendar.THURSDAY));
+		} else if(id == LotteryId.LOTTO6_49) {
+			return equals(day, Calendar.WEDNESDAY);
+		} else if(id == LotteryId.ONCE_FINDE) {
+			return (equals(day, Calendar.SATURDAY) || equals(day, Calendar.SUNDAY));
+		}
 		else {
 			return false;
 		}

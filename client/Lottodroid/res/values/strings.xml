@@ -30,6 +30,9 @@
   <string name="sugerencia_error_dialog_text">
     ¿Por qué no pruebas con otra fecha?
   </string>
+  <string name="info_dia_loteria">
+    Es probable que los días en azul encuentre resultados de  
+  </string>
   <string name="about_dialog_button_ok">OK</string>
   <string name="about_dialog_button_email">Dínos algo!</string>
   

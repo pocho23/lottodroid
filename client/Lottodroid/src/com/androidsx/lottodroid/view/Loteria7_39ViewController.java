@@ -72,7 +72,7 @@ class Loteria7_39ViewController implements LotteryViewController<Loteria7_39> {
 
   @Override
   public int getIconResource() {
-    return R.drawable.icon;
+    return R.drawable.once;
   }
 
   @Override

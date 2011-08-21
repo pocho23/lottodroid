@@ -458,7 +458,7 @@ class LotteryXMLParser {
 			NodeList games = doc.getElementsByTagName("Juego");
 			game = (Element) games.item(0);
 			id = Integer.parseInt((game.getElementsByTagName("IdJuego")
-					.item(0)).getTextContent());
+					.item(0)).getTextContent().trim());
 
 			if (id == contentType)
 				return game;
@@ -485,7 +485,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue());
+			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
 			System.out.print(num[i] + " ");
 		}
 		
@@ -498,10 +498,10 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			bonoloto.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue()),
+					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim()),
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(bonoloto.getPremio(i));
 		}
 		List<Bonoloto> lotteryList = new LinkedList<Bonoloto>();
@@ -543,8 +543,8 @@ class LotteryXMLParser {
 			values = result.getAttributes();
 			cuponazoOnce.addPremio(
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(cuponazoOnce.getPremio(i));
 		}
 		
@@ -569,7 +569,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue());
+			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
 			System.out.print(num[i] + " ");
 		}
 		
@@ -582,10 +582,10 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			gordoPrimitiva.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue()),
+					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim()),
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(gordoPrimitiva.getPremio(i));
 		}
 		List<GordoPrimitiva> lotteryList = new LinkedList<GordoPrimitiva>();
@@ -609,7 +609,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue());
+			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
 			System.out.print(num[i] + " ");
 		}
 		
@@ -622,10 +622,10 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			loteria7_39.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue()),
+					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim()),
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(loteria7_39.getPremio(i));
 		}
 		
@@ -652,10 +652,10 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			if(i < num.length) {
-				num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue());
+				num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
 				System.out.print(num[i] + " ");
 			} else {
-				joker = Long.parseLong(values.getNamedItem("Valor").getNodeValue());
+				joker = Long.parseLong(values.getNamedItem("Valor").getNodeValue().trim());
 				System.out.print(joker + " ");
 			}
 		}
@@ -669,10 +669,10 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			lotto6_49.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue()),
+					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim()),
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(lotto6_49.getPremio(i));
 		}
 		
@@ -713,8 +713,8 @@ class LotteryXMLParser {
 			values = result.getAttributes();
 			once.addPremio(
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(once.getPremio(i));
 		}
 		
@@ -755,8 +755,8 @@ class LotteryXMLParser {
 			values = result.getAttributes();
 			onceFinde.addPremio(
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(onceFinde.getPremio(i));
 		}
 		
@@ -787,8 +787,8 @@ class LotteryXMLParser {
 							.getNamedItem("Valor").getNodeValue());
 			
 			quiniela.setScore(i, 
-					Integer.parseInt(values.getNamedItem("GolesEquipo1").getNodeValue()),
-					Integer.parseInt(values.getNamedItem("GolesEquipo2").getNodeValue()));
+					Integer.parseInt(values.getNamedItem("GolesEquipo1").getNodeValue().trim()),
+					Integer.parseInt(values.getNamedItem("GolesEquipo2").getNodeValue().trim()));
 
 			System.out.println(values.getNamedItem("Equipo1").getNodeValue()
 					+ " - " + values.getNamedItem("Equipo2").getNodeValue()
@@ -803,10 +803,10 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			quiniela.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue()),
+					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim()),
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(quiniela.getPremio(i));
 		}
 
@@ -831,7 +831,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue());
+			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
 			System.out.print(num[i] + " ");
 		}
 		
@@ -844,10 +844,10 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			primitiva.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue()),
+					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim()),
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(primitiva.getPremio(i));
 		}
 
@@ -872,7 +872,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue());
+			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
 			System.out.print(num[i] + " ");
 		}
 		
@@ -885,10 +885,10 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			lototurf.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue()),
+					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim()),
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(lototurf.getPremio(i));
 		}
 
@@ -913,7 +913,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue());
+			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
 			System.out.print(num[i] + " ");
 		}
 		
@@ -926,11 +926,11 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			euromillon.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue()),
-					Integer.parseInt(values.getNamedItem("AcertantesESP").getNodeValue()),
+					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim()),
+					Integer.parseInt(values.getNamedItem("AcertantesESP").getNodeValue().trim()),
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(euromillon.getPremio(i));
 		}
 
@@ -952,7 +952,7 @@ class LotteryXMLParser {
 		NodeList results = game.getElementsByTagName("Premio");
 		Element result = (Element) results.item(3);
 		NamedNodeMap values = result.getAttributes();
-		int premio2 = Integer.parseInt(values.getNamedItem("NumeroPremiado").getNodeValue());
+		int premio2 = Integer.parseInt(values.getNamedItem("NumeroPremiado").getNodeValue().trim());
 		
 		// 6 resultados: premio1, fraccion, serie, reintegro1,
 		// reintegro2, reintegro3
@@ -967,11 +967,11 @@ class LotteryXMLParser {
 			// We receive Reintegros like this: R1 - R2 - R3
 			if (i == 3) {
 				num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue()
-						.subSequence(0, 1).toString());
+						.subSequence(0, 1).toString().trim());
 				num[i + 1] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue()
-						.subSequence(4, 5).toString());
+						.subSequence(4, 5).toString().trim());
 				num[i + 2] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue()
-						.subSequence(8, 9).toString());
+						.subSequence(8, 9).toString().trim());
 				System.out.print(premio2 + "  " + num[i] + " " + num[i + 1] + " " + num[i + 2]);
 				break;
 			}
@@ -994,8 +994,8 @@ class LotteryXMLParser {
 			
 			loteriaNacional.addPremio(
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			if(i < 3)
 				System.out.println(loteriaNacional.getPremio(i));
 			else
@@ -1029,8 +1029,8 @@ class LotteryXMLParser {
 					values.getNamedItem("Valor").getNodeValue().substring(4, 5));
 
 			quinigol.setScore(i, 
-					Integer.parseInt(values.getNamedItem("GolesEquipo1").getNodeValue()),
-					Integer.parseInt(values.getNamedItem("GolesEquipo2").getNodeValue()));
+					Integer.parseInt(values.getNamedItem("GolesEquipo1").getNodeValue().trim()),
+					Integer.parseInt(values.getNamedItem("GolesEquipo2").getNodeValue().trim()));
 
 			System.out.println(values.getNamedItem("Equipo1").getNodeValue()
 					+ " - "
@@ -1051,10 +1051,10 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			quinigol.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue()),
+					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim()),
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(quinigol.getPremio(i));
 		}
 
@@ -1079,7 +1079,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			races[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue());
+			races[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
 			System.out.print(races[i] + " ");
 		}
 		
@@ -1092,10 +1092,10 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			quintuplePlus.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue()),
+					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim()),
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue()),
-					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue()));
+					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
+					Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			System.out.println(quintuplePlus.getPremio(i));
 		}
 	

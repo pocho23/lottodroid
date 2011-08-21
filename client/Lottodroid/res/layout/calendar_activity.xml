@@ -7,7 +7,7 @@
 		android:id="@+id/calendar" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 
-	<TextView android:id="@+id/txt_month" android:text="Agosto"
+	<TextView android:id="@+id/txt_month" android:text="OPS"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"
 		android:paddingTop="10dp" android:layout_gravity="center_horizontal" />
 
@@ -26,7 +26,7 @@
 	<ImageButton android:id="@+id/btn_today" android:src="@drawable/icon_today"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"
 		android:background="#000" android:layout_gravity="center_horizontal"
-		android:onClick="onButtonTodayClick" />
+		android:onClick="onButtonTodayClick" android:visibility="invisible" />
 
 	<LinearLayout android:orientation="horizontal"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
 		<ImageView android:src="@drawable/img_info"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:paddingLeft="10dp" />
-		<TextView android:text="Es probable que los días en azul se celebre la lotería"
+		<TextView android:id="@+id/txt_info" android:text="@string/info_dia_loteria"
 			android:layout_width="wrap_content" android:layout_height="wrap_content" 
 			android:paddingLeft="5dp"/>
 	</LinearLayout>
