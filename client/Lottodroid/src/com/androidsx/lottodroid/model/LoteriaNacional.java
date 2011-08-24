@@ -117,7 +117,7 @@ public class LoteriaNacional implements Lottery {
 
 	@Override
 	public String getName() {
-		return "Loter√≠a Nacional";
+		return "Lotería Nacional";
 	}
 
 }

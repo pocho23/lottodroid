@@ -119,7 +119,7 @@ public class QuintuplePlus implements Lottery {
 
 	@Override
 	public String getName() {
-		return "Quíntuple plus";
+		return "Qu’ntuple plus";
 	}
 
 }
