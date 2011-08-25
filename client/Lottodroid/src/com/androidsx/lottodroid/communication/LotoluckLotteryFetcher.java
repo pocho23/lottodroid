@@ -234,7 +234,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.BONOLOTO, date);
-			//String response = HttpRequestPerformer.getResponse(url);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseBonoloto(url);
 		} catch (Exception e) {
@@ -248,7 +248,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.QUINIELA, date);
-			//String response = HttpRequestPerformer.getResponse(url);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseQuiniela(url);
 		} catch (Exception e) {
@@ -262,7 +262,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.GORDO_PRIMITIVA, date);
-			//String response = HttpRequestPerformer.getResponse(url);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseGordoPrimitiva(url);
 		} catch (Exception e) {
@@ -276,7 +276,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.PRIMITIVA, date);
-			//String response = HttpRequestPerformer.getResponse(url);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parsePrimitiva(url);
 		} catch (Exception e) {
@@ -290,7 +290,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.LOTOTURF, date);
-			//String response = HttpRequestPerformer.getResponse(url);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseLototurf(url);
 		} catch (Exception e) {
@@ -304,7 +304,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.LOTERIA_NACIONAL, date);
-			//String response = HttpRequestPerformer.getResponse(url);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseLoteriaNacional(url);
 		} catch (Exception e) {
@@ -318,7 +318,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.QUINIGOL, date);
-			//String response = HttpRequestPerformer.getResponse(url);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseQuinigol(url);
 		} catch (Exception e) {
@@ -332,7 +332,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.EUROMILLONES, date);
-			//String response = HttpRequestPerformer.getResponse(url);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseEuromillon(url);
 		} catch (Exception e) {
@@ -346,6 +346,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.CUPONAZO_ONCE, date);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseCuponazoOnce(url);
 		} catch (Exception e) {
@@ -359,6 +360,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.LOTERIA_7_39, date);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseLoteria7_39(url);
 		} catch (Exception e) {
@@ -372,6 +374,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.LOTTO6_49, date);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseLotto6_49(url);
 		} catch (Exception e) {
@@ -385,6 +388,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.ONCE, date);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseOnce(url);
 		} catch (Exception e) {
@@ -398,6 +402,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.ONCE_FINDE, date);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseOnceFinde(url);
 		} catch (Exception e) {
@@ -411,6 +416,7 @@ public class LotoluckLotteryFetcher implements LotteryFetcher {
 			throws LotteryInfoUnavailableException {
 		try {
 			String url = LotoluckLotteryFetcher.buildLotteryUrl(LotteryXMLParser.QUINTUPLE_PLUS, date);
+			//String response = HttpRequestPerformer.getResponse(url, "UTF8");
 			
 			return LotteryXMLParser.parseQuintuplePlus(url);
 		} catch (Exception e) {

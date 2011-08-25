@@ -39,7 +39,37 @@ class HttpRequestPerformer {
     http.setReadTimeout(READ_TIMEOUT);
 
     try {
-      return toString(http.getInputStream());
+      return toString(http.getInputStream(), "ISO-8859-1");
+    } finally {
+      http.getInputStream().close();
+
+      if (http.getErrorStream() != null)
+        http.getErrorStream().close();
+
+      http.disconnect();
+    }
+
+  }
+  
+  /**
+   * Forms an HTTP request
+   * 
+   * @param url The URL to request for.
+   * @param encoding The kind of code format.
+   * @return The response as a String
+   * @throws IOException 
+   * @throws MalformedURLException 
+   */
+  public static String getResponse(String url, String encoding) throws MalformedURLException, IOException,
+      UnknownHostException, SocketTimeoutException {
+    HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
+    http.setRequestMethod("GET");
+    http.setDoInput(true);
+    http.setConnectTimeout(CONNECT_TIMEOUT);
+    http.setReadTimeout(READ_TIMEOUT);
+
+    try {
+      return toString(http.getInputStream(), encoding);
     } finally {
       http.getInputStream().close();
 
@@ -58,13 +88,13 @@ class HttpRequestPerformer {
    * @return The contents of the InputStream as a String.
    * @throws IOException 
    */
-  private static String toString(InputStream inputStream) throws IOException {
+  private static String toString(InputStream inputStream, String encoding) throws IOException {
     StringBuilder outputBuilder = new StringBuilder();
     String string = null;
     
     if (inputStream != null) {
       // http.getContentEncoding is null, but we must decode the data in the charset we received
-      BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "ISO-8859-1"));
+      BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, encoding));
       while (null != (string = reader.readLine())) {
         outputBuilder.append(string);
       }

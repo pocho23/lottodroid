@@ -21,8 +21,9 @@
     
     Desarrollado por androidsx.com.\n\n
     
-    Todos los iconos y la información de los sorteos provienen de la página oficial de Loterías y 
-    Apuestas del Estado: http://www.loteriasyapuestas.es/ 
+    Todos los iconos y la información de los sorteos provienen de la página oficial de lotoluck: http://www.lotoluck.com
+    <!--Todos los iconos y la información de los sorteos provienen de la página oficial de Loterías y 
+    Apuestas del Estado: http://www.loteriasyapuestas.es/ --> 
   </string>
     <string name="error_dialog_text">
     Lo sentimos pero no hay resultados para la fecha elegida.
