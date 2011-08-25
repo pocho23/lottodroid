@@ -18,8 +18,13 @@
 
 	</LinearLayout>
 
-	<LinearLayout android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:id="@+id/prize"
-		android:orientation="vertical"></LinearLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    
+	   <LinearLayout android:layout_width="fill_parent"
+		  android:layout_height="fill_parent" android:id="@+id/prize"
+		  android:orientation="vertical"></LinearLayout>
 
+    </ScrollView>
 </LinearLayout>
