@@ -137,7 +137,7 @@ public class Lotto6_49 implements Lottery {
 
 	@Override
 	public String getName() {
-		return "Loto Catalunya 6/49";
+		return "Loto Catalu\u00F1a 6/49";
 	}
 
 }

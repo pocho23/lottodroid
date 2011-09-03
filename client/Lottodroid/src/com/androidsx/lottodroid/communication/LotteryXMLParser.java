@@ -552,22 +552,22 @@ class LotteryXMLParser {
 			} else if(i == 7) { 
 				// TODO: Manual from here because do not know how to parse from UTF-8
 				cuponazoOnce.addPremio(
-						"A las cuatro œltimas cifras",
+						"A las cuatro \u00FAltimas cifras",
 						Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
 						Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			} else if(i == 8) {
 				cuponazoOnce.addPremio(
-						"A las tres œltimas cifras",
+						"A las tres \u00FAltimas cifras",
 						Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
 						Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			} else if(i == 9) {
 				cuponazoOnce.addPremio(
-						"A las dos œltimas cifras",
+						"A las dos \u00FAltimas cifras",
 						Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
 						Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			} else if(i == 10) {
 				cuponazoOnce.addPremio(
-						"A la œltima cifra",
+						"A la \u00FAltima cifra",
 						Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim()),
 						Long.parseLong(values.getNamedItem("ImportePesetas").getNodeValue().trim()));
 			} 
@@ -729,10 +729,10 @@ class LotteryXMLParser {
 		Once once = new Once(date, num, serie);
 		
 		results = game.getElementsByTagName("Premio");
-		String categorias[] = { "A las cinco cifras", "A las cuatro œltimas cifras",
-				"A las tres œltimas cifras", "A las dos  œltimas cifras", 
-				"A la œltima cifra", "A la primera cifra", 
-				"Al nœmero anterior y posterior al premiado" };
+		String categorias[] = { "A las cinco cifras", "A las cuatro \u00FAltimas cifras",
+				"A las tres \u00FAltimas cifras", "A las dos  \u00FAltimas cifras", 
+				"A la \u00FAltima cifra", "A la primera cifra", 
+				"Al n\u00FAmero anterior y posterior al premiado" };
 
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
@@ -774,10 +774,10 @@ class LotteryXMLParser {
 		OnceFinde onceFinde = new OnceFinde(date, num, serie);
 		
 		results = game.getElementsByTagName("Premio");
-		String categorias[] = { "A las cinco cifras y serie (durante 25 a–os)",
-				"A las cinco cifras", "A las cuatro œltimas cifras",
-				"A las tres œltimas cifras", "A las dos  œltimas cifras", 
-				"A la œltima cifra" };
+		String categorias[] = { "A las cinco cifras y serie (durante 25 a\u00F1os)",
+				"A las cinco cifras", "A las cuatro \u00FAltimas cifras",
+				"A las tres \u00FAltimas cifras", "A las dos  \u00FAltimas cifras", 
+				"A la \u00FAltima cifra" };
 
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
@@ -1091,7 +1091,7 @@ class LotteryXMLParser {
 			throws DOMException, ParseException {
 		
 		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
-		System.out.println("\n\nQuíntuple Plus:  " + date);
+		System.out.println("\n\nQu\u00EDntuple Plus:  " + date);
 
 		// 6 resultados: 6 races
 		int races[] = new int[8];

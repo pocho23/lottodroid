@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Results for a Quíntuple Plus draw
+ * Results for a Quintuple Plus draw
  */
 public class QuintuplePlus implements Lottery {
 	private final Date date;
@@ -27,7 +27,7 @@ public class QuintuplePlus implements Lottery {
 		this.race5_2 = race5_2;
 	}
 
-	/** Inner class that represents a Quíntuple Plus Premio */
+	/** Inner class that represents a Quintuple Plus Premio */
 	public class Premio {
 
 		private final int acertantes;
@@ -119,7 +119,7 @@ public class QuintuplePlus implements Lottery {
 
 	@Override
 	public String getName() {
-		return "Qu’ntuple plus";
+		return "Qu\u00EDntuple plus";
 	}
 
 }

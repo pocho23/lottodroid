@@ -132,7 +132,7 @@ public class Euromillon implements Lottery {
 
 	@Override
 	public String getName() {
-		return "Euromillon";
+		return "Euromill\u00F3n";
 	}
 
 }

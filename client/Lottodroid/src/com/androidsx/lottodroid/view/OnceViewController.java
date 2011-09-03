@@ -93,7 +93,7 @@ class OnceViewController implements LotteryViewController<Once> {
 	    layoutView = View.inflate(context, R.layout.premio_once_row, null);
 
 	    ((TextView) layoutView.findViewById(R.id.txtAwardCategory)).setText(lottery.getCategoria(index));
-	    ((TextView) layoutView.findViewById(R.id.txtImporteEuros)).setText(lottery.getImporteEuros(index) + " €");
+	    ((TextView) layoutView.findViewById(R.id.txtImporteEuros)).setText(lottery.getImporteEuros(index) + " \u20AC");
 	    
 	    rows.addView(layoutView);
 	

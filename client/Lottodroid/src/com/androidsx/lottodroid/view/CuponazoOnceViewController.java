@@ -97,7 +97,7 @@ class CuponazoOnceViewController implements LotteryViewController<CuponazoOnce> 
 	    ((TextView) layoutView.findViewById(R.id.txtAwardCategory)).setText(lottery.getCategoria(index)
 	    		.substring(0, 1).toUpperCase() + lottery.getCategoria(index)
 	    		.substring(1, lottery.getCategoria(index).length()));
-	    ((TextView) layoutView.findViewById(R.id.txtImporteEuros)).setText(lottery.getImporteEuros(index) + " €");
+	    ((TextView) layoutView.findViewById(R.id.txtImporteEuros)).setText(lottery.getImporteEuros(index) + " \u20AC");
 	    
 	    rows.addView(layoutView);
 	
