@@ -59,7 +59,7 @@ public class Lottodroid extends ListActivity {
     View v = View.inflate(this, R.layout.lotoluck_row, null);
     v.setOnClickListener(new OnLotoluckListener());
     
-    listView.addFooterView(v);
+    listView.addHeaderView(v);
     fetchDataForMainView();
     Log.i(TAG, "onCreate");
   }
