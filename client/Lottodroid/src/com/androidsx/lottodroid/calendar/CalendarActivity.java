@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.androidsx.lottodroid.IntentExtraDataNames;
@@ -24,6 +25,8 @@ public class CalendarActivity extends Activity implements CalendarView.OnCellTou
 	private CalendarView calendarView = null;
 	private TextView txtMonth;
 	private TextView txtInfo;
+	private ImageButton btBack;
+	private ImageButton btNext;
 	private LotteryViewController<Lottery> viewController;
 	
     /** Called when the activity is first created. */
@@ -52,6 +55,12 @@ public class CalendarActivity extends Activity implements CalendarView.OnCellTou
         
         txtMonth = (TextView) findViewById(R.id.txt_month);
         txtMonth.setText(Months.getMonth(calendarView.getMonth()) + " " + calendarView.getYear());
+        
+        btBack = (ImageButton) findViewById(R.id.btn_back);
+        btBack.setOnClickListener(new OnButtonBackListener());
+        
+        btNext = (ImageButton) findViewById(R.id.btn_next);
+        btNext.setOnClickListener(new OnButtonNextListener());
         
         txtInfo = (TextView) findViewById(R.id.txt_info);
         txtInfo.setText(txtInfo.getText() + " " + viewController.getTitle());
@@ -84,31 +93,22 @@ public class CalendarActivity extends Activity implements CalendarView.OnCellTou
 	    i.putExtra("date", date);
 
 	    startActivity(i);
-	    //startActivityForResult(i, 100);
 	}
-	/*
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if(resultCode == RESULT_OK)
-			new ErrorDialog(CalendarActivity.this, getString(R.string.error_dialog_text) + "\n\n" + getString(R.string.sugerencia_error_dialog_text)).show();
-		else if(resultCode == RESULT_FIRST_USER) {
-			new ErrorDialog(CalendarActivity.this, getString(R.string.error_dialog_content)).show();
+	
+	private class OnButtonBackListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			calendarView.previousMonth();
 		}
-	}*/
+	}
 	
-	/** Go forward to the day we are. Called from the XML view. */
-    public void onButtonTodayClick(@SuppressWarnings("unused") View v) {
-        calendarView.goToday();
-    }
-	
-	/** Go forward the next month. Called from the XML view. */
-    public void onButtonNextClick(@SuppressWarnings("unused") View v) {
-        calendarView.nextMonth();
-    }
-    
-	/** Come back to the previous month. Called from the XML view */
-	public void onButtonBackClick(@SuppressWarnings("unused") View v) {
-		calendarView.previousMonth();
+	private class OnButtonNextListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			calendarView.nextMonth();
+		}
 	}
     
 }

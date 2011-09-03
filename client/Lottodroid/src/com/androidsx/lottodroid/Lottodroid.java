@@ -6,7 +6,6 @@ import java.util.List;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,7 +13,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -59,6 +57,7 @@ public class Lottodroid extends ListActivity {
     setContentView(R.layout.main);
     this.listView = getListView();
     View v = View.inflate(this, R.layout.lotoluck_row, null);
+    v.setOnClickListener(new OnLotoluckListener());
     
     listView.addFooterView(v);
     fetchDataForMainView();
@@ -78,11 +77,13 @@ public class Lottodroid extends ListActivity {
     }
   }
   
-  
-  /** Handles the "Lotoluck" action. Called from the XML view. */
-  public void onLotoluckClick(@SuppressWarnings("unused") View v) {
-	  Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.lotoluck.com"));
-	  startActivity(browserIntent);
+  private class OnLotoluckListener implements View.OnClickListener {
+
+	@Override
+	public void onClick(View v) {
+		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.lotoluck.com"));
+		startActivity(browserIntent);
+	} 
   }
 
   /**

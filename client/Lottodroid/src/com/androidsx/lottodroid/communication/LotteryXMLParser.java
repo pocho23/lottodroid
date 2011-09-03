@@ -346,7 +346,7 @@ class LotteryXMLParser {
 				game = (Element) games.item(i);
 				
 				id = Integer.parseInt(game.getElementsByTagName("IdJuego")
-						.item(0).getTextContent());
+						.item(0).getFirstChild().getNodeValue().trim());
 
 				switch (id) {
 				
@@ -458,7 +458,7 @@ class LotteryXMLParser {
 			NodeList games = doc.getElementsByTagName("Juego");
 			game = (Element) games.item(0);
 			id = Integer.parseInt((game.getElementsByTagName("IdJuego")
-					.item(0)).getTextContent().trim());
+					.item(0).getFirstChild().getNodeValue().trim()));
 
 			if (id == contentType)
 				return game;
@@ -473,8 +473,7 @@ class LotteryXMLParser {
 	private static List<Bonoloto> parseBonolotoData(Element game)
 			throws DOMException, ParseException {
 
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nBonoloto:  " + date);
 
 		// 6 results + complementario + reintegro
@@ -513,8 +512,12 @@ class LotteryXMLParser {
 	private static List<CuponazoOnce> parseCuponazoOnceData(Element game)
 			throws DOMException, ParseException {
 
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
+				
+				
+		/*
+		 * game.getElementsByTagName("Fecha") .item(0).getTextContent()));
+		 */
 		System.out.println("\n\nCuponazo Once:  " + date);
 
 		String num = "", serie = "", series_adicio = "";
@@ -580,8 +583,7 @@ class LotteryXMLParser {
 	private static List<GordoPrimitiva> parseGordoPrimitivaData(Element game)
 			throws DOMException, ParseException {
 
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nGordoPrimitiva:  " + date);
 
 		// 5 resultados + reintegro
@@ -620,8 +622,7 @@ class LotteryXMLParser {
 	private static List<Loteria7_39> parseLoteria7_39Data(Element game) 
 			throws DOMException, ParseException {
 
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\n7/39 de la ONCE:  " + date);
 
 		// 7 resultados + reintegro
@@ -661,8 +662,7 @@ class LotteryXMLParser {
 	private static List<Lotto6_49> parseLotto6_49Data(Element game) 
 			throws DOMException, ParseException {
 
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nLotto Catalunya 6/49:  " + date);
 
 		// 6 resultados + complementario + reintegro
@@ -708,8 +708,7 @@ class LotteryXMLParser {
 	private static List<Once> parseOnceData(Element game) 
 			throws DOMException, ParseException {
 	
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nOnce:  " + date);
 
 		String num = "", serie = "";
@@ -754,8 +753,7 @@ class LotteryXMLParser {
 	private static List<OnceFinde> parseOnceFindeData(Element game) 
 			throws DOMException, ParseException {
 	
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nOnce fin de semana:  " + date);
 
 		String num = "", serie = "";
@@ -800,8 +798,7 @@ class LotteryXMLParser {
 	private static List<Quiniela> parseQuinielaData(Element game)
 			throws DOMException, ParseException {
 
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 
 		Quiniela quiniela = new Quiniela(date);
 		System.out.println("\n\nQuiniela:  " + date);
@@ -850,8 +847,7 @@ class LotteryXMLParser {
 	private static List<Primitiva> parsePrimitivaData(Element game)
 			throws DOMException, ParseException {
 
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nPrimitiva:  " + date);
 
 		// 8 resultados: 6 nums + reintegro + complementario
@@ -891,8 +887,7 @@ class LotteryXMLParser {
 	private static List<Lototurf> parseLototurfData(Element game)
 			throws DOMException, ParseException {
 
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nLototurf:  " + date);
 
 		// 8 results: 6 nums + caballoGanador + reintegro
@@ -932,8 +927,7 @@ class LotteryXMLParser {
 	private static List<Euromillon> parseEuromillonData(Element game)
 			throws DOMException, ParseException {
 
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nEuroMillon:  " + date);
 
 		// 5 results + estrella1 + estrella2
@@ -974,8 +968,7 @@ class LotteryXMLParser {
 	private static List<LoteriaNacional> parseLoteriaNacionalData(Element game)
 			throws DOMException, ParseException {
 
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nLoteriaNacional:  " + date);
 
 
@@ -1042,8 +1035,7 @@ class LotteryXMLParser {
 	private static List<Quinigol> parseQuinigolData(Element game)
 			throws DOMException, ParseException {
 
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		Quinigol quinigol = new Quinigol(date);
 		System.out.println("\n\nQuinigol:  " + date);
 
@@ -1098,8 +1090,7 @@ class LotteryXMLParser {
 	private static List<QuintuplePlus> parseQuintuplePlusData(Element game)
 			throws DOMException, ParseException {
 		
-		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha")
-				.item(0).getTextContent()));
+		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nQuíntuple Plus:  " + date);
 
 		// 6 resultados: 6 races

@@ -99,6 +99,7 @@ public class CalendarView extends ImageView {
 
 	public CalendarView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+
 		mDecoration = context.getResources().getDrawable(R.drawable.typeb_calendar_today);
 		
 		try {

@@ -16,26 +16,20 @@
 		android:layout_gravity="center_horizontal" android:paddingTop="10dp">
 		<ImageButton android:id="@+id/btn_back" android:src="@drawable/icon_back"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:background="#000" android:paddingRight="45dp"
-			android:onClick="onButtonBackClick" />
+			android:background="#000" android:paddingRight="45dp" />
 		<ImageButton android:id="@+id/btn_next" android:src="@drawable/icon_next"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:background="#000" android:paddingLeft="45dp" android:onClick="onButtonNextClick" />
+			android:background="#000" android:paddingLeft="45dp" />
 	</LinearLayout>
 
-	<ImageButton android:id="@+id/btn_today" android:src="@drawable/icon_today"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:background="#000" android:layout_gravity="center_horizontal"
-		android:onClick="onButtonTodayClick" android:visibility="invisible" />
-
-	<LinearLayout android:orientation="horizontal"
+	<RelativeLayout android:orientation="horizontal"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"
 		android:paddingTop="40dp">
 		<ImageView android:src="@drawable/img_info"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:paddingLeft="10dp" />
+			android:paddingLeft="8dp" />
 		<TextView android:id="@+id/txt_info" android:text="@string/info_dia_loteria"
 			android:layout_width="wrap_content" android:layout_height="wrap_content" 
-			android:paddingLeft="5dp"/>
-	</LinearLayout>
+			android:paddingLeft="48dp"/>
+	</RelativeLayout>
 </LinearLayout>
