@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:paddingBottom="8dp">
+
+	<LinearLayout android:id="@+id/error_row_header"
+		android:orientation="vertical" android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+	</LinearLayout>
+
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:text="Error en la lectura de datos"
+		android:id="@+id/txt_error_row" android:gravity="center_horizontal" />
+
+</LinearLayout>

@@ -19,6 +19,8 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import android.util.Log;
+
 import com.androidsx.lottodroid.model.Bonoloto;
 import com.androidsx.lottodroid.model.CuponazoOnce;
 import com.androidsx.lottodroid.model.Euromillon;
@@ -347,52 +349,59 @@ class LotteryXMLParser {
 				
 				id = Integer.parseInt(game.getElementsByTagName("IdJuego")
 						.item(0).getFirstChild().getNodeValue().trim());
-
-				switch (id) {
 				
-				case BONOLOTO:
-					listLottery.add(parseBonolotoData(game).get(0));
-					break;
-				case CUPONAZO_ONCE:
-					listLottery.add(parseCuponazoOnceData(game).get(0));
-					break;
-				case EUROMILLONES:
-					listLottery.add(parseEuromillonData(game).get(0));
-					break;
-				case GORDO_PRIMITIVA:
-					listLottery.add(parseGordoPrimitivaData(game).get(0));
-					break;
-				case LOTERIA_NACIONAL:
-					listLottery.add(parseLoteriaNacionalData(game).get(0));
-					break;
-				case LOTERIA_7_39:
-					listLottery.add(parseLoteria7_39Data(game).get(0));
-					break;
-				case LOTTO6_49:
-					listLottery.add(parseLotto6_49Data(game).get(0));
-					break;
-				case LOTOTURF:
-					listLottery.add(parseLototurfData(game).get(0));
-					break;
-				case ONCE:
-					listLottery.add(parseOnceData(game).get(0));
-					break;
-				case ONCE_FINDE:
-					listLottery.add(parseOnceFindeData(game).get(0));
-					break;
-				case PRIMITIVA:
-					listLottery.add(parsePrimitivaData(game).get(0));
-					break;
-				case QUINTUPLE_PLUS:
-					listLottery.add(parseQuintuplePlusData(game).get(0));
-					break;
-				case QUINIELA:
-					listLottery.add(parseQuinielaData(game).get(0));
-					break;
-				case QUINIGOL:
-					listLottery.add(parseQuinigolData(game).get(0));
-					break;
+				try {
 
+					switch (id) {
+					
+					case BONOLOTO:
+						listLottery.add(parseBonolotoData(game).get(0));
+						break;
+					case CUPONAZO_ONCE:
+						listLottery.add(parseCuponazoOnceData(game).get(0));
+						break;
+					case EUROMILLONES:
+						listLottery.add(parseEuromillonData(game).get(0));
+						break;
+					case GORDO_PRIMITIVA:
+						listLottery.add(parseGordoPrimitivaData(game).get(0));
+						break;
+					case LOTERIA_NACIONAL:
+						listLottery.add(parseLoteriaNacionalData(game).get(0));
+						break;
+					case LOTERIA_7_39:
+						listLottery.add(parseLoteria7_39Data(game).get(0));
+						break;
+					case LOTTO6_49:
+						listLottery.add(parseLotto6_49Data(game).get(0));
+						break;
+					case LOTOTURF:
+						listLottery.add(parseLototurfData(game).get(0));
+						break;
+					case ONCE:
+						listLottery.add(parseOnceData(game).get(0));
+						break;
+					case ONCE_FINDE:
+						listLottery.add(parseOnceFindeData(game).get(0));
+						break;
+					case PRIMITIVA:
+						listLottery.add(parsePrimitivaData(game).get(0));
+						break;
+					case QUINTUPLE_PLUS:
+						listLottery.add(parseQuintuplePlusData(game).get(0));
+						break;
+					case QUINIELA:
+						listLottery.add(parseQuinielaData(game).get(0));
+						break;
+					case QUINIGOL:
+						listLottery.add(parseQuinigolData(game).get(0));
+						break;
+	
+					}
+					
+				} catch(Exception ex) {
+					//Log.e(, msg)
+					continue;
 				}
 			}
 
@@ -406,8 +415,6 @@ class LotteryXMLParser {
 			throw new LotteryParseException("Error connecting to the url");
 		} catch (DOMException e) {
 			throw new LotteryParseException("Error parsing content");
-		} catch (ParseException e) {
-			throw new LotteryParseException("Error parsing data");
 		}
 
 	}
@@ -472,7 +479,7 @@ class LotteryXMLParser {
 
 	private static List<Bonoloto> parseBonolotoData(Element game)
 			throws DOMException, ParseException {
-
+		
 		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nBonoloto:  " + date);
 
@@ -507,6 +514,7 @@ class LotteryXMLParser {
 		lotteryList.add(bonoloto);
 
 		return lotteryList;
+		
 	}
 	
 	private static List<CuponazoOnce> parseCuponazoOnceData(Element game)
@@ -1045,11 +1053,23 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
+			
+			String value = values.getNamedItem("Valor").getNodeValue();
+			String parsedValues[] = {" ", " "};
+			if(value.length() >= 3) {
+				parsedValues[0] = value.split("-")[0];
+				parsedValues[1] = value.split("-")[1];
+			}
+			
+			if(parsedValues[0] == "")
+				parsedValues[0] = " ";
+			if(parsedValues[1] == "")
+				parsedValues[1] = " ";
 
 			quinigol.setMatch(i, values.getNamedItem("Equipo1").getNodeValue(),
 					values.getNamedItem("Equipo2").getNodeValue(),
-					values.getNamedItem("Valor").getNodeValue().substring(0, 1),
-					values.getNamedItem("Valor").getNodeValue().substring(4, 5));
+					parsedValues[0],
+					parsedValues[1]);
 
 			quinigol.setScore(i, 
 					Integer.parseInt(values.getNamedItem("GolesEquipo1").getNodeValue().trim()),
@@ -1059,13 +1079,12 @@ class LotteryXMLParser {
 					+ " - "
 					+ values.getNamedItem("Equipo2").getNodeValue()
 					+ " -- "
-					+ values.getNamedItem("Valor").getNodeValue()
-							.substring(0, 1)
+					+ parsedValues[0]
 					+ "-"
-					+ values.getNamedItem("Valor").getNodeValue()
-							.substring(4, 5)
+					+ parsedValues[1]
 					+ "(" + values.getNamedItem("GolesEquipo1").getNodeValue() + "-"
 					+ values.getNamedItem("GolesEquipo2").getNodeValue() + ")");
+
 		}
 		
 		results = game.getElementsByTagName("Premio");

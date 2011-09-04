@@ -98,27 +98,44 @@ public class Lottodroid extends ListActivity {
     
     Lottery lottery = (Lottery) listView.getItemAtPosition(position);
     
-    if(lottery.getId() == LotteryId.QUINIELA || lottery.getId() == LotteryId.QUINIGOL)
-    	options = new String[] { "Otra fecha", "Ver premios", "Ver goles" };
-    else
-    	options = new String[] { "Otra fecha", "Ver premios" };
-  
-    if(Configuration.SERVER_MODE || Configuration.IN_MEMORY_MODE) {
-    	startDetailsActivity(position);
-    } else {
-	    new AlertDialog.Builder(Lottodroid.this).setTitle("Opciones")
-	    		.setItems(options, 
-	    				new DialogInterface.OnClickListener() {
-		    		@Override
-		    		public void onClick(DialogInterface dialog, int which) {
-		    			// TODO: there is no way that not depend on button positions?
-		    			if (which == 0) 
-		    				startCalendarActivity(position);
-		    			else if (which == 1) 
-		    				startPrizeActivity(position);
-		    			else if (which == 2)
-		    				startScoresActivity(position);
-		    		}}).show();
+    if(lottery == null) { 
+    	
+    	// when the error_view_row is shown
+    	
+    	new AlertDialog.Builder(Lottodroid.this).setTitle("Opciones")
+		.setItems(new String[] { "Otra fecha" }, 
+				new DialogInterface.OnClickListener() {
+    		@Override
+    		public void onClick(DialogInterface dialog, int which) {
+    			if (which == 0) 
+    				startCalendarActivity(position);
+    		}}).show();
+    } else { 
+    	
+    	// when a normal view is shown - no errors in retrieving data
+    
+	    if(lottery.getId() == LotteryId.QUINIELA || lottery.getId() == LotteryId.QUINIGOL)
+	    	options = new String[] { "Otra fecha", "Ver premios", "Ver goles" };
+	    else
+	    	options = new String[] { "Otra fecha", "Ver premios" };
+	  
+	    if(Configuration.SERVER_MODE || Configuration.IN_MEMORY_MODE) {
+	    	startDetailsActivity(position);
+	    } else {
+		    new AlertDialog.Builder(Lottodroid.this).setTitle("Opciones")
+		    		.setItems(options, 
+		    				new DialogInterface.OnClickListener() {
+			    		@Override
+			    		public void onClick(DialogInterface dialog, int which) {
+			    			// TODO: there is no way that not depend on button positions?
+			    			if (which == 0) 
+			    				startCalendarActivity(position);
+			    			else if (which == 1) 
+			    				startPrizeActivity(position);
+			    			else if (which == 2)
+			    				startScoresActivity(position);
+			    		}}).show();
+	    }
     }
 
   }
@@ -189,10 +206,17 @@ public class Lottodroid extends ListActivity {
     Intent i = new Intent(this, CalendarActivity.class);
 
     Lottery lottery = (Lottery) listView.getItemAtPosition(position);
-    LotteryViewController<? extends Lottery> viewController = ViewControllerFactory.createViewController(lottery.getId());
+    LotteryId lotteryId;
+    
+    if(lottery == null)
+    	lotteryId = sorter.getOrder().get(position-1);
+    else
+    	lotteryId = lottery.getId();
+    
+    LotteryViewController<? extends Lottery> viewController = ViewControllerFactory.createViewController(lotteryId);
     
     i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
-    i.putExtra("date", DateFormatter.toLotoluckString(lottery.getDate()));
+    //i.putExtra("date", DateFormatter.toLotoluckString(lottery.getDate()));
 
     startActivity(i);
   }

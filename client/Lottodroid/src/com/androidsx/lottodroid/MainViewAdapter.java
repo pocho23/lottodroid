@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.androidsx.lottodroid.model.Lottery;
 import com.androidsx.lottodroid.model.LotteryId;
@@ -94,8 +96,21 @@ class MainViewAdapter extends BaseAdapter {
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
     Lottery lottery = lotteryList.get(position);
+    LotteryViewController viewController;
+    if(lottery == null) {
+    	LotteryId lotteryId = sorter.getOrder().get(position);
+    	viewController = ViewControllerFactory.createViewController(lotteryId);
+    	View view = viewController.createAndFillUpOrderView(lotteryId, context);
+    	
+    	String lotteryName = sorter.getOrder().get(position).toString();
+    	Log.d("HUGO", lotteryName);
+    	View errorRow = View.inflate(context, R.layout.error_row, null);
+    	LinearLayout linear = (LinearLayout) errorRow.findViewById(R.id.error_row_header);
+    	linear.addView(view);
+    	return errorRow;
+    }
     
-    LotteryViewController viewController = ViewControllerFactory.createViewController(lottery.getId());
+    viewController = ViewControllerFactory.createViewController(lottery.getId());
     if (!orderMode) {
       return viewController.createAndFillUpMainView(lottery, context);
     } else {
