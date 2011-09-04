@@ -34,6 +34,8 @@ public class AboutDialog extends AlertDialog {
             final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
             emailIntent.setType("plain/text");
+            emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Sugerencias para Lottodroid v"
+                    + getApplicationVersion(context));
             emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {
                 "lottodroid-support@androidsx.com" });
 
