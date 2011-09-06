@@ -19,12 +19,6 @@ package com.androidsx.lottodroid.calendar;
 import java.util.Calendar;
 import java.util.zip.DataFormatException;
 
-import com.androidsx.lottodroid.IntentExtraDataNames;
-import com.androidsx.lottodroid.R;
-import com.androidsx.lottodroid.model.Lottery;
-import com.androidsx.lottodroid.util.DateLotteries;
-import com.androidsx.lottodroid.view.LotteryViewController;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -38,6 +32,12 @@ import android.util.Log;
 import android.util.MonthDisplayHelper;
 import android.view.MotionEvent;
 import android.widget.ImageView;
+
+import com.androidsx.lottodroid.IntentExtraDataNames;
+import com.androidsx.lottodroid.R;
+import com.androidsx.lottodroid.model.Lottery;
+import com.androidsx.lottodroid.util.DateLotteries;
+import com.androidsx.lottodroid.view.LotteryViewController;
 
 /**
  * This view visualizes a calendar and provide methods to access its days
@@ -192,8 +192,6 @@ public class CalendarView extends ImageView {
 					beforeToday = tmpCalendar[week][day].day < thisDay;
 					if(DateLotteries.isALotteryDay(viewController.getId(), day) && beforeToday && beforeThisMonth && beforeThisYear)
 						mCells[week][day] = new BlueCell(tmpCalendar[week][day].day, tmpCalendar[week][day].month, new Rect(Bound), CELL_TEXT_SIZE);
-					else if(day==0 || day==6)
-						mCells[week][day] = new RedCell(tmpCalendar[week][day].day, tmpCalendar[week][day].month, new Rect(Bound), CELL_TEXT_SIZE);
 					else 
 						mCells[week][day] = new Cell(tmpCalendar[week][day].day, tmpCalendar[week][day].month, new Rect(Bound), CELL_TEXT_SIZE);
 				} else
@@ -325,19 +323,6 @@ public class CalendarView extends ImageView {
 		public GrayCell(int dayOfMon, int month, Rect rect, float s) {
 			super(dayOfMon, month, rect, s);
 			mPaint.setColor(Color.LTGRAY);
-		}			
-	}
-	
-	/**
-	 * Extends the class Cell in order to provide a red color
-	 * It is used for the weekends.
-	 * @author Hugo
-	 *
-	 */
-	private class RedCell extends Cell {
-		public RedCell(int dayOfMon, int month, Rect rect, float s) {
-			super(dayOfMon, month, rect, s);
-			mPaint.setColor(0xdddd0000);
 		}			
 	}
 	
