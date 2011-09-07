@@ -31,6 +31,7 @@ import com.androidsx.lottodroid.view.AboutDialog;
 import com.androidsx.lottodroid.view.ErrorDialog;
 import com.androidsx.lottodroid.view.LotteryViewController;
 import com.androidsx.lottodroid.view.ViewControllerFactory;
+import com.flurry.android.FlurryAgent;
 
 /**
  * Activity for the main screen.
@@ -62,6 +63,16 @@ public class Lottodroid extends ListActivity {
     listView.addHeaderView(v);
     fetchDataForMainView();
     Log.i(TAG, "onCreate");
+  }
+  
+  public void onStart() {
+    super.onStart();
+    FlurryAgent.onStartSession(this, "9H77QFYE6N7MIWYCWAJG");
+  }
+
+  public void onStop() {
+    super.onStop();
+    FlurryAgent.onEndSession(this);
   }
 
   /** 
