@@ -6,18 +6,18 @@ package com.androidsx.lottodroid.model;
 public enum LotteryId {
 
   BONOLOTO("Bonoloto"),
-  CUPONAZO_ONCE("Cuponazo ONCE"),
-  EUROMILLON("Euromillon"),
-  GORDO_PRIMITIVA("Gordo primitiva"),
-  LOTERIA_NACIONAL("Lotería Nacional"),
-  LOTERIA7_39("7/39 de la ONCE"),
-  LOTOTURF("Lototurf"),
-  LOTTO6_49("Loto Catalunya 6/49"),
   ONCE("ONCE"),
-  ONCE_FINDE("ONCE Fin de semana"),
+  EUROMILLON("Euromillon"),
   PRIMITIVA("Primitiva"),
+  LOTERIA_NACIONAL("Lotería Nacional"),
   QUINIELA("Quiniela"),
+  GORDO_PRIMITIVA("Gordo primitiva"),
+  LOTERIA7_39("7/39 de la ONCE"),
+  CUPONAZO_ONCE("Cuponazo ONCE"),
+  ONCE_FINDE("ONCE Fin de semana"),
+  LOTTO6_49("Loto Catalunya 6/49"),
   QUINIGOL("Quinigol"),
+  LOTOTURF("Lototurf"),
   QUINTUPLE_PLUS("Quíntuple plus");
   
   private final String name;
