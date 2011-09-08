@@ -1,6 +1,7 @@
 package com.androidsx.lottodroid.communication;
 
 import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -319,13 +320,13 @@ class LotteryXMLParser {
 	 * lottery draw and converts them into a list of {@link Lottery} value
 	 * objects
 	 * 
-	 * @param response
+	 * @param url
 	 *            String that represents the response from lotoluck to a lottery
 	 *            request
 	 * @return List<Lottery> A list of lottery objects representing the data
 	 * @throws LotteryParseException
 	 */
-	public static List<Lottery> parseAllLotteries(String response)
+	public static List<Lottery> parseAllLotteries(String url)
 			throws LotteryParseException {
 
 		try {
@@ -333,7 +334,7 @@ class LotteryXMLParser {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
 					.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(response);
+			Document doc = dBuilder.parse(new URL(url).openConnection().getInputStream());
 			doc.getDocumentElement().normalize();
 			String rootElement = doc.getDocumentElement().getNodeName();
 			if (rootElement.matches("error"))
@@ -400,7 +401,8 @@ class LotteryXMLParser {
 					}
 					
 				} catch(Exception ex) {
-					//Log.e(, msg)
+					Log.e("LAAL", ex.getMessage());
+					ex.printStackTrace();
 					continue;
 				}
 			}
@@ -408,13 +410,17 @@ class LotteryXMLParser {
 			return listLottery;
 
 		} catch (ParserConfigurationException e) {
-			throw new LotteryParseException("Error in configurating the parser");
+		    e.printStackTrace();
+			throw new LotteryParseException("Error in configurating the parser", e);
 		} catch (SAXException e) {
-			throw new LotteryParseException("Error parsing content");
+		    e.printStackTrace();
+			throw new LotteryParseException("Error parsing content", e);
 		} catch (IOException e) {
-			throw new LotteryParseException("Error connecting to the url");
+		    e.printStackTrace();
+			throw new LotteryParseException("Error connecting to the url", e);
 		} catch (DOMException e) {
-			throw new LotteryParseException("Error parsing content");
+		    e.printStackTrace();
+			throw new LotteryParseException("Error parsing content", e);
 		}
 
 	}
@@ -437,14 +443,14 @@ class LotteryXMLParser {
 	 * Parse the string containing the information of a lottery draw checking
 	 * that the data retrieved is the same type as the one requested
 	 * 
-	 * @param response
+	 * @param url
 	 *            Represents the response from the server to a lottery request
 	 * @param contentType
 	 *            Lottery type requested
 	 * @return Data retrieved for a lottery draw
 	 * @throws LotteryParseException
 	 */
-	private static Element parseContentTypeAndGetData(String response,
+	private static Element parseContentTypeAndGetData(String url,
 			int contentType) throws LotteryParseException {
 
 		try {
@@ -452,7 +458,7 @@ class LotteryXMLParser {
 					.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
-			Document doc = dBuilder.parse(response);
+			Document doc = dBuilder.parse(new URL(url).openConnection().getInputStream());
 			doc.getDocumentElement().normalize();
 
 			String rootElement = doc.getDocumentElement().getNodeName();
@@ -473,7 +479,8 @@ class LotteryXMLParser {
 			throw new LotteryParseException("Wrong controller selected");
 
 		} catch (Exception e) {
-			throw new LotteryParseException("Error parsing data");
+		    e.printStackTrace();
+			throw new LotteryParseException("Error parsing data", e);
 		}
 	}
 
