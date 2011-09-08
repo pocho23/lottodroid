@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:myapp="http://schemas.android.com/apk/res/com.androidsx.lottodroid"
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
@@ -8,7 +9,8 @@
   <com.androidsx.lottodroid.view.TouchInterceptor
     android:id="@+id/android:list"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" />
+    android:layout_height="fill_parent"
+    android:layout_weight="1" />
 
   <LinearLayout
     android:id="@android:id/empty"
@@ -31,5 +33,15 @@
       android:text="Cargando últimos sorteos" />
 
   </LinearLayout>
+  
+  <com.inneractive.api.ads.InneractiveAdView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/webview"
+    myapp:refreshInterval="30"
+    myapp:adType="banner_ad"
+    myapp:appID="Androidsx_Lottodroid_Android"
+    myapp:keywords="poker, games, juegos, azar, loteria, lotto, apps, android" />
+  
 
 </LinearLayout>

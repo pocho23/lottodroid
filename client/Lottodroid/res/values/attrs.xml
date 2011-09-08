@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable
+        name="com.inneractive.api.ads.configuration">
+        <attr
+            name="appID"
+            format="string" />
+        <attr
+            name="refreshInterval"
+            format="integer" />
+        <attr
+            name="adType"
+            format="string" />
+        <attr
+            name="age"
+            format="integer" />
+        <attr
+            name="gender"
+            format="string" />
+        <attr
+            name="externalID"
+            format="string" />
+        <attr
+            name="distID"
+            format="integer" />
+        <attr
+            name="msisdn"
+            format="string" />
+        <attr
+            name="keywords"
+            format="string" />
+    </declare-styleable>
+</resources>
