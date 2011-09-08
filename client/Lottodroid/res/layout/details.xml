@@ -27,7 +27,7 @@
       android:layout_height='fill_parent'
 
       android:textStyle="bold"
-      android:textSize="18px"
+      android:textSize="18dip"
       android:gravity='center_vertical'
       android:singleLine='true'
       android:ellipsize='marquee'

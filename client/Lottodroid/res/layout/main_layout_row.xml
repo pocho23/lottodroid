@@ -35,7 +35,7 @@
         android:layout_height='0dip'
         android:layout_weight='1'
 
-        android:textSize="12px"
+        android:textSize="12dip"
 
         android:gravity='center_vertical'
         android:text='Date' />
@@ -47,7 +47,7 @@
         android:layout_weight='1'
 
         android:textStyle="bold"
-        android:textSize="18px"
+        android:textSize="18dip"
         android:layout_marginBottom='3dip'
 
         android:singleLine='true'
