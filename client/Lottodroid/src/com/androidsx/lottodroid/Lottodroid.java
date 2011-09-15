@@ -25,6 +25,7 @@ import com.androidsx.lottodroid.model.Lottery;
 import com.androidsx.lottodroid.model.LotteryId;
 import com.androidsx.lottodroid.sorting.LotterySorter;
 import com.androidsx.lottodroid.sorting.LotterySorterFactory;
+import com.androidsx.lottodroid.storage.LotteryCompoundDB;
 import com.androidsx.lottodroid.util.DateFormatter;
 import com.androidsx.lottodroid.util.UserTask;
 import com.androidsx.lottodroid.view.AboutDialog;
@@ -42,11 +43,13 @@ public class Lottodroid extends ListActivity {
   
   private static final int ORDER_LOTTERY_MENU_ID = Menu.FIRST;
   private static final int ABOUT_MENU_ID = Menu.FIRST + 1;
+  private static final int UPDATE_MENU_ID = Menu.FIRST + 2;
   
   private final LotterySorter sorter = LotterySorterFactory.getLotterySorter(this);
   
   private MainViewAdapter adapter;
   private ListView listView;
+  private boolean update = false;
   
   /**
    * Called when the activity is first created.
@@ -158,6 +161,8 @@ public class Lottodroid extends ListActivity {
       .setIcon(android.R.drawable.ic_menu_sort_alphabetically);
     menu.add(0, ABOUT_MENU_ID, 0, "Acerca de")
       .setIcon(android.R.drawable.ic_menu_info_details);
+    menu.add(0, UPDATE_MENU_ID, 0, "Actualizar")
+      .setIcon(android.R.drawable.ic_menu_rotate);
     return true;
   }
 
@@ -175,6 +180,11 @@ public class Lottodroid extends ListActivity {
 
     case ABOUT_MENU_ID:
       new AboutDialog(this).show();
+      return true;
+      
+    case UPDATE_MENU_ID:
+      update = true;
+      fetchDataForMainView();
       return true;
       
     }
@@ -227,7 +237,6 @@ public class Lottodroid extends ListActivity {
     LotteryViewController<? extends Lottery> viewController = ViewControllerFactory.createViewController(lotteryId);
     
     i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
-    //i.putExtra("date", DateFormatter.toLotoluckString(lottery.getDate()));
 
     startActivity(i);
   }
@@ -239,6 +248,8 @@ public class Lottodroid extends ListActivity {
     Lottery lottery = (Lottery) listView.getItemAtPosition(position);
     LotteryViewController<? extends Lottery> viewController = ViewControllerFactory.createViewController(lottery.getId());
     
+    // Set to true because we came from Lottodroid
+    i.putExtra(Lottodroid.TAG, true);
     i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
     i.putExtra("date", DateFormatter.toLotoluckString(lottery.getDate()));
 
@@ -264,14 +275,38 @@ public class Lottodroid extends ListActivity {
    * type.
    */
   private class FetchAllLotteryResultsTask extends UserTask<Void, Void, MainViewAdapter> {
+	  
+	private class Storage implements Runnable {
+		
+		private final List<Lottery> lotteries;
+		
+		public Storage(List<Lottery> lotteries) {
+			this.lotteries = lotteries;
+		}
+
+		@Override
+		public void run() {
+			LotteryCompoundDB.storeLotteries(Lottodroid.this, lotteries);
+		}		
+	}
 
     @Override
     public MainViewAdapter doInBackground(Void... params) {
       MainViewAdapter mainViewAdapter = null;
 
       try {
-        LotteryFetcher dataFetcher = LotteryFetcherFactory.newLotteryFetcher(Lottodroid.this);
-        List<Lottery> lotteries = dataFetcher.retrieveLastAllLotteries();
+    	List<Lottery> lotteries = null;
+    	// Try to get the data from the database
+    	if(!update)
+    		lotteries = LotteryCompoundDB.retrieveLotteries(Lottodroid.this);
+    	// If there's no data or it's out of date, fetch it from Internet
+    	if(lotteries == null) {
+	    	LotteryFetcher dataFetcher = LotteryFetcherFactory.newLotteryFetcher(Lottodroid.this);
+	        lotteries = dataFetcher.retrieveLastAllLotteries();
+	        new Storage(lotteries).run();
+	        update = false;
+    	}
+        
         mainViewAdapter = new MainViewAdapter(Lottodroid.this, lotteries);
         mainViewAdapter.refresh();
 

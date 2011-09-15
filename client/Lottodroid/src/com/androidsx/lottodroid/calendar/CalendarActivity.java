@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.androidsx.lottodroid.IntentExtraDataNames;
+import com.androidsx.lottodroid.Lottodroid;
 import com.androidsx.lottodroid.PrizeActivity;
 import com.androidsx.lottodroid.R;
 import com.androidsx.lottodroid.calendar.CalendarView.OnCalendarCreated;
@@ -89,6 +90,8 @@ public class CalendarActivity extends Activity implements CalendarView.OnCellTou
 	private void startPrizeActivity(long date) {
 	    Intent i = new Intent(this, PrizeActivity.class);
 
+	    // Set to false because we do not came from Lottodroid
+	    i.putExtra(Lottodroid.TAG, false);
 	    i.putExtra(IntentExtraDataNames.LOTTERY_VIEW_CONTROLLER, viewController);
 	    i.putExtra("date", date);
 

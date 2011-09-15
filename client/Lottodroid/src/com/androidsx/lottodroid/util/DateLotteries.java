@@ -11,6 +11,20 @@ public class DateLotteries {
 		// This class is not to be instantiated
 	}
 	
+	/**
+	 * From an unformatted date (YYYYMMDD) returns a formatted one (YYYY-MM-DD)
+	 * 
+	 * @param unformattedDate
+	 * @return formattedDate
+	 */
+	public static String formatDate(String unformatedDate) {
+		StringBuilder formatedDate = new StringBuilder();
+		return formatedDate.append(unformatedDate.subSequence(0, 4))
+				.append("-").append(unformatedDate.subSequence(4, 6))
+				.append("-").append(unformatedDate.subSequence(6, 8))
+				.toString();
+	}
+	
 	public static boolean isALotteryDay(LotteryId id, int day) {
 		if((id == LotteryId.BONOLOTO) || (id == LotteryId.ONCE)) {
 			return (equals(day, Calendar.MONDAY) || equals(day, Calendar.TUESDAY)

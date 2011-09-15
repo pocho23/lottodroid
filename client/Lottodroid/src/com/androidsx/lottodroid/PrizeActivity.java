@@ -7,6 +7,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -15,6 +17,7 @@ import com.androidsx.lottodroid.communication.LotteryFetcherFactory;
 import com.androidsx.lottodroid.communication.LotteryInfoUnavailableException;
 import com.androidsx.lottodroid.model.Lottery;
 import com.androidsx.lottodroid.model.LotteryId;
+import com.androidsx.lottodroid.storage.LotteryDBFactory;
 import com.androidsx.lottodroid.util.UserTask;
 import com.androidsx.lottodroid.view.ErrorDialog;
 import com.androidsx.lottodroid.view.LotteryViewController;
@@ -26,6 +29,9 @@ public class PrizeActivity extends Activity {
 	private long date;
 	private LotteryViewController<Lottery> viewController;
 	private Context mContext;
+	private boolean stored = false;
+	private static final int UPDATE_MENU_ID = Menu.FIRST;
+    private boolean update = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +46,10 @@ public class PrizeActivity extends Activity {
 			if (extras == null) {
 				throw new DataFormatException();
 			}
-
+			
+			// If we came from Lottodroid it's already stored, if not let's search!
+			stored = extras.getBoolean(Lottodroid.TAG);
+			
 			// Get the date, set from the main activity
 			date = (Long) extras.getSerializable("date");
 
@@ -57,6 +66,26 @@ public class PrizeActivity extends Activity {
 			Log.e(TAG, "Fatal error: " + e.getMessage());
 		}
 
+	}
+	
+	/** Creates the menu items */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    menu.add(0, UPDATE_MENU_ID, 0, "Actualizar")
+	      .setIcon(android.R.drawable.ic_menu_rotate);
+	    return true;
+	}
+	
+	/** Handles item selections */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    case UPDATE_MENU_ID:
+	      update = true;
+	      new FetchAllLotteryResultsTask().execute();
+	      return true;
+	    }
+	    return false;
 	}
 
 	/**
@@ -81,42 +110,52 @@ public class PrizeActivity extends Activity {
 			List<? extends Lottery> listLottery = null;
 			try {
 				LotteryId lotteryId = viewController.getId();
-				LotteryFetcher dataFetcher = LotteryFetcherFactory
-						.newLotteryFetcher(PrizeActivity.this);
-
-				if (lotteryId == LotteryId.BONOLOTO) {
-					listLottery = dataFetcher.retrieveBonolotos(date);
-				} else if (lotteryId == LotteryId.QUINIELA) {
-					listLottery = dataFetcher.retrieveQuinielas(date);
-				} else if (lotteryId == LotteryId.PRIMITIVA) {
-					listLottery = dataFetcher.retrievePrimitivas(date);
-				} else if (lotteryId == LotteryId.QUINIGOL) {
-					listLottery = dataFetcher.retrieveQuinigoles(date);
-				} else if (lotteryId == LotteryId.LOTOTURF) {
-					listLottery = dataFetcher.retrieveLototurfs(date);
-				} else if (lotteryId == LotteryId.EUROMILLON) {
-					listLottery = dataFetcher.retrieveEuromillones(date);
-				} else if (lotteryId == LotteryId.LOTERIA_NACIONAL) {
-					listLottery = dataFetcher.retrieveLoteriasNacionales(date);
-				} else if (lotteryId == LotteryId.GORDO_PRIMITIVA) {
-					listLottery = dataFetcher.retrieveGordoPrimitivas(date);
-				} else if (lotteryId == LotteryId.CUPONAZO_ONCE) {
-					listLottery = dataFetcher.retrieveCuponazoOnce(date);
-				} else if (lotteryId == LotteryId.LOTERIA7_39) {
-					listLottery = dataFetcher.retrieveLoteria7_39(date);
-				} else if (lotteryId == LotteryId.LOTTO6_49) {
-					listLottery = dataFetcher.retrieveLotto6_49(date);
-				} else if (lotteryId == LotteryId.ONCE) {
-					listLottery = dataFetcher.retrieveOnce(date);
-				} else if (lotteryId == LotteryId.ONCE_FINDE) {
-					listLottery = dataFetcher.retrieveOnceFinde(date);
-				} else if (lotteryId == LotteryId.QUINTUPLE_PLUS) {
-					listLottery = dataFetcher.retrieveQuintuplePlus(date);
-				} else {
-					// TODO(pablo): check this exception handling
-					throw new DataFormatException();
+				
+				
+				try {
+					if(stored && !update) // Try to get the data from the database
+						listLottery = LotteryDBFactory.newLotteryDB(PrizeActivity.this, lotteryId).retrieveLottery();
+					else
+						throw new Exception("We throw an exception to update results from Internet");
+				}  catch (Exception e) {
+					// No lottery stored or out of date, fetch it from Internet
+					update = false;
+					LotteryFetcher dataFetcher = LotteryFetcherFactory
+							.newLotteryFetcher(PrizeActivity.this);
+	
+					if (lotteryId == LotteryId.BONOLOTO) {
+						listLottery = dataFetcher.retrieveBonolotos(date);
+					} else if (lotteryId == LotteryId.QUINIELA) {
+						listLottery = dataFetcher.retrieveQuinielas(date);
+					} else if (lotteryId == LotteryId.PRIMITIVA) {
+						listLottery = dataFetcher.retrievePrimitivas(date);
+					} else if (lotteryId == LotteryId.QUINIGOL) {
+						listLottery = dataFetcher.retrieveQuinigoles(date);
+					} else if (lotteryId == LotteryId.LOTOTURF) {
+						listLottery = dataFetcher.retrieveLototurfs(date);
+					} else if (lotteryId == LotteryId.EUROMILLON) {
+						listLottery = dataFetcher.retrieveEuromillones(date);
+					} else if (lotteryId == LotteryId.LOTERIA_NACIONAL) {
+						listLottery = dataFetcher.retrieveLoteriasNacionales(date);
+					} else if (lotteryId == LotteryId.GORDO_PRIMITIVA) {
+						listLottery = dataFetcher.retrieveGordoPrimitivas(date);
+					} else if (lotteryId == LotteryId.CUPONAZO_ONCE) {
+						listLottery = dataFetcher.retrieveCuponazoOnce(date);
+					} else if (lotteryId == LotteryId.LOTERIA7_39) {
+						listLottery = dataFetcher.retrieveLoteria7_39(date);
+					} else if (lotteryId == LotteryId.LOTTO6_49) {
+						listLottery = dataFetcher.retrieveLotto6_49(date);
+					} else if (lotteryId == LotteryId.ONCE) {
+						listLottery = dataFetcher.retrieveOnce(date);
+					} else if (lotteryId == LotteryId.ONCE_FINDE) {
+						listLottery = dataFetcher.retrieveOnceFinde(date);
+					} else if (lotteryId == LotteryId.QUINTUPLE_PLUS) {
+						listLottery = dataFetcher.retrieveQuintuplePlus(date);
+					} else {
+						// TODO(pablo): check this exception handling
+						throw new DataFormatException();
+					}
 				}
-
 			} catch (LotteryInfoUnavailableException e) {
 				listLottery = null;
 				Log.e(TAG, "Lottery info unavailable", e);
@@ -136,6 +175,7 @@ public class PrizeActivity extends Activity {
 						+ getString(R.string.sugerencia_error_dialog_text)).show();
 			} else {
 				loadingView.setVisibility(View.GONE);
+				fullView.removeAllViews();
 				fullView.addView(viewController.createAndFillUpMainView(listLottery.get(0), mContext));
 				fullView.addView(viewController.createAndFillUpPrizeView(listLottery.get(0), mContext));
 			}
