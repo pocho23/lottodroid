@@ -29,6 +29,7 @@ import com.androidsx.lottodroid.storage.LotteryCompoundDB;
 import com.androidsx.lottodroid.util.DateFormatter;
 import com.androidsx.lottodroid.util.UserTask;
 import com.androidsx.lottodroid.view.AboutDialog;
+import com.androidsx.lottodroid.view.CoffeeDialog;
 import com.androidsx.lottodroid.view.ErrorDialog;
 import com.androidsx.lottodroid.view.LotteryViewController;
 import com.androidsx.lottodroid.view.ViewControllerFactory;
@@ -65,6 +66,7 @@ public class Lottodroid extends ListActivity {
     
     listView.addHeaderView(v);
     fetchDataForMainView();
+    new CoffeeDialog(this).show();
     Log.i(TAG, "onCreate");
   }
   

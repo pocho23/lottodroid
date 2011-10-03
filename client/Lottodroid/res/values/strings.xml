@@ -37,6 +37,11 @@
   <string name="about_dialog_button_ok">OK</string>
   <string name="about_dialog_button_email">Dínos algo!</string>
   
-
-  
+  <string name="coffee_dialog_button_next">A la próxima!</string>
+  <string name="coffee_dialog_button_buy">Invitar a café</string>
+  <string name="coffee_dialog_text">
+  	Consideras que es una app lo suficientemente útil como para invitar a los creadores a un café?\n\n
+    
+    Si así lo crees, simplemente compra la versión pro y además, te quitamos los anuncios!\n
+  </string>
 </resources>
