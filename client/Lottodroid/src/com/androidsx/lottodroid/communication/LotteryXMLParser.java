@@ -490,7 +490,7 @@ class LotteryXMLParser {
 		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nBonoloto:  " + date);
 
-		// 6 results + complementario + reintegro
+		// 6 results + reintegro + complementario
 		int num[] = new int[8];
 		NodeList results = game.getElementsByTagName("Resultado");
 		NamedNodeMap values; Element result;
@@ -503,7 +503,7 @@ class LotteryXMLParser {
 		}
 		
 		Bonoloto bonoloto = new Bonoloto(date, num[0], num[1], num[2], num[3],
-				num[4], num[5], num[6], num[7]);
+				num[4], num[5], num[7], num[6]);
 		
 		results = game.getElementsByTagName("Premio");
 
@@ -865,7 +865,7 @@ class LotteryXMLParser {
 		Date date = dfm.parse(formatDate(game.getElementsByTagName("Fecha").item(0).getFirstChild().getNodeValue()));
 		System.out.println("\n\nPrimitiva:  " + date);
 
-		// 8 resultados: 6 nums + reintegro + complementario
+		// 8 resultados: 6 nums + complementario + reintegro
 		int num[] = new int[8];
 		NodeList results = game.getElementsByTagName("Resultado");
 		NamedNodeMap values; Element result;
@@ -878,7 +878,7 @@ class LotteryXMLParser {
 		}
 		
 		Primitiva primitiva = new Primitiva(date, num[0], num[1], num[2],
-				num[3], num[4], num[5], num[6], num[7]);
+				num[3], num[4], num[5], num[7], num[6]);
 		
 		results = game.getElementsByTagName("Premio");
 
