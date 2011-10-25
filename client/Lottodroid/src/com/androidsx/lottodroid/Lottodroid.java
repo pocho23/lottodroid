@@ -66,8 +66,6 @@ public class Lottodroid extends ListActivity {
     
     listView.addHeaderView(v);
     fetchDataForMainView();
-    new CoffeeDialog(this).show();
-    Log.i(TAG, "onCreate");
   }
   
   public void onStart() {
