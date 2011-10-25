@@ -34,14 +34,16 @@
 
   </LinearLayout>
   
-  <com.inneractive.api.ads.InneractiveAdView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/webview"
-    myapp:refreshInterval="30"
-    myapp:adType="banner_ad"
-    myapp:appID="Androidsx_Lottodroid_Android"
-    myapp:keywords="poker, games, juegos, azar, loteria, lotto, apps, android" />
-  
+
+    <com.admob.android.ads.AdView     
+       android:id="@+id/ad" 
+       android:layout_width="fill_parent" 
+       android:layout_height="wrap_content"
+       myapp:backgroundColor="#000000"
+       myapp:primaryTextColor="#FFFFFF"
+       myapp:secondaryTextColor="#CCCCCC"
+       myapp:refreshInterval="30"
+       myapp:keywords="Android, game, drunk, girls, poker, games, juegos, azar, loteria, lotto, apps, android games, free, sports, applications, apps, market"
+    />        
 
 </LinearLayout>
