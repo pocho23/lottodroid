@@ -1,7 +1,9 @@
 package com.androidsx.lottodroid;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.androidsx.lottodroid.calendar.CalendarActivity;
+import com.androidsx.lottodroid.changelog.ChangeLog;
 import com.androidsx.lottodroid.communication.LotteryFetcher;
 import com.androidsx.lottodroid.communication.LotteryFetcherFactory;
 import com.androidsx.lottodroid.communication.LotteryInfoUnavailableException;
@@ -29,7 +32,6 @@ import com.androidsx.lottodroid.storage.LotteryCompoundDB;
 import com.androidsx.lottodroid.util.DateFormatter;
 import com.androidsx.lottodroid.util.UserTask;
 import com.androidsx.lottodroid.view.AboutDialog;
-import com.androidsx.lottodroid.view.CoffeeDialog;
 import com.androidsx.lottodroid.view.ErrorDialog;
 import com.androidsx.lottodroid.view.LotteryViewController;
 import com.androidsx.lottodroid.view.ViewControllerFactory;
@@ -66,6 +68,10 @@ public class Lottodroid extends ListActivity {
     
     listView.addHeaderView(v);
     fetchDataForMainView();
+    
+    ChangeLog cl = new ChangeLog(this);
+    if (cl.firstRun())
+        cl.getLogDialog().show();
   }
   
   public void onStart() {
@@ -76,6 +82,12 @@ public class Lottodroid extends ListActivity {
   public void onStop() {
     super.onStop();
     FlurryAgent.onEndSession(this);
+  }
+  
+  private void reportLottoSelectionToFlurry(String whichLotto) {
+      Map<String, String> eventParams = new HashMap<String, String>();
+      eventParams.put("Sorteo elegido", whichLotto);
+      FlurryAgent.onEvent("Ver sorteos anteriores/premios", eventParams);
   }
 
   /** 
@@ -109,13 +121,11 @@ public class Lottodroid extends ListActivity {
     super.onListItemClick(l, v, position, id);
     
     String[] options = null;
-    
     Lottery lottery = (Lottery) listView.getItemAtPosition(position);
     
     if(lottery == null) { 
     	
     	// when the error_view_row is shown
-    	
     	new AlertDialog.Builder(Lottodroid.this).setTitle("Opciones")
 		.setItems(new String[] { "Otra fecha" }, 
 				new DialogInterface.OnClickListener() {
@@ -125,9 +135,7 @@ public class Lottodroid extends ListActivity {
     				startCalendarActivity(position);
     		}}).show();
     } else { 
-    	
     	// when a normal view is shown - no errors in retrieving data
-    
 	    if(lottery.getId() == LotteryId.QUINIELA || lottery.getId() == LotteryId.QUINIGOL)
 	    	options = new String[] { "Otra fecha", "Ver premios", "Ver goles" };
 	    else
@@ -136,6 +144,8 @@ public class Lottodroid extends ListActivity {
 	    if(Configuration.SERVER_MODE || Configuration.IN_MEMORY_MODE) {
 	    	startDetailsActivity(position);
 	    } else {
+	        reportLottoSelectionToFlurry(lottery.getId().getName());
+	        
 		    new AlertDialog.Builder(Lottodroid.this).setTitle("Opciones")
 		    		.setItems(options, 
 		    				new DialogInterface.OnClickListener() {

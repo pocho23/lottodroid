@@ -44,4 +44,9 @@
     
     Si así lo crees, simplemente compra la versión pro y además, te quitamos los anuncios!\n
   </string>
+  
+  <string name="changelog_full_title">Cambios</string>
+  <string name="changelog_title">Cambios</string>
+  <string name="changelog_ok_button">Aceptar</string>      
+      
 </resources>
