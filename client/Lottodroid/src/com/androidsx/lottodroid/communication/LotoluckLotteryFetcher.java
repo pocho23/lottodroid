@@ -27,7 +27,7 @@ import com.androidsx.lottodroid.util.DateLotteries;
 
 public class LotoluckLotteryFetcher implements LotteryFetcher {
 
-	static final String URL_STRING = "http://www.lotoluck.com/xml_euro/resultados_loterias.cfm?username=DroidSX&password=pablOmar";
+	static final String URL_STRING = "http://lotoluck.com/utils/lotoluck_en_xml.php?username=DroidSX&password=";
 	static final String DATE_VAR = "&fecha=";
 	static final String LOTTERY_VAR = "&juego=";
 	static final String LIMIT_VAR = "&limit=";
