@@ -45,6 +45,9 @@ import com.androidsx.lottodroid.model.QuintuplePlus;
  * Convert the information into {@link Lottery} value objects
  */
 class LotteryXMLParser {
+    
+    
+    private static final String TAG = "LotteryXMLParser";
 
 	public static final int SORTEOS = 0;
 	public static final int PRIMITIVA = 1;
@@ -401,8 +404,8 @@ class LotteryXMLParser {
 					}
 					
 				} catch(Exception ex) {
-					Log.e("LAAL", ex.getMessage());
-					ex.printStackTrace();
+				    Log.w(TAG, "Cannot parse lottery id " + id);
+                    ex.printStackTrace();
 					continue;
 				}
 			}
