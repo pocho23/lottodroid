@@ -12,9 +12,8 @@
 		<activity android:name="DetailsActivity"></activity>
 		<activity android:name="SortingActivity"></activity>
 		<activity android:name="PrizeActivity" android:configChanges="orientation"></activity>
+		<activity android:name="LotteryDatePickerActivity" android:configChanges="orientation"></activity>
 		<activity android:name=".ScoresActivity" android:configChanges="orientation"></activity>
-		<activity android:name=".calendar.CalendarActivity"
-			android:screenOrientation="portrait"></activity>
         
             
           <!-- The application's publisher ID assigned by AdMob -->
