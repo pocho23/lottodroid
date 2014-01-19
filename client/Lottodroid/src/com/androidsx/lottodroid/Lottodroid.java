@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.androidsx.lottodroid.calendar.CalendarActivity;
 import com.androidsx.lottodroid.changelog.ChangeLog;
 import com.androidsx.lottodroid.communication.LotteryFetcher;
 import com.androidsx.lottodroid.communication.LotteryFetcherFactory;
@@ -234,7 +233,7 @@ public class Lottodroid extends ListActivity {
 
   /** Start the new activity calendar for the lottery type selected */
   private void startCalendarActivity(int position) {
-    Intent i = new Intent(this, CalendarActivity.class);
+    Intent i = new Intent(this, LotteryDatePickerActivity.class);
 
     Lottery lottery = (Lottery) listView.getItemAtPosition(position);
     LotteryId lotteryId;
