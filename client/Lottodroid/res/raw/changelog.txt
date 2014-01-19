@@ -19,6 +19,11 @@
     </style>
   </head>
   <body>
+$ 3.0
+  % Version 3.0
+  _ 2014-01-18
+    * Corregidos todos los sorteos
+    * Cambiado el calendario para elegir otra fecha por un componente más sencillo
 $ 2.1.1
   % Version 2.1.1
   _ 2011-10-25
