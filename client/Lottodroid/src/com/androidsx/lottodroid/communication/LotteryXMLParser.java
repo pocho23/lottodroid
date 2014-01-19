@@ -501,7 +501,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
+			num[i] = Integer.parseInt(formatNumber(values.getNamedItem("Valor").getNodeValue()));
 			System.out.print(num[i] + " ");
 		}
 		
@@ -514,9 +514,9 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			bonoloto.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim().replace(".", "")),
+					Integer.parseInt(formatNumber(values.getNamedItem("Acertantes").getNodeValue())),
 					values.getNamedItem("Categoria").getNodeValue(),
-					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim().replace(".", "").replace(",", ".")),
+					Float.parseFloat(formatNumber(values.getNamedItem("ImporteEuros").getNodeValue())),
 					0);
 			System.out.println(bonoloto.getPremio(i));
 		}
@@ -562,7 +562,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			if(i <= 6) {
+			if(i < 6 && values.getNamedItem("Categoria") != null) {
 			cuponazoOnce.addPremio(
 					values.getNamedItem("Categoria").getNodeValue(),
 					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim().replace(".", "").replace(",", ".")),
@@ -589,7 +589,6 @@ class LotteryXMLParser {
 						Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim().replace(".", "").replace(",", ".")),
 						0);
 			} 
-			System.out.println(cuponazoOnce.getPremio(i));
 		}
 		
 		List<CuponazoOnce> lotteryList = new LinkedList<CuponazoOnce>();
@@ -612,7 +611,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
+			num[i] = Integer.parseInt(formatNumber(values.getNamedItem("Valor").getNodeValue()));
 			System.out.print(num[i] + " ");
 		}
 		
@@ -625,7 +624,7 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			gordoPrimitiva.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim().replace(".", "")),
+					Integer.parseInt(formatNumber(values.getNamedItem("Acertantes").getNodeValue())),
 					values.getNamedItem("Categoria").getNodeValue(),
 					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim().replace(".", "").replace(",", ".")),
 					0);
@@ -651,7 +650,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
+			num[i] = Integer.parseInt(formatNumber(values.getNamedItem("Valor").getNodeValue()));
 			System.out.print(num[i] + " ");
 		}
 		
@@ -664,7 +663,7 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			loteria7_39.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim().replace(".", "")),
+					Integer.parseInt(formatNumber(values.getNamedItem("Acertantes").getNodeValue())),
 					values.getNamedItem("Categoria").getNodeValue(),
 					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim().replace(".", "").replace(",", ".")),
 					0);
@@ -693,7 +692,7 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			if(i < num.length) {
-				num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
+				num[i] = Integer.parseInt(formatNumber(values.getNamedItem("Valor").getNodeValue()));
 				System.out.print(num[i] + " ");
 			} else {
 				joker = Long.parseLong(values.getNamedItem("Valor").getNodeValue().trim());
@@ -710,7 +709,7 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			lotto6_49.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim().replace(".", "")),
+					Integer.parseInt(formatNumber(values.getNamedItem("Acertantes").getNodeValue())),
 					values.getNamedItem("Categoria").getNodeValue(),
 					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim().replace(".", "").replace(",", ".")),
 					0);
@@ -747,10 +746,7 @@ class LotteryXMLParser {
 		Once once = new Once(date, num, serie);
 		
 		results = game.getElementsByTagName("Premio");
-        String categorias[] = { "A las cinco cifras", "Al n\u00FAmero anterior",
-                "Al n\u00FAmero posterior", "A las cuatro \u00FAltimas cifras", "A las tres \u00FAltimas cifras",
-                "A las dos  \u00FAltimas cifras", "A la \u00FAltima cifra", "A la primera cifra" };
-
+     
         String euros;
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
@@ -763,7 +759,7 @@ class LotteryXMLParser {
             }
 			
 			once.addPremio(
-					categorias[i],
+					values.getNamedItem("Categoria").getNodeValue(),
 					Float.parseFloat(euros.trim().replace(".", "").replace(",", ".")),
 					0);
 			System.out.println(once.getPremio(i));
@@ -892,27 +888,34 @@ class LotteryXMLParser {
 		System.out.println("\n\nPrimitiva:  " + date);
 
 		// 8 resultados: 6 nums + complementario + reintegro
-		int num[] = new int[8];
-		NodeList results = game.getElementsByTagName("Resultado");
-		NamedNodeMap values; Element result;
 		
+		NodeList results = game.getElementsByTagName("Resultado");
+		NamedNodeMap values; 
+		Element result;
+		
+		int num[] = new int[results.getLength()];
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
-			System.out.print(num[i] + " ");
+			
+			num[i] = Integer.parseInt(formatNumber(values.getNamedItem("Valor").getNodeValue()));
 		}
 		
 		Primitiva primitiva = new Primitiva(date, num[0], num[1], num[2],
-				num[3], num[4], num[5], num[7], num[6]);
+				num[3], num[4], num[5], num[8], num[6]);
 		
 		results = game.getElementsByTagName("Premio");
 
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
+			
+			int acertantes = 0;
+			if (!values.getNamedItem("Acertantes").getNodeValue().equals("-")) {
+				acertantes = Integer.parseInt(formatNumber(values.getNamedItem("Acertantes").getNodeValue()));
+			}
 			primitiva.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim().replace(".", "")),
+					acertantes,
 					values.getNamedItem("Categoria").getNodeValue(),
 					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim().replace(".", "").replace(",", ".")),
 					0);
@@ -939,7 +942,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
+			num[i] = Integer.parseInt(formatNumber(values.getNamedItem("Valor").getNodeValue()));
 			System.out.print(num[i] + " ");
 		}
 		
@@ -952,7 +955,7 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			lototurf.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim().replace(".", "")),
+					Integer.parseInt(formatNumber(values.getNamedItem("Acertantes").getNodeValue())),
 					values.getNamedItem("Categoria").getNodeValue(),
 					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim().replace(".", "").replace(",", ".")),
 					0);
@@ -979,7 +982,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			num[i] = Integer.parseInt(values.getNamedItem("Valor").getNodeValue().trim());
+			num[i] = Integer.parseInt(formatNumber(values.getNamedItem("Valor").getNodeValue()));
 			System.out.print(num[i] + " ");
 		}
 		
@@ -992,8 +995,8 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			euromillon.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim().replace(".", "")),
-					Integer.parseInt(values.getNamedItem("AcertantesESP").getNodeValue().trim().replace(".", "")),
+					Integer.parseInt(formatNumber(values.getNamedItem("Acertantes").getNodeValue())),
+					Integer.parseInt(formatNumber(values.getNamedItem("AcertantesESP").getNodeValue())),
 					values.getNamedItem("Categoria").getNodeValue(),
 					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim().replace(".", "").replace(",", ".")),
 					0);
@@ -1017,7 +1020,7 @@ class LotteryXMLParser {
 		NodeList results = game.getElementsByTagName("Premio");
 		Element result = (Element) results.item(3);
 		NamedNodeMap values = result.getAttributes();
-		int premio2 = Integer.parseInt(values.getNamedItem("NumeroPremiado").getNodeValue().trim());
+		int premio2 = Integer.parseInt(formatNumber(values.getNamedItem("NumeroPremiado").getNodeValue()));
 		
 		// 6 resultados: premio1, fraccion, serie, reintegro1,
 		// reintegro2, reintegro3
@@ -1173,7 +1176,7 @@ class LotteryXMLParser {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
 			quintuplePlus.addPremio(
-					Integer.parseInt(values.getNamedItem("Acertantes").getNodeValue().trim().replace(".", "")),
+					Integer.parseInt(formatNumber(values.getNamedItem("Acertantes").getNodeValue())),
 					values.getNamedItem("Categoria").getNodeValue(),
 					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim().replace(".", "").replace(",", ".")),
 					0);
@@ -1184,5 +1187,10 @@ class LotteryXMLParser {
 		lotteryList.add(quintuplePlus);
 	
 		return lotteryList;
+	}
+	
+	/** Parse strings which contains numbers such as 10.343 and 10,233 */
+	private static String formatNumber(String number) {
+		return number.trim().replace(".", "").replace(",", ".");
 	}
 }
