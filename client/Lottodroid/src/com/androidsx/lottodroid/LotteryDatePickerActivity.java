@@ -30,7 +30,7 @@ public class LotteryDatePickerActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.data_picker_activity);
+		setContentView(R.layout.date_picker_activity);
 
 		try {
 			Bundle extras = getIntent().getExtras();
