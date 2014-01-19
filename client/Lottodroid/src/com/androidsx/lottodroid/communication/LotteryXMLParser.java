@@ -562,7 +562,7 @@ class LotteryXMLParser {
 		for (int i = 0; i < results.getLength(); i++) {
 			result = (Element) results.item(i);
 			values = result.getAttributes();
-			if(i <= 6) {
+			if(i < 6 && values.getNamedItem("Categoria") != null) {
 			cuponazoOnce.addPremio(
 					values.getNamedItem("Categoria").getNodeValue(),
 					Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim().replace(".", "").replace(",", ".")),
@@ -589,7 +589,6 @@ class LotteryXMLParser {
 						Float.parseFloat(values.getNamedItem("ImporteEuros").getNodeValue().trim().replace(".", "").replace(",", ".")),
 						0);
 			} 
-			System.out.println(cuponazoOnce.getPremio(i));
 		}
 		
 		List<CuponazoOnce> lotteryList = new LinkedList<CuponazoOnce>();
